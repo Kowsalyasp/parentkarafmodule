@@ -11,7 +11,7 @@
 - [Connection](#connection)
 - [MetaData](#metadata)
   * [*meta.xml file tags precedent*](#metaxml-file-tags-precedent)
-    * [*Attributes of Table Tag*]
+    * [*Attributes of table tag*](#attributes-of-table-tag)
   * [*meta.xml precedent*](#metaxml-precedent)
 - [Data.xml](#dataxml)
   * [*data.xml file precedent*](#dataxml-file-precedent)
@@ -93,11 +93,11 @@ The meta.xml file presents a set of metadata, such as the module name, the table
 XML is a textual data format that is widely used for the representation of data.
 Used an XML-based language to describe the metadata for resources by using the tags below:
 
-## <table>   
+## Table tag
 Create a table with the tablename and type which are present inside the table tag. Each table has a table type value which can be given as per your needs.
 
-``` <table name="TableName" type="11">
- </table>
+``` 
+<table name="TableName" type="11"> </table>
  ```
 
  ### *Attributes of table tag*
@@ -120,14 +120,16 @@ Create a table with the tablename and type which are present inside the table ta
                23 -> ORG_MIXED_BY_ORG
                   This type of table belongs to org_id, partition by ID and also exists common null values.
     
-## <column />
+## Column tag
 Columns are also called fields in a database table. The attributes for the column name of the table,
 its data type, whether it is nullable or not, maximum length, and default value for the column are provided here. 
 Each column should be provided within the columns tag.
 
-> <columns>
-<column name="NAME" data-type="CHAR" max-length="30" nullable="false" default-value="1"/>
+```
+<columns>
+    <column name="NAME" data-type="CHAR" max-length="30" nullable="false" default-value="1"/>
 </columns>
+```
 
  ### *Attributes of column tag*
  name = It refers to the column name.
@@ -148,13 +150,14 @@ Each column should be provided within the columns tag.
  max-length = It refers to the maximum length that a column should be provided.
  default-value = The default value is assigned to the column. It may be a boolean type.
 
-## <primary-key />
+## Primary-key tag
  Primary keys must contain unique values and cannot have NULL values.
  A table can have only one primary key, which may consist of single or multiple fields.
  Each primary-key should be provided within the <primary-keys>tag.
 
-```<primary-keys>
-<primary-key name="Table_PK" column="ID" sequence-generator="TablePk.ID" />
+```
+<primary-keys>
+    <primary-key name="Table_PK" column="ID" sequence-generator="TablePk.ID" />
 </primary-keys>
 ```
 
@@ -166,12 +169,13 @@ column = Having an ID column as the primary key is always a good idea because it
 sequence-batch = It denotes the starts with and here, by default, the value is 50. If we want to set the value, it should not be less than 50.
 sequence-generator = Use sequences to automatically generate primary key values. It should be specified in the following format: TableName_[A-Za-z0-9_].
             
-## <foreign-key />
+## foreign-key tag
 A foreign-key is a field or collection of fields in one table that refers to the primary-key in another table.
 Each foreign key can be accessed within the foreign-keys tag.
 
-``` <foreign-keys> 
-<foreign-key name="Table_FK" reference-table="Table1" local-column="Table1_ID" reference-column="ID constraint="ON-DELETE-CASCADE" /> 
+``` 
+<foreign-keys> 
+    <foreign-key name="Table_FK" reference-table="Table1" local-column="Table1_ID" reference-column="ID constraint="ON-DELETE-CASCADE" /> 
 </foreign-keys>
 ```
 	
@@ -187,14 +191,15 @@ constraint = Three types of foreign key constraints are allowed. And these const
          ON_DELETE_CASCADE:To specify whether you want rows deleted in a child table when corresponding rows are deleted in the parent table.
          ON_DELETE_SET_NULL:
 			
-## unique-key 
+## unique-key tag
 Multiple unique keys can be present in a table. NULL values are allowed in the case of a unique key. These can also be used as foreign keys for other tables.
 Each unique key can be accessed within the unique-keys tag.
 
-``` <unique-keys> 
- <unique-key name="UniqueKey_UK">
-    <unique-key-column>ID</unique-key-column>
-</unique-key> 
+``` 
+<unique-keys> 
+   <unique-key name="UniqueKey_UK">
+      <unique-key-column>ID</unique-key-column>
+   </unique-key> 
 </unique-keys>
 ```
 
@@ -204,11 +209,12 @@ Each unique key can be accessed within the unique-keys tag.
 ` format: TableName_[A-Za-z0-9_]`
 <unique-key-column> = Valid column name should be provided.
 		
-## indexes	
+## indexes tag
 Indexes can be used to speed up data retrieval. Simply put, an index is a pointer to data in a table.
 Each index-key can be accessed within the indexes tag.
 
-``` <indexes> 
+```
+ <indexes> 
  <index name="Index_Id">
  <index-column>TABLE_NAME</index-column>
     </index> 
@@ -221,7 +227,8 @@ name = The indexes name must be specified in a specific pattern, such as first b
 ### *meta.xml precedent*
 * A sample meta.xml is shown for reference 
 	
-```<?xml version="1.0" encoding="utf-8" ?>
+```
+<?xml version="1.0" encoding="utf-8" ?>
 <metadata>
     <module name="module_crm_contact">
 	    <table name="Sample" type="11">
@@ -270,13 +277,16 @@ Example to enter a record statically You can add rows to a table:
 > ``<MCMFieldSQLTable ID="MCMFieldSQLTable:ID:CO:1" TABLE_NAME="SampleTable"/>``
 
 The sub-tag is a tag that is referred as a foreign key in a child table will generally reference a primary key in the parent table under a parent tag.
- > ``<parent-table ID=""  col="">
+ ```
+ <parent-table ID=""  col="">
    <child-table ID="" col = "" ></child-table>
-<parent-table> ``
+<parent-table> 
+```
 
 ### *data.xml file precedent*
 
->''<?xml version="1.0" encoding="utf-8" ?>
+```
+<?xml version="1.0" encoding="utf-8" ?>
 <dumpdata>
 <module name = "tlc_crm_contact"
 
@@ -289,7 +299,8 @@ The sub-tag is a tag that is referred as a foreign key in a child table will gen
      </MCMFields>
  </MCMDataProvider>
        
-</dumpdata>''
+</dumpdata>
+```
 
 	
 ## Packages:
