@@ -92,17 +92,17 @@ The property controls the maximum amount of time (in milliseconds) that a connec
 ### *meta.xml file tags precedent*
 	
 The meta.xml file presents a set of metadata, such as the module name, the tables to include.
-XML is a textual data format that is widely used for the representation of data. 
+XML is a textual data format that is widely used for the representation of data.
 Used an XML-based language to describe the metadata for resources by using the tags below:
 
-## <table />    
+## <table>   
 Create a table with the tablename and type which are present inside the table tag. Each table has a table type value which can be given as per your needs.
 
-> ```<table name="TableName" type="11">...
+ > ``<table name="TableName" type="11">...
 	  ...
-    </table>```
+ </table>```
 
- # Attributes of table tag.
+ ### *Attributes of table tag*
     name = Name of the table.
     type = It refers to table type, and some values are given for each table types. the following table types are,
                1 -> COMMON 
@@ -128,10 +128,10 @@ its data type, whether it is nullable or not, maximum length, and default value 
 Each column should be provided within the columns tag.
 
 > ``<columns>
-        <column name="NAME" data-type="CHAR" max-length="30" nullable="false" default-value="1"/>
+<column name="NAME" data-type="CHAR" max-length="30" nullable="false" default-value="1"/>
 </columns>``
 
- # Attributes of column tag.
+ ### *Attributes of column tag*
  name = It refers to the column name.
  data-type = It refers to what type of column it is, and here we can use some specific data types.
         supported datatypes:
@@ -156,10 +156,10 @@ Each column should be provided within the columns tag.
  Each primary-key should be provided within the <primary-keys>tag.
 
 > `` <primary-keys>
-           <primary-key name="Table_PK" column="ID" sequence-generator="TablePk.ID" />
+<primary-key name="Table_PK" column="ID" sequence-generator="TablePk.ID" />
 </primary-keys>``
 
-# Attributes of primary-key tag.
+### *Attributes of primary-key tag*
 
 name = The primary key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
 >` format: TableName_[A-Za-z0-9_]`
@@ -172,10 +172,10 @@ A foreign-key is a field or collection of fields in one table that refers to the
 Each foreign key can be accessed within the foreign-keys tag.
 
 > ``<foreign-keys> 
-        <foreign-key name="Table_FK" reference-table="Table1" local-column="Table1_ID" reference-column="ID constraint="ON-DELETE-CASCADE" /> 
+<foreign-key name="Table_FK" reference-table="Table1" local-column="Table1_ID" reference-column="ID constraint="ON-DELETE-CASCADE" /> 
 </foreign-keys>``
 	
-# Attributes of foreign-key tag.
+### *Attributes of foreign-key tag*
 		
 name = The foreign key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
 >`format: TableName_[A-Za-z0-9_]`
@@ -192,12 +192,12 @@ Multiple unique keys can be present in a table. NULL values are allowed in the c
 Each unique key can be accessed within the unique-keys tag.
 
 > ``<unique-keys> 
-        <unique-key name="UniqueKey_UK">
-            <unique-key-column>ID</unique-key-column>
-        </unique-key> 
+ <unique-key name="UniqueKey_UK">
+    <unique-key-column>ID</unique-key-column>
+</unique-key> 
 </unique-keys>``
 
-# Attributes of unique-key tag.
+### *Attributes of unique-key tag*
 
  name = The unique key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
 >` format: TableName_[A-Za-z0-9_]`
@@ -208,9 +208,9 @@ Indexes can be used to speed up data retrieval. Simply put, an index is a pointe
 Each index-key can be accessed within the indexes tag.
 
 > ``<indexes> 
-        <index name="Index_Id">
-            <index-column>TABLE_NAME</index-column>
-        </index> 
+ <index name="Index_Id">
+ <index-column>TABLE_NAME</index-column>
+    </index> 
 </indexes>``
 
 name = The indexes name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
