@@ -46,9 +46,6 @@ This odule requires the following maven dependencies.
 	
 ## SQLDevListener:
 	Utilizing the bundle lifecycle, it will perform actions like metadata parsing, etc. The class explains the loading, processing, updating, and populating of the meta and data XML files. Make use of this. It notes the bundle history record. We can see this in snapshots of our system. Hang on to the bundle history, which compares both the existing XML files and the current XML file to upload the data into the database. 
-	
-## MetaData:
-	The meta.xml file to load and populate the metadata to fetch and configure the table definitions and initialise the sequence generation of primary keys. The main purpose of meta.xml is to create the table. We set up the metadata with all the essential element tags like table name, columns, and constraints to configure the table in the database. And the module tag refers to which module that wants to create the table.
       
 ### Connection:
     In the karaf folder, create the `configuration folder` which stores and loads all the configuration files like database connectivity, cache server, and web server.
@@ -60,37 +57,37 @@ For databse connection:
 A configuration file is a properties file containing key/value pairs:
  The cfg file provides a set of commands to manage the configuration.
 
->property=value
+> property=value
 
 You can add your own initial configuration directly in the file. To get the database service, mention the following mandatory properties in the given format.
 
 The database name should be TLC(capitalized), and to create the database with the same name in database.
->'database.name = TLC'
+> database.name = TLC
 
 To get the database server connection mention the port number as follow : `localhost:portnumber`. 
->'database.server = localhost:5432'
+> database.server = localhost:5432
 
 A default username and password that is connected to the database( hosting-db ). 
->''database.username = userName
-database.password = password''
+> database.username = userName
+> database.password = password
 
 This property helps to get the environment and the mode to be `enabled` if it is true; otherwise, if it is false, it won't connect with the database.
->'development.mode.enabled=true'
+> development.mode.enabled = true
 
 Additionally we can use following properties to mention the pool size
 
 The property controls the maximum size that the pool is allowed to reach. 
 Basically this value will determine the maximum number of actual connections to the database backend.
->'connection.pool.max = '
+> connection.pool.max = 
 
 The property controls the minimum number of idle connections to maintain in the pool.
->'connection.pool.idle = '
+> connection.pool.idle = 
 
 The property controls the maximum amount of time (in milliseconds) that a connection is allowed to sit idle in the pool. A connection will never be retired as idle before this timeout. A value of 0 means that idle connections are never removed from the pool.
->'connection.pool.idle.timeout = '
+> connection.pool.idle.timeout = 
 	
-### *meta.xml file tags precedent*
-	
+## MetaData:
+	The meta.xml file to load and populate the metadata to fetch and configure the table definitions and initialise the sequence generation of primary keys. The main purpose of meta.xml is to create the table. We set up the metadata with all the essential element tags like table name, columns, and constraints to configure the table in the database. And the module tag refers to which module that wants to create the table.
 The meta.xml file presents a set of metadata, such as the module name, the tables to include.
 XML is a textual data format that is widely used for the representation of data.
 Used an XML-based language to describe the metadata for resources by using the tags below:
@@ -98,9 +95,9 @@ Used an XML-based language to describe the metadata for resources by using the t
 ## <table>   
 Create a table with the tablename and type which are present inside the table tag. Each table has a table type value which can be given as per your needs.
 
- > ``<table name="TableName" type="11">...
+ > <table name="TableName" type="11">...
 	  ...
- </table>```
+ </table>
 
  ### *Attributes of table tag*
     name = Name of the table.
