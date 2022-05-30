@@ -46,6 +46,9 @@ This odule requires the following maven dependencies.
 	
 ## SQLDevListener:
 	Utilizing the bundle lifecycle, it will perform actions like metadata parsing, etc. The class explains the loading, processing, updating, and populating of the meta and data XML files. Make use of this. It notes the bundle history record. We can see this in snapshots of our system. Hang on to the bundle history, which compares both the existing XML files and the current XML file to upload the data into the database. 
+	
+## MetaData:
+	The meta.xml file to load and populate the metadata to fetch and configure the table definitions and initialise the sequence generation of primary keys. The main purpose of meta.xml is to create the table. We set up the metadata with all the essential element tags like table name, columns, and constraints to configure the table in the database. And the module tag refers to which module that wants to create the table.
       
 ### Connection:
     In the karaf folder, create the `configuration folder` which stores and loads all the configuration files like database connectivity, cache server, and web server.
@@ -57,7 +60,7 @@ For databse connection:
 A configuration file is a properties file containing key/value pairs:
  The cfg file provides a set of commands to manage the configuration.
 
-> property=value
+> property = value
 
 You can add your own initial configuration directly in the file. To get the database service, mention the following mandatory properties in the given format.
 
@@ -69,7 +72,7 @@ To get the database server connection mention the port number as follow : `local
 
 A default username and password that is connected to the database( hosting-db ). 
 > database.username = userName
-> database.password = password
+database.password = password
 
 This property helps to get the environment and the mode to be `enabled` if it is true; otherwise, if it is false, it won't connect with the database.
 > development.mode.enabled = true
@@ -86,8 +89,8 @@ The property controls the minimum number of idle connections to maintain in the 
 The property controls the maximum amount of time (in milliseconds) that a connection is allowed to sit idle in the pool. A connection will never be retired as idle before this timeout. A value of 0 means that idle connections are never removed from the pool.
 > connection.pool.idle.timeout = 
 	
-## MetaData:
-	The meta.xml file to load and populate the metadata to fetch and configure the table definitions and initialise the sequence generation of primary keys. The main purpose of meta.xml is to create the table. We set up the metadata with all the essential element tags like table name, columns, and constraints to configure the table in the database. And the module tag refers to which module that wants to create the table.
+### *meta.xml file tags precedent*
+	
 The meta.xml file presents a set of metadata, such as the module name, the tables to include.
 XML is a textual data format that is widely used for the representation of data.
 Used an XML-based language to describe the metadata for resources by using the tags below:
@@ -95,8 +98,7 @@ Used an XML-based language to describe the metadata for resources by using the t
 ## <table>   
 Create a table with the tablename and type which are present inside the table tag. Each table has a table type value which can be given as per your needs.
 
- > <table name="TableName" type="11">...
-	  ...
+ > <table name="TableName" type="11">
  </table>
 
  ### *Attributes of table tag*
@@ -124,9 +126,9 @@ Columns are also called fields in a database table. The attributes for the colum
 its data type, whether it is nullable or not, maximum length, and default value for the column are provided here. 
 Each column should be provided within the columns tag.
 
-> ``<columns>
+> <columns>
 <column name="NAME" data-type="CHAR" max-length="30" nullable="false" default-value="1"/>
-</columns>``
+</columns>
 
  ### *Attributes of column tag*
  name = It refers to the column name.
@@ -152,14 +154,14 @@ Each column should be provided within the columns tag.
  A table can have only one primary key, which may consist of single or multiple fields.
  Each primary-key should be provided within the <primary-keys>tag.
 
-> `` <primary-keys>
+> <primary-keys>
 <primary-key name="Table_PK" column="ID" sequence-generator="TablePk.ID" />
-</primary-keys>``
+</primary-keys>
 
 ### *Attributes of primary-key tag*
 
 name = The primary key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
->` format: TableName_[A-Za-z0-9_]`
+` format: TableName_[A-Za-z0-9_]`
 column = Having an ID column as the primary key is always a good idea because it will never change.
 sequence-batch = It denotes the starts with and here, by default, the value is 50. If we want to set the value, it should not be less than 50.
 sequence-generator = Use sequences to automatically generate primary key values. It should be specified in the following format: TableName_[A-Za-z0-9_].
@@ -168,14 +170,14 @@ sequence-generator = Use sequences to automatically generate primary key values.
 A foreign-key is a field or collection of fields in one table that refers to the primary-key in another table.
 Each foreign key can be accessed within the foreign-keys tag.
 
-> ``<foreign-keys> 
+> <foreign-keys> 
 <foreign-key name="Table_FK" reference-table="Table1" local-column="Table1_ID" reference-column="ID constraint="ON-DELETE-CASCADE" /> 
-</foreign-keys>``
+</foreign-keys>
 	
 ### *Attributes of foreign-key tag*
 		
 name = The foreign key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
->`format: TableName_[A-Za-z0-9_]`
+`format: TableName_[A-Za-z0-9_]`
 reference-table = A table that is referenced from a referencing table with a foreign key.
 local-column = It refers to the local table.
 reference-column = Returns the item stored in the specified column within the context row based on a related column between them. 
@@ -188,30 +190,30 @@ constraint = Three types of foreign key constraints are allowed. And these const
 Multiple unique keys can be present in a table. NULL values are allowed in the case of a unique key. These can also be used as foreign keys for other tables.
 Each unique key can be accessed within the unique-keys tag.
 
-> ``<unique-keys> 
+> <unique-keys> 
  <unique-key name="UniqueKey_UK">
     <unique-key-column>ID</unique-key-column>
 </unique-key> 
-</unique-keys>``
+</unique-keys>
 
 ### *Attributes of unique-key tag*
 
  name = The unique key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
->` format: TableName_[A-Za-z0-9_]`
+` format: TableName_[A-Za-z0-9_]`
 <unique-key-column> = Valid column name should be provided.
 		
 ## <indexes />	
 Indexes can be used to speed up data retrieval. Simply put, an index is a pointer to data in a table.
 Each index-key can be accessed within the indexes tag.
 
-> ``<indexes> 
+> <indexes> 
  <index name="Index_Id">
  <index-column>TABLE_NAME</index-column>
     </index> 
-</indexes>``
+</indexes>
 
 name = The indexes name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
->` format: TableName_[A-Za-z0-9_]`
+` format: TableName_[A-Za-z0-9_]`
 <index-column> = Valid column name should be provided.
 
 ### *meta.xml precedent*
