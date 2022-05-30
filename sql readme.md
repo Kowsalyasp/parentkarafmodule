@@ -140,9 +140,8 @@ Each column should be provided within the columns tag.
     <column name="NAME" data-type="CHAR" max-length="30" nullable="false" default-value="1"/>
 </columns>
 ```
-
  ### *Attributes of column tag*
-
+```
  **name** = It refers to the column name.
  **data-type** = It refers to what type of column it is, and here we can use some specific data types.
         **supported datatypes:**
@@ -160,6 +159,7 @@ Each column should be provided within the columns tag.
  nullable = Whether we want to allow null values for the specific column, we set nullable = true; otherwise, nullable = false.
  max-length = It refers to the maximum length that a column should be provided.
  default-value = The default value is assigned to the column. It may be a boolean type.
+ ```
 
 ## Primary-key tag
  Primary keys must contain unique values and cannot have NULL values.
@@ -173,13 +173,13 @@ Each column should be provided within the columns tag.
 ```
 
 ### *Attributes of primary-key tag*
-
+```
 **name**  The primary key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
 ` format: TableName_[A-Za-z0-9_]`
 **column =** Having an ID column as the primary key is always a good idea because it will never change.
 **sequence-batch =** It denotes the starts with and here, by default, the value is 50. If we want to set the value, it should not be less than 50.
 **sequence-generator** = Use sequences to automatically generate primary key values. It should be specified in the following format: TableName_[A-Za-z0-9_].
-            
+```
 ## foreign-key tag
 A foreign-key is a field or collection of fields in one table that refers to the primary-key in another table.
 Each foreign key can be accessed within the foreign-keys tag.
@@ -191,7 +191,7 @@ Each foreign key can be accessed within the foreign-keys tag.
 ```
 	
 ### *Attributes of foreign-key tag*
-		
+```		
 **name =** The foreign key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
 `format: TableName_[A-Za-z0-9_]`
 **reference-table =** A table that is referenced from a referencing table with a foreign key.
@@ -201,7 +201,7 @@ Each foreign key can be accessed within the foreign-keys tag.
          **ON_DELETE_RESTRICT:** If you want to delete a record from one table but there is a corresponding record in the other table, the delete operation is not allowed.
          **ON_DELETE_CASCADE:**To specify whether you want rows deleted in a child table when corresponding rows are deleted in the parent table.
          ON_DELETE_SET_NULL:
-			
+```		
 ## unique-key tag
 Multiple unique keys can be present in a table. NULL values are allowed in the case of a unique key. These can also be used as foreign keys for other tables.
 Each unique key can be accessed within the unique-keys tag.
@@ -215,11 +215,11 @@ Each unique key can be accessed within the unique-keys tag.
 ```
 
 ### *Attributes of unique-key tag*
-
+```
  **name = **The unique key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
 ` format: TableName_[A-Za-z0-9_]`
 <unique-key-column> = Valid column name should be provided.
-		
+```		
 ## indexes tag
 Indexes can be used to speed up data retrieval. Simply put, an index is a pointer to data in a table.
 Each index-key can be accessed within the indexes tag.
