@@ -12,6 +12,15 @@
 - [MetaData](#metadata)
   * [*meta.xml file tags precedent*](#metaxml-file-tags-precedent)
     * [*Attributes of table tag*](#attributes-of-table-tag)
+  * [*Column*](#column-tag)
+    * [*Attributes of column tag*](#attributes-of-column-tag)
+  * [Primary-key*](#primary-key-tag)
+    * [*Attributes of primary key tag*](#attributes-of-primary-key-tag)
+  * [*foreign-key*](#foreign-key-tag)
+    * [*Attributes of foreign-key tag*](#attributes-of-foreign-key-tag)
+  * [*unique-key*](#unique-key-tag)
+    * [*Attributes of unique-key tag*](#attributes-of-unique-key-tag)
+  * [*Indexes*](#indexes-tag)
   * [*meta.xml precedent*](#metaxml-precedent)
 - [Data.xml](#dataxml)
   * [*data.xml file precedent*](#dataxml-file-precedent)
@@ -101,6 +110,7 @@ Create a table with the tablename and type which are present inside the table ta
  ```
 
  ### *Attributes of table tag*
+
     name = Name of the table.
     type = It refers to table type, and some values are given for each table types. the following table types are,
                1 -> COMMON 
@@ -132,19 +142,20 @@ Each column should be provided within the columns tag.
 ```
 
  ### *Attributes of column tag*
- name = It refers to the column name.
- data-type = It refers to what type of column it is, and here we can use some specific data types.
-        supported datatypes:
-                    BIGINT: An instance of the long datatype
-                    INTEGER: An instance of the integer datatype.
-                    SMALLINT: An instance of the short datatype.
-                    KCHAR:An instance of the i18n datatype.
-                    SCHAR:An instance of the small character datatype.
-                    BLOB:An instance of the byte datatype.
-                    CHAR:An instance of the character datatype. 
-                    TEXT: The variable-length character SQL text data type is called VARCHAR
-                    STEXT:
-                    BOLLEAN:A boolean is an expression that evaluates to either true or false.
+
+ **name** = It refers to the column name.
+ **data-type** = It refers to what type of column it is, and here we can use some specific data types.
+        **supported datatypes:**
+              **BIGINT:** An instance of the long datatype
+              **INTEGER:** An instance of the integer datatype.
+              **SMALLINT:** An instance of the short datatype.
+              **KCHAR:** An instance of the i18n datatype.
+              **SCHAR:** An instance of the small character datatype.
+              **BLOB:** An instance of the byte datatype.
+              **CHAR:** An instance of the character datatype. 
+              **TEXT:** The variable-length character SQL text data type is called VARCHAR
+              **STEXT:**
+              **BOLLEAN:** A boolean is an expression that evaluates to either true or false.
   
  nullable = Whether we want to allow null values for the specific column, we set nullable = true; otherwise, nullable = false.
  max-length = It refers to the maximum length that a column should be provided.
@@ -163,11 +174,11 @@ Each column should be provided within the columns tag.
 
 ### *Attributes of primary-key tag*
 
-name = The primary key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
+**name**  The primary key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
 ` format: TableName_[A-Za-z0-9_]`
-column = Having an ID column as the primary key is always a good idea because it will never change.
-sequence-batch = It denotes the starts with and here, by default, the value is 50. If we want to set the value, it should not be less than 50.
-sequence-generator = Use sequences to automatically generate primary key values. It should be specified in the following format: TableName_[A-Za-z0-9_].
+**column =** Having an ID column as the primary key is always a good idea because it will never change.
+**sequence-batch =** It denotes the starts with and here, by default, the value is 50. If we want to set the value, it should not be less than 50.
+**sequence-generator** = Use sequences to automatically generate primary key values. It should be specified in the following format: TableName_[A-Za-z0-9_].
             
 ## foreign-key tag
 A foreign-key is a field or collection of fields in one table that refers to the primary-key in another table.
@@ -181,14 +192,14 @@ Each foreign key can be accessed within the foreign-keys tag.
 	
 ### *Attributes of foreign-key tag*
 		
-name = The foreign key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
+**name =** The foreign key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
 `format: TableName_[A-Za-z0-9_]`
-reference-table = A table that is referenced from a referencing table with a foreign key.
-local-column = It refers to the local table.
-reference-column = Returns the item stored in the specified column within the context row based on a related column between them. 
-constraint = Three types of foreign key constraints are allowed. And these constraints are in caps.
-         ON_DELETE_RESTRICT: If you want to delete a record from one table but there is a corresponding record in the other table, the delete operation is not allowed.
-         ON_DELETE_CASCADE:To specify whether you want rows deleted in a child table when corresponding rows are deleted in the parent table.
+**reference-table =** A table that is referenced from a referencing table with a foreign key.
+**local-column =** It refers to the local table.
+**reference-column =** Returns the item stored in the specified column within the context row based on a related column between them. 
+**constraint =** Three types of foreign key constraints are allowed. And these constraints are in caps.
+         **ON_DELETE_RESTRICT:** If you want to delete a record from one table but there is a corresponding record in the other table, the delete operation is not allowed.
+         **ON_DELETE_CASCADE:**To specify whether you want rows deleted in a child table when corresponding rows are deleted in the parent table.
          ON_DELETE_SET_NULL:
 			
 ## unique-key tag
@@ -205,7 +216,7 @@ Each unique key can be accessed within the unique-keys tag.
 
 ### *Attributes of unique-key tag*
 
- name = The unique key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
+ **name = **The unique key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
 ` format: TableName_[A-Za-z0-9_]`
 <unique-key-column> = Valid column name should be provided.
 		
@@ -220,7 +231,7 @@ Each index-key can be accessed within the indexes tag.
     </index> 
 </indexes>
 ```
-name = The indexes name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
+**name =** The indexes name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
 ` format: TableName_[A-Za-z0-9_]`
 <index-column> = Valid column name should be provided.
 
