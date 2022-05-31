@@ -43,12 +43,12 @@
 ## Requirements:
 This odule requires the following maven dependencies.
 	
-1. javatuples - A tuple is a collection of several elements that may or may not be related to each other. 
+1. **javatuples -** A tuple is a collection of several elements that may or may not be related to each other. 
 	            In other words, tuples can be considered anonymous objects.
-2. HikariCP - HikariCP is a solid high-performance JDBC connection pool. 
+2. **HikariCP -** HikariCP is a solid high-performance JDBC connection pool. 
 		      A connection pool is a cache of database connections maintained so that the connections can be reused 
 		      when future requests to the database are required.
-3. PostgreSQL - PostgreSQL is an advanced, enterprise-class open-source relational database that 
+3. **PostgreSQL -** PostgreSQL is an advanced, enterprise-class open-source relational database that 
 	            supports both SQL (relational) and JSON (non-relational) querying.	
 	
 ## BundleListener:
@@ -78,7 +78,7 @@ To get the database server connection mention the port number as follow : `local
 
 A default username and password that is connected to the database( hosting-db ). 
 > database.username = *****
-  database.password = *****
+> database.password = *****
 
 This property helps to get the environment and the mode to be `enabled` if it is true; otherwise, if it is false, it won't connect with the database.
 > development.mode.enabled = true
@@ -333,16 +333,16 @@ The sub-tag is a tag that is referred as a foreign key in a child table will gen
 * **sequence -** Sequence is a set of integers that it allows the automatic generation of values and supported by some database systems to produce unique values on demand. provides the service for sequence generator.
 ### internal package:
 * **data -** Data is a information that can be organized and stored in a database. For that it provides the datacontainer and here it can be also filtered the datacontainer according to our needs.
-* dml - Provides the services for dml queries in api package. And lay out the implementation for all servies here.  
-* ds - Provides implementations for readable and writable datastore, admindatastore, and orgdatastore.
-* handler - When an SQL procedure executes, if unfortunately error occurs then the procedure ends unless. And tell the procedure to perform some other action. These Handler Statements are abstract methods for all DML and DDL-related queries.  
-* listener - Listen the Row it records the cache for add, update and delete process.
-* meta - Provides and maintain the cache process in datacontainer and also executes the procedure for handling meta data.
-* parser - Provides implementations for metadata parser, constraints resolver, table definition loader, etc.
-* pgsql - PostgreSQL is an object-relational database used as the primary data store.provides services for dml and ddl related functionalities.
-* sequence - Generate the sequence automatically, it loads the series.
-* status - error code is a numeric or alphanumeric code that is used to determine the nature of an error and why it occurred.when they attempt to do something or fail to do and they can be passed off to error handlers that determine what action to take. And here, they provides the status for the error code occured by this module. 
-* update - Modify or revert the existing records in a table it provides the pre action type(create_table, drop_unique_key, create_index, update_index, delete_index,...) and post action type(create_unique_key, update_unique_key, create_foreign_key, update_foreign_key, drop_foreign_key,...).
+* **dml -** Provides the services for dml queries in api package. And lay out the implementation for all servies here.  
+* **ds -** Provides implementations for readable and writable datastore, admindatastore, and orgdatastore.
+* **handler -** When an SQL procedure executes, if unfortunately error occurs then the procedure ends unless. And tell the procedure to perform some other action. These Handler Statements are abstract methods for all DML and DDL-related queries.  
+* **listener -** Listen the Row it records the cache for add, update and delete process.
+* **meta -** Provides and maintain the cache process in datacontainer and also executes the procedure for handling meta data.
+* **parser -** Provides implementations for metadata parser, constraints resolver, table definition loader, etc.
+* **pgsql -** PostgreSQL is an object-relational database used as the primary data store.provides services for dml and ddl related functionalities.
+* **sequence -** Generate the sequence automatically, it loads the series.
+* **status -** error code is a numeric or alphanumeric code that is used to determine the nature of an error and why it occurred.when they attempt to do something or fail to do and they can be passed off to error handlers that determine what action to take. And here, they provides the status for the error code occured by this module. 
+* **update -** Modify or revert the existing records in a table it provides the pre action type(create_table, drop_unique_key, create_index, update_index, delete_index,...) and post action type(create_unique_key, update_unique_key, create_foreign_key, update_foreign_key, drop_foreign_key,...).
 
 
 	
