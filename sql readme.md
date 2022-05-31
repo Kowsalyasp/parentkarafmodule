@@ -142,9 +142,9 @@ Each column should be provided within the columns tag.
 ```
  ### *Attributes of column tag*
 
- >name = It refers to the column name.
- data-type = It refers to what type of column it is, and here we can use some specific data types.
-        supported datatypes:
+    name = It refers to the column name.
+    data-type = It refers to what type of column it is, and here we can use some specific data types.
+         supported datatypes:
               BIGINT: An instance of the long datatype
               INTEGER: An instance of the integer datatype.
               SMALLINT: An instance of the short datatype.
@@ -159,7 +159,7 @@ Each column should be provided within the columns tag.
  nullable = Whether we want to allow null values for the specific column, we set nullable = true; otherwise, nullable = false.
  max-length = It refers to the maximum length that a column should be provided.
  default-value = The default value is assigned to the column. It may be a boolean type.
- ```
+
 
 ## Primary-key tag
  Primary keys must contain unique values and cannot have NULL values.
