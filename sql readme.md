@@ -11,8 +11,8 @@
 - [SQLDevListener](#sqldevlistener)
 - [Database Configuration:](#database-configuration)
 - [MetaData](#metadata)
-  * [*meta.xml file tags precedent*](#metaxml-file-tags-precedent)
-    * [*Attributes of table tag*](#attributes-of-table-tag)
+  * [*Table*](#table-tag)
+   * [*Attributes of table tag*](#attributes-of-table-tag)
   * [*Column*](#column-tag)
     * [*Attributes of column tag*](#attributes-of-column-tag)
   * [Primary-key*](#primary-key-tag)
@@ -32,7 +32,7 @@
 
 
 
-## Abstract:
+# Abstract:
 * A module can be thought of as an object library that is linked to the application code. 
 * The procedures could be compiled into object code and linked directly to the application code, they could be compiled 
   and stored on the DBMS and calls to access plan identifiers placed in the application code, or they could be interpreted at run time.
@@ -41,7 +41,7 @@
 * The SQL module explains how to use simple DataBase Query implementations.
 * This module explains the statically available methods for executing DML, DDL, and DQL-related database actions.
 
-## Requirements:
+# Requirements:
 This module requires the following maven dependencies.
 	
 1. **javatuples -** A tuple is a collection of several elements that may or may not be related to each other. 
@@ -52,13 +52,13 @@ This module requires the following maven dependencies.
 3. **PostgreSQL -** PostgreSQL is an advanced, enterprise-class open-source relational database that 
 	            supports both SQL (relational) and JSON (non-relational) querying.	
 	
-## BundleListener:
+# BundleListener:
 A BundleEvent listener When a BundleEvent is fired, it is asynchronously delivered to a BundleListener. BundleListeners are called with a BundleEvent object when a bundle has been installed, resolved, started, stopped, updated, unresolved, or uninstalled.
 	
-## SQLDevListener:
+# SQLDevListener:
 Utilizing the bundle lifecycle, it will perform actions like metadata parsing, etc. The class explains the loading, processing, updating, and populating of the meta and data XML files. Make use of this. It notes the bundle history record. We can see this in snapshots of our system. Hang on to the bundle history, which compares both the existing XML files and the current XML file to upload the data into the database. 
       
-### Database Configuration:
+# Database Configuration:
 In the karaf folder, create the **configuration folder** which stores and loads all the configuration files like database connectivity, cache server, and the webserver.
 
 For databse connection:
@@ -96,7 +96,7 @@ The property controls the minimum number of idle connections to maintain in the 
 The property controls the maximum amount of time (in milliseconds) that a connection is allowed to sit idle in the pool. A connection will never be retired as idle before this timeout. A value of 0 means that idle connections are never removed from the pool.
 > connection.pool.idle.timeout = 0
 	
-## MetaData:
+# MetaData:
 The meta.xml file presents a set of metadata, such as the module name, and the tables to include. XML is a textual data format that is widely used for the representation of data. The meta.xml file to load and populate the metadata to fetch and configure the table definitions and initialize the sequence generation of primary keys. The main purpose of meta.xml is to create the table. We set up the metadata with all the essential element tags like table names, columns, and constraints to configure the table in the database. And the module tag refers to which module wants to create the table.
 Used an XML-based language to describe the metadata for resources by using the tags below:
 
@@ -150,7 +150,7 @@ Each column should be provided within the columns tag.
               BLOB: An instance of the byte data type.
               CHAR: An instance of the character datatype. 
               TEXT: The variable-length character SQL text data type is called VARCHAR
-              STEXT: 
+              STEXT: Sybase can store UTF-8 strings in CHAR/VARCHAR columns.
               BOOLEAN: A boolean is an expression that evaluates to either true or false.
   
     nullable = Whether we want to allow null values for the specific column, we set nullable = true; otherwise, nullable = false.
@@ -172,7 +172,7 @@ Each column should be provided within the columns tag.
 ### *Attributes of primary-key tag*
 
     name = The primary key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated by an underscore 
-` format: TableName_[A-Za-z0-9_]`
+    ` format: TableName_[A-Za-z0-9_]`
     column = Having an ID column as the primary key is always a good idea because it will never change.
     sequence-batch = It denotes the starts with and here, by default, the value is 50. If we want to set the value, it should not be less than 50.
     sequence-generator = Use sequences to automatically generate primary key values. It should be specified in the following `format: TableName_[A-Za-z0-9_]`.
@@ -189,13 +189,13 @@ Each foreign key can be accessed within the foreign-keys tag.
 	
 ### *Attributes of foreign-key tag*
 		
-    name = The foreign key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated by an underscore.
-    reference-table = A table that is referenced from a referencing table with a foreign key.
-    local-column = It refers to the local table.
-    reference-column = Returns the item stored in the specified column within the context row based on a related column between them. 
-    constraint = Three types of foreign key constraints are allowed. And these constraints are in caps.
-          ON_DELETE_RESTRICT: If you want to delete a record from one table but there is a corresponding record in the other table, the delete operation is not allowed.
-          ON_DELETE_CASCADE: To specify whether you want rows deleted in a child table when corresponding rows are deleted in the parent table.
+   name = The foreign key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated by an underscore.
+   reference-table = A table that is referenced from a referencing table with a foreign key.
+   local-column = It refers to the local table.
+   reference-column = Returns the item stored in the specified column within the context row based on a related column between them. 
+   constraint = Three types of foreign key constraints are allowed. And these constraints are in caps.
+          **ON_DELETE_RESTRICT:** If you want to delete a record from one table but there is a corresponding record in the other table, the delete operation is not allowed.
+          **ON_DELETE_CASCADE:** To specify whether you want rows deleted in a child table when corresponding rows are deleted in the parent table.
 	
 ## unique-key tag
 Multiple unique keys can be present in a table. NULL values are allowed in the case of a unique key. These can also be used as foreign keys for other tables.
@@ -222,8 +222,8 @@ Each index key can be accessed within the indexes tag.
 
 ```
  <indexes> 
- <index name="Index_Id">
- <index-column>TABLE_NAME</index-column>
+    <index name="Index_Id">
+        <index-column>TABLE_NAME</index-column>
     </index> 
 </indexes>
 ```
@@ -311,10 +311,10 @@ The sub-tag is a tag that is referred to as a foreign key in a child table that 
 
 	
 ## Packages:
-**API -**  A collection of interfaces with their respective methods, fields, and constructors. It provides the services for data containers, queries, constraints, and clauses.
-**internal -** It provides the services of a package.
-**resource -** Auto-generated table content class file. 
-**update all -** The interface for DDL-related actions.
+  -API -  A collection of interfaces with their respective methods, fields, and constructors. It provides the services for data containers, queries, constraints, and clauses.
+  -internal - It provides the services of a package.
+  -resource - Auto-generated table content class file. 
+  -update all - The interface for DDL-related actions.
 
 ### api package:
 * **DML -** The DML commands in Structured Query Language change the data present in the SQL database. We can easily access, store, modify,   update and delete the existing records from the database using DML commands, Here it provides the services for all related DML queries.
