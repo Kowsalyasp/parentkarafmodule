@@ -175,14 +175,14 @@ Each column should be provided within the columns tag.
 
 ### *Attributes of primary-key tag*
 
-    name = The primary key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
-         ` format: TableName_[A-Za-z0-9_]`
+    **name =** The primary key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
+` format: TableName_[A-Za-z0-9_]`
 
-    column = Having an ID column as the primary key is always a good idea because it will never change.
+    **column =** Having an ID column as the primary key is always a good idea because it will never change.
 
-    sequence-batch = It denotes the starts with and here, by default, the value is 50. If we want to set the value, it should not be      less than 50.
+    **sequence-batch =** It denotes the starts with and here, by default, the value is 50. If we want to set the value, it should not be  less than 50.
 
-    sequence-generator = Use sequences to automatically generate primary key values. It should be specified in the following `format: TableName_[A-Za-z0-9_]`.
+    **sequence-generator =** Use sequences to automatically generate primary key values. It should be specified in the following `format: TableName_[A-Za-z0-9_]`.
 
 ## foreign-key tag
 A foreign-key is a field or collection of fields in one table that refers to the primary-key in another table.
@@ -197,7 +197,7 @@ Each foreign key can be accessed within the foreign-keys tag.
 ### *Attributes of foreign-key tag*
 		
     name = The foreign key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
-         `format: TableName_[A-Za-z0-9_]`
+`format: TableName_[A-Za-z0-9_]`
 
     reference-table = A table that is referenced from a referencing table with a foreign key.
 
@@ -243,7 +243,7 @@ Each index-key can be accessed within the indexes tag.
 ### *Attributes of indexes tag*
     name = The indexes name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
      ` format: TableName_[A-Za-z0-9_]`
-     
+
     <index-column> = Valid column name should be provided.
 
 ### *meta.xml precedent*
