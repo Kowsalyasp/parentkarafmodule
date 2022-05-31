@@ -142,19 +142,19 @@ Each column should be provided within the columns tag.
 ```
  ### *Attributes of column tag*
 
- *name = It refers to the column name.
- *data-type = It refers to what type of column it is, and here we can use some specific data types.
-        *supported datatypes:
-              *BIGINT: An instance of the long datatype
-              *INTEGER: An instance of the integer datatype.
-              *SMALLINT: An instance of the short datatype.
-              *KCHAR: An instance of the i18n datatype.
-              *SCHAR: An instance of the small character datatype.
-              *BLOB: An instance of the byte datatype.
-              *CHAR: An instance of the character datatype. 
-              *TEXT: The variable-length character SQL text data type is called VARCHAR
-              *STEXT:
-              *BOLLEAN: A boolean is an expression that evaluates to either true or false.
+ >name = It refers to the column name.
+ data-type = It refers to what type of column it is, and here we can use some specific data types.
+        supported datatypes:
+              BIGINT: An instance of the long datatype
+              INTEGER: An instance of the integer datatype.
+              SMALLINT: An instance of the short datatype.
+              KCHAR: An instance of the i18n datatype.
+              SCHAR: An instance of the small character datatype.
+              BLOB: An instance of the byte datatype.
+              CHAR: An instance of the character datatype. 
+              TEXT: The variable-length character SQL text data type is called VARCHAR
+              STEXT:
+              BOLLEAN: A boolean is an expression that evaluates to either true or false.
   
  nullable = Whether we want to allow null values for the specific column, we set nullable = true; otherwise, nullable = false.
  max-length = It refers to the maximum length that a column should be provided.
