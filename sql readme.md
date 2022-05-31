@@ -12,7 +12,7 @@
 - [Database Configuration:](#database-configuration)
 - [MetaData](#metadata)
   * [*Table*](#table-tag)
-   * [*Attributes of table tag*](#attributes-of-table-tag)
+    * [*Attributes of table tag*](#attributes-of-table-tag)
   * [*Column*](#column-tag)
     * [*Attributes of column tag*](#attributes-of-column-tag)
   * [Primary-key*](#primary-key-tag)
