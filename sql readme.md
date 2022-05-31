@@ -1,3 +1,4 @@
+
 # SQL MODULE
 
 
@@ -38,10 +39,10 @@
 * The SQL module allows you to execute custom queries against an SQL database and store the results in Elasticsearch.
   This module supports the databases.
 * The SQL module explains how to use simple DataBase Query implementations.
-* This module explains the statically available methods for executing DML, DDL and DQL-related database actions.
+* This module explains the statically available methods for executing DML, DDL, and DQL-related database actions.
 
 ## Requirements:
-This odule requires the following maven dependencies.
+This module requires the following maven dependencies.
 	
 1. **javatuples -** A tuple is a collection of several elements that may or may not be related to each other. 
 	            In other words, tuples can be considered anonymous objects.
@@ -55,10 +56,10 @@ This odule requires the following maven dependencies.
 A BundleEvent listener When a BundleEvent is fired, it is asynchronously delivered to a BundleListener. BundleListeners are called with a BundleEvent object when a bundle has been installed, resolved, started, stopped, updated, unresolved, or uninstalled.
 	
 ## SQLDevListener:
-Utilizing the bundle lifecycle, it will perform actions like metadata parsing, etc. The class explains the loading, processing, updating, and populating of the meta and data XML files. Make use of this. It notes the bundle history record. We can see this in snapshots of our system. Hang on to the bundle history, which compares both the existing XML files and the current XML file to upload the data into the database. 
+Utilizing the bundle lifecycle, it will perform actions like metadata parsing, etc. The class explains the loading, processing, updating, and populating of the meta and data XML files. Make use of this. It notes the bundle history record. We can see this in snapshots of our system. Hang on to the bundle history, which compares both the existing XML files and the current XML file to upload the data into the database. 
       
 ### Database Configuration:
-In the karaf folder, create the **configuration folder** which stores and loads all the configuration files like database connectivity, cache server, and web server.
+In the karaf folder, create the **configuration folder** which stores and loads all the configuration files like database connectivity, cache server, and the webserver.
 
 For databse connection:
     create the `configuration source file` with a name `database.pgsql` with extension `cfg` 
@@ -68,12 +69,12 @@ A configuration file is a properties file containing key/value pairs:
  The cfg file provides a set of commands to manage the configuration.
 **property = value**
 
-You can add your own initial configuration directly in the file. To get the database service, mention the following mandatory properties in the given format.
+You can add your initial configuration directly in the file. To get the database service, mention the following mandatory properties in the given format.
 
-The database name should be TLC(capitalized), and to create the database with the same name in database.
+The database name should be TLC(capitalized) and create the database with the same name in the database.
 > database.name = TLC
 
-To get the database server connection mention the port number as follow : `localhost:portnumber`. 
+To get the database server connection mention the port number as follow: `localhost: port number. 
 > database.server = localhost:5432
 
 A default username and password that is connected to the database( hosting-db ). 
@@ -83,24 +84,24 @@ A default username and password that is connected to the database( hosting-db ).
 This property helps to get the environment and the mode to be `enabled` if it is true; otherwise, if it is false, it won't connect with the database.
 > development.mode.enabled = true
 
-Additionally we can use following properties to mention the pool size
+Additionally, we can use the following properties to mention the pool size
 
 The property controls the maximum size that the pool is allowed to reach. 
-Basically this value will determine the maximum number of actual connections to the database backend.
+This value will determine the maximum number of actual connections to the database backend.
 > connection.pool.max = 
 
 The property controls the minimum number of idle connections to maintain in the pool.
 > connection.pool.idle = 
 
 The property controls the maximum amount of time (in milliseconds) that a connection is allowed to sit idle in the pool. A connection will never be retired as idle before this timeout. A value of 0 means that idle connections are never removed from the pool.
-> connection.pool.idle.timeout = 
+> connection.pool.idle.timeout = 0
 	
 ## MetaData:
-The meta.xml file presents a set of metadata, such as the module name, the tables to include. XML is a textual data format that is widely used for the representation of data. The meta.xml file to load and populate the metadata to fetch and configure the table definitions and initialise the sequence generation of primary keys. The main purpose of meta.xml is to create the table. We set up the metadata with all the essential element tags like table name, columns, and constraints to configure the table in the database. And the module tag refers to which module that wants to create the table.
+The meta.xml file presents a set of metadata, such as the module name, and the tables to include. XML is a textual data format that is widely used for the representation of data. The meta.xml file to load and populate the metadata to fetch and configure the table definitions and initialize the sequence generation of primary keys. The main purpose of meta.xml is to create the table. We set up the metadata with all the essential element tags like table names, columns, and constraints to configure the table in the database. And the module tag refers to which module wants to create the table.
 Used an XML-based language to describe the metadata for resources by using the tags below:
 
 ## Table tag
-Create a table with the tablename and type which are present inside the table tag. Each table has a table type value which can be given as per your needs.
+Create a table with the table name and type which are present inside the table tag. Each table has a table type value which can be given as per your needs.
 ``` 
 <table name="TableName" type="11"> </table>
  ```
@@ -108,27 +109,27 @@ Create a table with the tablename and type which are present inside the table ta
  ### *Attributes of table tag*
 
     name = Name of the table.
-    type = It refers to table type, and some values are given for each table types. the following table types are,
+    type = It refers to table type, and some values are given for each table type. the following table types are,
                1 -> COMMON 
                   If you don't specify any type, by default the table type is set to common. It does not depend on any ID.
                2 -> COMMON_PARTITIONED_BY_ID
                   If the table type is common but if the table wants to be partitioned by ID, then prefer this table type.
                11 -> ORG_DEPENDENT
-                  The table which is dependent on org_id.
+                  The table is dependent on org_id.
                12 -> ORG_PARTITIONED_BY_ID
                   Based on ID, the table would be partitioned.
                13 -> ORG_PARTITIONED_BY_ORG
-                  Based on org_id, the table would be partioned.
+                  Based on org_id, the table would be partitioned.
                21 -> ORG_MIXED
-                  This type of table belongs to org_id and also exists common null values.
+                  This type of table belongs to org_id and also exists with common null values.
                22 -> ORG_MIXED_BY_ID
-                  This type of table belongs to ID, org_id and also exists common null values.
+                  This type of table belongs to ID, org_id, and also exists common null values.
                23 -> ORG_MIXED_BY_ORG
-                  This type of table belongs to org_id, partition by ID and also exists common null values.
+                  This type of table belongs to org_id, partition by ID, and also exists common null values.
     
 ## Column tag
 Columns are also called fields in a database table. The attributes for the column name of the table,
-its data type, whether it is nullable or not, maximum length, and default value for the column are provided here. 
+its data type, whether it is nullable or not, maximum length, and the default value for the column are provided here. 
 Each column should be provided within the columns tag.
 
 ```
@@ -141,16 +142,16 @@ Each column should be provided within the columns tag.
     name = It refers to the column name.
     data-type = It refers to what type of column it is, and here we can use some specific data types.
          supported datatypes:
-              BIGINT: An instance of the long datatype
+              BIGINT: An instance of the long data type
               INTEGER: An instance of the integer datatype.
               SMALLINT: An instance of the short datatype.
               KCHAR: An instance of the i18n datatype.
               SCHAR: An instance of the small character datatype.
-              BLOB: An instance of the byte datatype.
+              BLOB: An instance of the byte data type.
               CHAR: An instance of the character datatype. 
               TEXT: The variable-length character SQL text data type is called VARCHAR
-              STEXT:
-              BOLLEAN: A boolean is an expression that evaluates to either true or false.
+              STEXT: 
+              BOOLEAN: A boolean is an expression that evaluates to either true or false.
   
     nullable = Whether we want to allow null values for the specific column, we set nullable = true; otherwise, nullable = false.
     max-length = It refers to the maximum length that a column should be provided.
@@ -160,7 +161,7 @@ Each column should be provided within the columns tag.
 ## Primary-key tag
  Primary keys must contain unique values and cannot have NULL values.
  A table can have only one primary key, which may consist of single or multiple fields.
- Each primary-key should be provided within the <primary-keys>tag.
+ Each primary key should be provided within the <primary-keys>tag.
 
 ```
 <primary-keys>
@@ -170,17 +171,17 @@ Each column should be provided within the columns tag.
 
 ### *Attributes of primary-key tag*
 
-    name = The primary key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore 
+    name = The primary key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated by an underscore 
 ` format: TableName_[A-Za-z0-9_]`
 
     column = Having an ID column as the primary key is always a good idea because it will never change.
 
-    sequence-batch = It denotes the starts with and here, by default, the value is 50. If we want to set the value, it should not be      less than 50.
+    sequence-batch = It denotes the starts with and here, by default, the value is 50. If we want to set the value, it should not be less than 50.
 
     sequence-generator = Use sequences to automatically generate primary key values. It should be specified in the following `format: TableName_[A-Za-z0-9_]`.
 
 ## foreign-key tag
-A foreign-key is a field or collection of fields in one table that refers to the primary-key in another table.
+A foreign key is a field or collection of fields in one table that refers to the primary key in another table.
 Each foreign key can be accessed within the foreign-keys tag.
 
 ``` 
@@ -191,7 +192,7 @@ Each foreign key can be accessed within the foreign-keys tag.
 	
 ### *Attributes of foreign-key tag*
 		
-    name = The foreign key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
+    name = The foreign key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated by an underscore.
 
 
     reference-table = A table that is referenced from a referencing table with a foreign key.
@@ -202,7 +203,7 @@ Each foreign key can be accessed within the foreign-keys tag.
 
     constraint = Three types of foreign key constraints are allowed. And these constraints are in caps.
           ON_DELETE_RESTRICT: If you want to delete a record from one table but there is a corresponding record in the other table, the delete operation is not allowed.
-          ON_DELETE_CASCADE:To specify whether you want rows deleted in a child table when corresponding rows are deleted in the parent table.
+          ON_DELETE_CASCADE: To specify whether you want rows deleted in a child table when corresponding rows are deleted in the parent table.
           ON_DELETE_SET_NULL:
 	
 ## unique-key tag
@@ -219,14 +220,14 @@ Each unique key can be accessed within the unique-keys tag.
 
 ### *Attributes of unique-key tag*
 
-    name = The unique key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
+    name = The unique key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated by an underscore.
       ` format: TableName_[A-Za-z0-9_]`
 
     <unique-key-column> = Valid column name should be provided.
 	
 ## indexes tag
 Indexes can be used to speed up data retrieval. Simply put, an index is a pointer to data in a table.
-Each index-key can be accessed within the indexes tag.
+Each index key can be accessed within the indexes tag.
 
 ```
  <indexes> 
@@ -236,7 +237,7 @@ Each index-key can be accessed within the indexes tag.
 </indexes>
 ```
 ### *Attributes of indexes tag*
-    name = The indexes name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after table name and are separated by underscore.
+    name = The index's name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated by an underscore.
      ` format: TableName_[A-Za-z0-9_]`
 
     <index-column> = Valid column name should be provided.
@@ -276,23 +277,23 @@ Each index-key can be accessed within the indexes tag.
 ```
 
 ## Data.xml:
-The data.xml file to load, process, update and populate the data to fetch and configure the column of the table.In this, we can statically enter an entity for the table.
+The data.xml file to load, process, update and populate the data to fetch and configure the column of the table. In this, we can statically enter an entity for the table.
 Using this data file we could be able to manipulate the data in the user's preferable way.
 
-The name for the module should be declare inside the module tag <module>. We can create one or more module.
+The name for the module should be declared inside the module tag <module>. We can create one or more modules.
  
 The format for module name should be tlc_crm_modulename. If it is contact module:
  >``<module name="tlc_crm_contact">``
 
-For the table in which you prefer to store static data, then inside the tabletag for each table, the id must be mentioned and then followed by the column value,
-A valid ID consists of a table name, ID, CO(column) and give the Id value in acceptable formats separated by a colon. The format for the ID have to be ID="MCMFieldSQLTable:ID:CO:1"
+For the table in which you prefer to store static data, then inside the table tag for each table, the id must be mentioned and then followed by the column value,
+A valid ID consists of a table name, ID, and CO(column) and gives the Id value is acceptable formats separated by a colon. The format for the ID has to be ID="MCMFieldSQLTable:ID: CO:1"
 
 > ``<TableName ID="" col1="" col2=""/>``
 
 Example to enter a record statically You can add rows to a table: 
 > ``<MCMFieldSQLTable ID="MCMFieldSQLTable:ID:CO:1" TABLE_NAME="SampleTable"/>``
 
-The sub-tag is a tag that is referred as a foreign key in a child table will generally reference a primary key in the parent table under a parent tag.
+The sub-tag is a tag that is referred to as a foreign key in a child table that will generally reference a primary key in the parent table under a parent tag.
  ```
  <parent-table ID=""  col="">
    <child-table ID="" col = "" ></child-table>
@@ -320,29 +321,26 @@ The sub-tag is a tag that is referred as a foreign key in a child table will gen
 
 	
 ## Packages:
-	- api -  A collection of interfaces with their respective methods, fields, and constructors. It provides the services for data containers, queries, constraints, and clauses.
-	- internal - It provides the services of api package.
+	- API -  A collection of interfaces with their respective methods, fields, and constructors. It provides the services for data containers, queries, constraints, and clauses.
+	- internal - It provides the services of a package.
 	- resource - Auto-generated table content class file. 
-	- update dll - The interface for DDL-related actions.
+	- update all - The interface for DDL-related actions.
 
 ### api package:
-* **dml -** The DML commands in Structured Query Language change the data present in the SQL database. We can easily access, store, modify,   update and delete the existing records from the database using DML commands, Here it provides the services for all related dml queries.
-* **ds -** A data structure is a special way of organizing and storing data in a database so that it can be used efficiently. Provides  services for admindatastore, orgdatastore, readable and writable datastore.
-* **listener -** Provides services for listeners like row added, row updated and row deleted listeners.
-* **meta -** Meta-SQL is a great way to abstract SQL logic and ensure consistency in SQL definitions. Also it tells about SQL statements text with key fields such as tabletype and datatype.
-* **sequence -** Sequence is a set of integers that it allows the automatic generation of values and supported by some database systems to produce unique values on demand. provides the service for sequence generator.
+* **DML -** The DML commands in Structured Query Language change the data present in the SQL database. We can easily access, store, modify,   update and delete the existing records from the database using DML commands, Here it provides the services for all related DML queries.
+* **ds -** A data structure is a special way of organizing and storing data in a database so that it can be used efficiently. Provides services for admindatastore, orgdatastore, readable and writable datastore.
+* **listener -** Provides services for listeners like row added, row updated, and row deleted listeners.
+* **meta -** Meta-SQL is a great way to abstract SQL logic and ensures consistency in SQL definitions. Also, it tells about SQL statements text with key fields such as table type and datatype.
+* **sequence -** Sequence is a set of integers that it allows the automatic generation of values and is supported by some database systems to produce unique values on demand. provides the service for sequence generator.
 ### internal package:
-* **data -** Data is a information that can be organized and stored in a database. For that it provides the datacontainer and here it can be also filtered the datacontainer according to our needs.
-* **dml -** Provides the services for dml queries in api package. And lay out the implementation for all servies here.  
+* **data -** Data is information that can be organized and stored in a database. For that, it provides the data container, and here it can be also filtered the data container according to our needs.
+* **DML -** Provides the services for DML queries in the API package. And layout the implementation for all services here.  
 * **ds -** Provides implementations for readable and writable datastore, admindatastore, and orgdatastore.
-* **handler -** When an SQL procedure executes, if unfortunately error occurs then the procedure ends unless. And tell the procedure to perform some other action. These Handler Statements are abstract methods for all DML and DDL-related queries.  
-* **listener -** Listen the Row it records the cache for add, update and delete process.
-* **meta -** Provides and maintain the cache process in datacontainer and also executes the procedure for handling meta data.
+* **handler -** When an SQL procedure executes if unfortunately, an error occurs then the procedure ends unless. And tell the procedure to perform some other action. These Handler Statements are abstract methods for all DML and DDL-related queries.  
+* **listener -** Listen to the Row it records the cache for add, update and delete process.
+* **meta -** Provides and maintains the cache process in the data container and also executes the procedure for handling metadata.
 * **parser -** Provides implementations for metadata parser, constraints resolver, table definition loader, etc.
-* **pgsql -** PostgreSQL is an object-relational database used as the primary data store.provides services for dml and ddl related functionalities.
+* **pgsql -** PostgreSQL is an object-relational database used as the primary data store.provides services for DML and DDL related functionalities.
 * **sequence -** Generate the sequence automatically, it loads the series.
-* **status -** error code is a numeric or alphanumeric code that is used to determine the nature of an error and why it occurred.when they attempt to do something or fail to do and they can be passed off to error handlers that determine what action to take. And here, they provides the status for the error code occured by this module. 
+* **status -** error code is a numeric or alphanumeric code that is used to determine the nature of an error and why it occurred. when they attempt to do something or fail to do and they can be passed off to error handlers that determine what action to take. And here, they provide the status for the error code that occurred by this module. 
 * **update -** Modify or revert the existing records in a table it provides the pre action type(create_table, drop_unique_key, create_index, update_index, delete_index,...) and post action type(create_unique_key, update_unique_key, create_foreign_key, update_foreign_key, drop_foreign_key,...).
-
-
-	
