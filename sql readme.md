@@ -189,13 +189,13 @@ Each foreign key can be accessed within the foreign-keys tag.
 	
 ### *Attributes of foreign-key tag*
 		
-   name = The foreign key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated by an underscore.
-   reference-table = A table that is referenced from a referencing table with a foreign key.
-   local-column = It refers to the local table.
-   reference-column = Returns the item stored in the specified column within the context row based on a related column between them. 
-   constraint = Three types of foreign key constraints are allowed. And these constraints are in caps.
-          **ON_DELETE_RESTRICT:** If you want to delete a record from one table but there is a corresponding record in the other table, the delete operation is not allowed.
-          **ON_DELETE_CASCADE:** To specify whether you want rows deleted in a child table when corresponding rows are deleted in the parent table.
+    name = The foreign key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated by an underscore.
+    reference-table = A table that is referenced from a referencing table with a foreign key.
+    local-column = It refers to the local table.
+    reference-column = Returns the item stored in the specified column within the context row based on a related column between them. 
+    constraint = Three types of foreign key constraints are allowed. And these constraints are in caps.
+          ON_DELETE_RESTRICT: If you want to delete a record from one table but there is a corresponding record in the other table, the delete operation is not allowed.
+          ON_DELETE_CASCADE: To specify whether you want rows deleted in a child table when corresponding rows are deleted in the parent table.
 	
 ## unique-key tag
 Multiple unique keys can be present in a table. NULL values are allowed in the case of a unique key. These can also be used as foreign keys for other tables.
