@@ -5,7 +5,8 @@
 
 - [Abstract](#abstract)
 - [Requirements](#requirments)
-- [Cache Configuration:](#cache-configuration)
+- [Cache Configuration File:](#cache-configuration-file)
+    * [Cache Config](#cache-config)
 
 # Abstract
  A cache server is a dedicated server acting as a storage for web content, usually to have it available in a local area network. A cache server stores previously requested information from the internet locally and temporarily. Here we used redis cache server which provides redission service. Cache services implemented by local heap cache and it is extended by both soft and weak cache. In listener package all the classes implements the default interface of required cache listener. And also metioned a set of commands to manage the cache configuration.
@@ -14,7 +15,7 @@
 
 **redis -** Redis is an open source , in-memory data structure store used as a cache. Redis memory storage is quite efficient, and done in a separate process. If the application runs on a platform whose memory is garbage collected (java, etc ...), it allows handling a much bigger memory cache/store. It is fast, reliable provide atomicity and consistency. Which is best suited for distributed environment.
 
-# Cache Configuration:
+# Cache Configuration File:
 In the karaf folder, create the **configuration folder** which stores and loads all the configuration files like database connectivity, cache server, and the webserver.
 
 For Cache Connection:
@@ -28,11 +29,11 @@ If the requested content is available in the server cache, it will be returned t
 
 The cache.redis.cfg file contains a number of directives that have a very simple format:
 
-We have to specify cache server and its type.
+We have to specify cache server and its type. The type should be lowercase.
 > cache.server.type = single
 
 #### Types of Server Cache:
-
+  
   **1. single:** It is a redis cache server that consists of master node but there is no slave nodes.
 
   **2. cluster:** Redis Cluster is an active-passive cluster implementation that consists of master and slave nodes.
@@ -46,3 +47,17 @@ In single server we use redis cache server, By default redis-cli connects to the
 If multiple cache server to be initialized then you have to set the type as cluster or sentinal. While using multiple cache server the value of the server format should be seperated by comma.
 > cache.server = 127.0.0.1:6379, 127.0.0.1:6379
   
+  ### Cache Config
+
+  **maxSize:** The maximum size of the cache. It Specifies the maximum number of entries the cache may contain. cache may evict an entry before this limit is exceeded or temporarily exceed the threshold while evicting. 
+
+  **expireAfterAccess:** Specifies that each entry should be automatically removed from the cache once a fixed duration has elapsed after the entry's creation.
+         
+  **expireAfterUpdate:** Specifies that each entry should be automatically removed from the cache once a fixed duration has elapsed after the entry's update.
+
+  **expireAfterCreate:** Specifies that each entry should be automatically removed from the cache once a fixed duration has elapsed after the entry's creation.
+
+  If you do not specify a size, the default size for `maxSize`, `expireAfterAccess`, `expireAfterUpdate`, and `expireAfterCreate` are -1(negative).
+
+
+    
