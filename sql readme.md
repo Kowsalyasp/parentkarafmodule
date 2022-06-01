@@ -295,10 +295,10 @@ Each index key can be accessed within the indexes tag.
 </indexes>
 ```
 ### *Attributes of indexes tag*
-    name = The index's name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated by an underscore.
+**name =** The index's name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated by an underscore.
      ` format: TableName_[A-Za-z0-9_]`
-     
-    <index-column> = Valid column name should be provided.
+
+**<index-column>** = Valid column name should be provided.
 
 #### Create an indexes:
 Create an index name for one or more column. Must provide the name attribute for indexes
