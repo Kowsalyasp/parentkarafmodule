@@ -186,11 +186,11 @@ To insert data into an column, The values that you want to insert must be inside
 
 ### *Attributes of primary-key tag*
 
-    name = The primary key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated by an underscore 
+   name = The primary key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated by an underscore 
     ` format: TableName_[A-Za-z0-9_]`
-    column = Having an ID column as the primary key is always a good idea because it will never change.
-    sequence-batch = It denotes the starts with and here, by default, the value is 50. If we want to set the value, it should not be less than 50.
-    sequence-generator = Use sequences to automatically generate primary key values. It should be specified in the following `format: TableName_[A-Za-z0-9_]`.
+   column = Having an ID column as the primary key is always a good idea because it will never change.
+   sequence-batch = It denotes the starts with and here, by default, the value is 50. If we want to set the value, it should not be less than 50.
+   sequence-generator = Use sequences to automatically generate primary key values. It should be specified in the following `format: TableName_[A-Za-z0-9_]`.
 
 #### Create a primary key in a new table:
 A primary key is mandatory while creating a table. And the table allows only one primary key.
@@ -262,7 +262,7 @@ We must provide these  <unique-key-column> tag, else it raise an error that it w
 #### Modify a unique key:
 If you prefer to alter the unique key column make sure that the field to not set null and allow unique values. And it altered the unique key constraints.
 
-####Delete a unique key:
+#### Delete a unique key:
 Deleting a unique constraint removes the requirement for uniqueness for values entered in the column or combination of columns
 included in the constraint expression and deletes the corresponding unique index.
 
