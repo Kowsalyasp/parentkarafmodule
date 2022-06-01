@@ -186,14 +186,17 @@ To insert data into an column, The values that you want to insert must be inside
 
 ### *Attributes of primary-key tag*
 
-    name = The primary key name must be specified in a specific pattern, such as first being table name and
-    then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated 
+    name = The primary key name must be specified in a specific pattern, such as first being table name and then with
+    continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated 
     by an underscore ` format: TableName_[A-Za-z0-9_]`
+
     column = Having an ID column as the primary key is always a good idea because it will never change.
-    sequence-batch = It denotes the starts with and here, by default, the value is 50. If we want to set 
-    the value, it should not be less than 50.
-    sequence-generator = Use sequences to automatically generate primary key values. It should be specified
-     in the following `format: TableName_[A-Za-z0-9_]`.
+
+    sequence-batch = It denotes the starts with and here, by default, the value is 50. If we want to set the value,
+    it should not be less than 50.
+
+    sequence-generator = Use sequences to automatically generate primary key values. It should be specified in the
+    following `format: TableName_[A-Za-z0-9_]`.
 
 #### Create a primary key in a new table:
 A primary key is mandatory while creating a table. And the table allows only one primary key.
@@ -219,18 +222,22 @@ Each foreign key can be accessed within the foreign-keys tag.
 	
 ### *Attributes of foreign-key tag*
 		
-    name = The foreign key name must be specified in a specific pattern, such as first 
-    being table name and then with continuation [A-Za-z0-9_], these values are only allowed 
-    after the table name and are separated by an underscore.
+    name = The foreign key name must be specified in a specific pattern, such as first being table name
+    and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are
+    separated by an underscore.
+
     reference-table = A table that is referenced from a referencing table with a foreign key.
+
     local-column = It refers to the local table.
-    reference-column = Returns the item stored in the specified column within the context
-    row based on a related column between them. 
+
+    reference-column = Returns the item stored in the specified column within the context row based on a 
+    related column between them.
+    
     constraint = Three types of foreign key constraints are allowed. And these constraints are in caps.
-          ON_DELETE_RESTRICT: If you want to delete a record from one table but there is a 
-          corresponding record in the other table, the delete operation is not allowed.
-          ON_DELETE_CASCADE: To specify whether you want rows deleted in a child table when 
-          corresponding rows are deleted in the parent table.
+          ON_DELETE_RESTRICT: If you want to delete a record from one table but there is a corresponding record
+           in the other table, the delete operation is not allowed.
+          ON_DELETE_CASCADE: To specify whether you want rows deleted in a child table when corresponding rows
+           are deleted in the parent table.
 
 #### Create a foreign key:
 Creates a table and defines a foreign key constraint on the column that references the another column.
@@ -258,8 +265,9 @@ Each unique key can be accessed within the unique-keys tag.
 
 ### *Attributes of unique-key tag*
 
-    name = The unique key name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated by an underscore.
-      ` format: TableName_[A-Za-z0-9_]`
+    name = The unique key name must be specified in a specific pattern, such as first being table name 
+    and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are
+    separated by an underscore.` format: TableName_[A-Za-z0-9_]`
 
     <unique-key-column> = Valid column name should be provided.
 	
@@ -289,6 +297,7 @@ Each index key can be accessed within the indexes tag.
 ### *Attributes of indexes tag*
     name = The index's name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated by an underscore.
      ` format: TableName_[A-Za-z0-9_]`
+     
     <index-column> = Valid column name should be provided.
 
 #### Create an indexes:
