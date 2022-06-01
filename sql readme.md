@@ -79,6 +79,7 @@ To get the database server connection mention the port number as follow: `localh
 
 A default username and password that is connected to the database( hosting-db ). 
 > database.username = *****
+
 > database.password = *****
 
 This property helps to get the environment and the mode to be `enabled` if it is true; otherwise, if it is false, it won't connect with the database.
@@ -295,9 +296,11 @@ Each index key can be accessed within the indexes tag.
 </indexes>
 ```
 ### *Attributes of indexes tag*
-    name = The index's name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated by an underscore.
+    name = The index's name must be specified in a specific pattern, such as first being table name and then 
+    with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated 
+    by an underscore.
      ` format: TableName_[A-Za-z0-9_]`
-     
+
     <index-column> = Valid column name should be provided.
 
 #### Create an indexes:
@@ -391,10 +394,10 @@ The sub-tag is a tag that is referred to as a foreign key in a child table that 
 
 	
 ## Packages:
-  -API -  A collection of interfaces with their respective methods, fields, and constructors. It provides the services for data containers, queries, constraints, and clauses.
-  -internal - It provides the services of a package.
-  -resource - Auto-generated table content class file. 
-  -update all - The interface for DDL-related actions.
+    -API -  A collection of interfaces with their respective methods, fields, and constructors. It provides the services for data   containers, queries, constraints, and clauses.
+    -internal - It provides the services of a package.
+    -resource - Auto-generated table content class file. 
+    -update all - The interface for DDL-related actions.
 
 ### api package:
 * **DML -** The DML commands in Structured Query Language change the data present in the SQL database. We can easily access, store, modify,   update and delete the existing records from the database using DML commands, Here it provides the services for all related DML queries.
