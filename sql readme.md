@@ -58,10 +58,10 @@ A BundleEvent listener When a BundleEvent is fired, it is asynchronously deliver
 # SQLDevListener:
 Utilizing the bundle lifecycle, it will perform actions like metadata parsing, etc. The class explains the loading, processing, updating, and populating of the meta and data XML files. Make use of this. It notes the bundle history record. We can see this in snapshots of our system. Hang on to the bundle history, which compares both the existing XML files and the current XML file to upload the data into the database. 
       
-# Database Configuration:
+# Database Configuration File:
 In the karaf folder, create the **configuration folder** which stores and loads all the configuration files like database connectivity, cache server, and the webserver.
 
-For databse connection:
+For database connection:
     create the `configuration source file` with a name `database.pgsql` with extension `cfg` 
 (eg: database.pgsql.cfg)
           
@@ -372,6 +372,22 @@ The sub-tag is a tag that is referred to as a foreign key in a child table that 
    <child-table ID="" col = "" ></child-table>
 <parent-table> 
 ```
+#### Insert one row into a table:
+First, the table in which you want to insert a new row, mention it, and following,
+set out the column that you prefer where the id field should be mandatory.
+
+#### Insert multiple rows into a table:
+If multiple rows are inserted in the same table with different id.
+
+**Note:**Id must be unique it cannot contain duplicates.
+
+#### Foreign key relation in same module:
+If we inserting a static data for foreign key relationship in the same module. Make sure that the child table is the subtag for the parent table. 
+The data has been mapped in  both child and parent table.
+
+#### Foreign key relation in different module:
+Mapping the static data using foreign key in different module. It denotes that the parent table from one module and the child table from another.
+And it mapped to the corresponding tables.
 
 ### *data.xml file precedent*
 
@@ -392,7 +408,6 @@ The sub-tag is a tag that is referred to as a foreign key in a child table that 
 </dumpdata>
 ```
 
-	
 ## Packages:
     -API -  A collection of interfaces with their respective methods, fields, and constructors. It provides the services for data   containers, queries, constraints, and clauses.
     -internal - It provides the services of a package.
