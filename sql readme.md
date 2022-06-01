@@ -15,7 +15,7 @@
     * [*Attributes of table tag*](#attributes-of-table-tag)
   * [*Column*](#column-tag)
     * [*Attributes of column tag*](#attributes-of-column-tag)
-  * [Primary-key*](#primary-key-tag)
+  * [*Primary-key*](#primary-key-tag)
     * [*Attributes of primary key tag*](#attributes-of-primary-key-tag)
   * [*foreign-key*](#foreign-key-tag)
     * [*Attributes of foreign-key tag*](#attributes-of-foreign-key-tag)
@@ -157,6 +157,21 @@ Each column should be provided within the columns tag.
     max-length = It refers to the maximum length that a column should be provided.
     default-value = The default value is assigned to the column. It may be a boolean type.
 
+To modify the structure of existing tables in the database by adding, modifying, renaming, or dropping columns and constraints.
+
+#### Creation of column to table:
+To insert column in to a table, you specify the columns with the data type . A table can have one or more columns.
+
+#### Addition of columns to existing tables:
+To add new columns to existing tables, you specify the columns with the data type, and now you have the table that are altered. 
+
+#### Dropping an existing column:
+You can delete columns in particular tables that you prefer to take out. while dropping a column note that 
+You can't delete a column that has primary key or foreign key constraints. When you delete a column from a table, 
+the column and all the data it contains are deleted.
+
+#### Inserting data into columns:
+To insert data into an column, The values that you want to insert must be inside the double quotes(""). 
 
 ## Primary-key tag
  Primary keys must contain unique values and cannot have NULL values.
@@ -177,6 +192,17 @@ Each column should be provided within the columns tag.
     sequence-batch = It denotes the starts with and here, by default, the value is 50. If we want to set the value, it should not be less than 50.
     sequence-generator = Use sequences to automatically generate primary key values. It should be specified in the following `format: TableName_[A-Za-z0-9_]`.
 
+#### Create a primary key in a new table:
+A primary key is mandatory while creating a table. And the table allows only one primary key.
+
+#### Modifying a primary key in an existing table:
+If you want to redefine the primary key, any relationships to the existing primary key must be deleted before the new primary key can be created. 
+A message will warn you that existing relationships will be automatically deleted as part of this process.
+
+#### Deleting a primary key in an existing table:
+When the primary key is deleted, the corresponding index is deleted.
+If you delete the primary key you have to modify or to re-create the primary key.
+
 ## foreign-key tag
 A foreign key is a field or collection of fields in one table that refers to the primary key in another table.
 Each foreign key can be accessed within the foreign-keys tag.
@@ -196,9 +222,21 @@ Each foreign key can be accessed within the foreign-keys tag.
     constraint = Three types of foreign key constraints are allowed. And these constraints are in caps.
           ON_DELETE_RESTRICT: If you want to delete a record from one table but there is a corresponding record in the other table, the delete operation is not allowed.
           ON_DELETE_CASCADE: To specify whether you want rows deleted in a child table when corresponding rows are deleted in the parent table.
-	
+
+#### Create a foreign key:
+Creates a table and defines a foreign key constraint on the column that references the another column.
+These foreign key provides constraints for ON DELETE CASCADE and ON DELETE RESTRICT. We must provide 
+these constraints else it raise an error that it was unable to parse the table.
+
+#### Modify a foreign key:
+To modify a foreign key constraint by altering the reference column or reference table, you must first delete the existing 
+foreign key constraint and then re-create it with the new definition.
+
+#### Delete a foreign key:
+Deleting a foreign key constraint removes the requirement to enforce referential integrity.
+
 ## unique-key tag
-Multiple unique keys can be present in a table. NULL values are allowed in the case of a unique key. These can also be used as foreign keys for other tables.
+ Unique key can be used when you have to keep null values in column. When one or more than one field/columns of a table that uniquely identify a record in a database table. These can also be used as foreign keys for other tables.
 Each unique key can be accessed within the unique-keys tag.
 
 ``` 
@@ -216,6 +254,18 @@ Each unique key can be accessed within the unique-keys tag.
 
     <unique-key-column> = Valid column name should be provided.
 	
+#### Create a unique key:
+We can create one or more than one field/columns of a table that uniquely identify a record. Creating a unique constraint automatically creates a
+corresponding unique index. Must provide the name attribute and <unique-key-column> tag, if you want the field to not set null and allow unique values.  
+We must provide these  <unique-key-column> tag, else it raise an error that it was unable to parse the table.
+
+#### Modify a unique key:
+If you prefer to alter the unique key column make sure that the field to not set null and allow unique values. And it altered the unique key constraints.
+
+####Delete a unique key:
+Deleting a unique constraint removes the requirement for uniqueness for values entered in the column or combination of columns
+included in the constraint expression and deletes the corresponding unique index.
+
 ## indexes tag
 Indexes can be used to speed up data retrieval. Simply put, an index is a pointer to data in a table.
 Each index key can be accessed within the indexes tag.
@@ -231,6 +281,18 @@ Each index key can be accessed within the indexes tag.
     name = The index's name must be specified in a specific pattern, such as first being table name and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated by an underscore.
      ` format: TableName_[A-Za-z0-9_]`
     <index-column> = Valid column name should be provided.
+
+#### Create an indexes:
+Create an index name for one or more column. Must provide the name attribute for indexes
+which is in the pattern as tablename_Idx1 and <index-column> tag. We must provide these <index-column>  tag,
+else it raise an error that it was unable to parse the table.
+
+#### Modify an indexes:
+Can recreate or alter the column that you may modified in an existing table. 
+
+#### Delete an indexes:
+If one or more fields are in <index-column> but you want to remove one or you prefer not to set the indexes, 
+then you may take out the corresponding column tag. If you prefer not to have an index column, then you may remove the whole index tag. 
 
 ### *meta.xml precedent*
 * A sample meta.xml is shown for reference 
