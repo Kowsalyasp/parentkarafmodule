@@ -443,43 +443,53 @@ An interface that must be implemented by a component that wants to be notified w
 ## Types Of Row Listener
 There are 11 types of listeners and they are in the form of interface.
 
-**RowListener :** 
+#### *RowListener :* 
 The given interface extends the functionalities of `RowAddListener`,`RowUpdateListener`, and `RowIdDeleteListener`. Once we access the rowListener we can also be able to access the above functionalities.
 
-**CompleteRowListener :** The given interface extends the functionalities of `RowAddListener`, `RowUpdateListener`, `and RowDeleteListener`. Once we access the CompleteRowListener we can also be able to access the above functionalities. 
+#### **CompleteRowListener :** 
+The given interface extends the functionalities of `RowAddListener`, `RowUpdateListener`, and `RowDeleteListener`. Once we access the CompleteRowListener we can also be able to access the above functionalities. 
 
-**RowAddListener :** RowAddListener provides a method `addRows`, passing a collection of rows as a parameter and which it extends `IgnoreIfExists` and `ListenerOrder`.
+#### *RowAddListener :* 
+RowAddListener provides a method `addRows`, passing a collection of rows as a parameter and which it extends `IgnoreIfExists` and `ListenerOrder`.
 
-**RowUpdateListener :** RowUpdateListener Provides a method `updateRows` passing a collection of rows and also it extends the functionalities of `IgnoreUpdate`,` OutOfRangeNotification`, and `ListenerOrder`.
+#### *RowUpdateListener :* 
+RowUpdateListener Provides a method `updateRows` passing a collection of rows and also it extends the functionalities of `IgnoreUpdate`,` OutOfRangeNotification`, and `ListenerOrder`.
 
-**RowDeleteListener :** RowDeleteListener Provides a method `deleteRows` passing a collection of rows  and also it extends the functionalities of `IgnoreDelete`, `OutOfRangeNotification`, and `ListenerOrder`.
+#### *RowDeleteListener :*
+ RowDeleteListener Provides a method `deleteRows` passing a collection of rows  and also it extends the functionalities of `IgnoreDelete`, `OutOfRangeNotification`, and `ListenerOrder`.
 
-**IgnoreIfExists :** Provides a `ignore` method returns in boolean format while inserting a data into table if wanted to check condition that it has been already exists then insert should not happen else record should be inserted.
+#### *IgnoreIfExists :* 
+Provides a `ignore` method returns in boolean format while inserting a data into table if wanted to check condition that it has been already exists then insert should not happen else record should be inserted.
 
-**ListenerOrder :** The listener will check for row entry. Everything will happen automatically, you just need to enable the listener once. Also it based on the priority which the listener order extends as in enum.
-Manually, we can Set the values for each priority. By default, it tooks the MEDIUM_PRIORITY
+#### *ListenerOrder :*
+The listener will check for row entry. Everything will happen automatically, you just need to enable the listener once. Also it based on the priority which the listener order extends as in enum.
+Manually, we can Set the values for each priority. By default, it set the values of MEDIUM_PRIORITY
 ```
  HIGH_PRIORITY - 0
  REGISTRY_PRIORITY- 25
  MEDIUM_PRIORITY - 50
  LOW_PRIORITY - 100 
 ```
-**OutOfRangeNotification :** Notified when the process exists out of range and provides a method `processOutOfRangeNotification` returns in boolean.
+#### *OutOfRangeNotification :* 
+Notified when the process exists out of range and provides a method `processOutOfRangeNotification` returns in boolean.
 
-**IgnoreUpdate :** Checks the row is already exists or not by extending the `IgnoreIfExists` and provides a method `ignoreUpdate` passing a parameter as table and columns, it returns a boolean whether it already exists or not.
+#### *IgnoreUpdate :*
+ Checks the row is already exists or not by extending the `IgnoreIfExists` and provides a method `ignoreUpdate` passing a parameter as table and columns, it returns a boolean whether it already exists or not.
 
-**IgnoreDelete :** Checks the row is already exists or not by extending the `IgnoreIfExists` and provides a method `ignoreParentDeleteAction` passing a parameter as table and parent primary key and it returns a boolean whether it already exists or not.
+#### *IgnoreDelete :*
+ Checks the row is already exists or not by extending the `IgnoreIfExists` and provides a method `ignoreParentDeleteAction` passing a parameter as table and parent primary key and it returns a boolean whether it already exists or not.
 
-**RowIdDeleteListener :** RowIdDeleteListener provides a method `deleteRows` passing a parameter as set of id's. Row is deleted based on its Id. Which it extends the functionalities of `IgnoreDelete`, `OutOfRangeNotification`, and `ListenerOrder`.
+#### *RowIdDeleteListener :*
+ RowIdDeleteListener provides a method `deleteRows` passing a parameter as set of id's. Row is deleted based on its Id. Which it extends the functionalities of `IgnoreDelete`, `OutOfRangeNotification`, and `ListenerOrder`.
 
-### RowListenerHandler
+## RowListenerHandler
 The listener will be handled whenever an event occurs on this Row set object. It provides the specific methods for all the types of listeners. Passing the parameter as Table and the listener type. All the methods are accesd to the rowListenerContainer.
 
-### RowListenerContainer
+## RowListenerContainer
 The rowListenerContainer listen every time when we add, update or delete a list of rows and it will be stored as a cache every time based on ListenerOrder priority and the list of add, update or delete listener.
 The collection of rows get added, updated, or deleted in their respective tables. The above functions listen and get stored as a form of cache.
 
-### Use Case
+## Use Case
 Every Table listens and stored together as a cache. As it is in together form we are not able to listen the table when the row gets inserted, updated or deleted. So, we set up a listener for each table. As for now we can select the particular table and the formed caches in the table as per needs.  
 
 
