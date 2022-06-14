@@ -418,7 +418,7 @@ And it mapped to the corresponding tables.
     -resource - Auto-generated table content class file. 
     -update all - The interface for DDL-related actions.
 
-### api package:
+### Api Package:
 * **DML -** The DML commands in Structured Query Language change the data present in the SQL database. We can easily access, store, modify,   update and delete the existing records from the database using DML commands, Here it provides the services for all related DML queries.
 * **ds -** A data structure is a special way of organizing and storing data in a database so that it can be used efficiently. Provides services for admindatastore, orgdatastore, readable and writable datastore.
 * **listener -** Provides services for listeners like row added, row updated, and row deleted listeners.
@@ -440,7 +440,7 @@ And it mapped to the corresponding tables.
 # Row Listener
 An interface that must be implemented by a component that wants to be notified when a significant event happens in the life of a RowSet object. It Called when a row is inserted, updated, or deleted. The listener will be notified whenever an event occurs on this RowSet object. Creates, updates or Removes the designated object from this RowSet object's list of listeners.
 
-### Types Of Row Listener
+## Types Of Row Listener
 There are 11 types of listeners and they are in the form of interface.
 
 **RowListener :** The given interface extends the functionalities of RowAddListener, RowUpdateListener, and RowIdDeleteListener. Once we access the rowListener we can also be able to access the above functionalities.
@@ -456,21 +456,22 @@ There are 11 types of listeners and they are in the form of interface.
 **IgnoreIfExists :** Returns in boolean format while inserting a data into table if wanted to check condition that it has been already exists then insert should not happen else record should be inserted.
 
 **ListenerOrder :** The listener will check for row entry. Everything will happen automatically, you just need to enable the listener once. Also it based on the priority which the listener order extends as in enum.
- Manually, we can Set the values for each priority. By default, it tooks the MEDIUM_PRIORITY.
-     HIGH_PRIORITY - 0
-     REGISTRY_PRIORITY- 25
-     MEDIUM_PRIORITY - 50
-     LOW_PRIORITY - 100 
-
+Manually, we can Set the values for each priority. By default, it tooks theMEDIUM_PRIORITY
+```
+ HIGH_PRIORITY - 0
+ REGISTRY_PRIORITY- 25
+ MEDIUM_PRIORITY - 50
+ LOW_PRIORITY - 100 
+```
 **OutOfRangeNotification :** Notified when the process exists out of range and it returns in boolean.
 
 **IgnoreUpdate :** Checks the row is already exists or not by extending the IgnoreIfExists and then it returns boolean whether it already exists or not.
 
 **IgnoreDelete :** Checks the row is already exists or not by extending the IgnoreIfExists and then it returns boolean whether it already exists or not.
 
-**RowIdDeleteListener :** Row is deleted based on its Id. Which it extends the functionalities of IgnoreDelete, OutOfRangeNotification, and ListenerOrder
+**RowIdDeleteListener :** Row is deleted based on its Id. Which it extends the functionalities of IgnoreDelete, OutOfRangeNotification, and ListenerOrder.
 
-#### RowListenerHandler
+### RowListenerHandler
 The listener will be handled whenever an event occurs on this RowSet object. It provides the specific methods for all the types of listeners. Passing the parameter as Table and the listener type. All the methods are accesd to the rowListenerContainer.
 
 ### RowListenerContainer
