@@ -210,7 +210,8 @@ A foreign key is a field or collection of fields in one table that refers to the
 
 ``` 
 <foreign-keys> 
-    <foreign-key name="Table_FK" reference-table="Table1" local-column="Table1_ID" reference-column="ID constraint="ON-DELETE-CASCADE" /> 
+    <foreign-key name="Table_FK" reference-table="Table1" local-column="Table1_ID" reference-column="ID 
+        constraint="ON-DELETE-CASCADE" /> 
 </foreign-keys>
 ```
 	
@@ -397,8 +398,11 @@ And it mapped to the corresponding tables.
 ```
 ## Packages:
   `api` -  A collection of interfaces with their respective methods, fields, and constructors. It provides the services for data containers, queries, constraints, and clauses.
+
   `internal` - It provides the services of a package.
+
   `resource` - Auto-generated table content class file. 
+
   `update.ddl` - The interface for DDL-related actions.
 
 ### Api Package:
