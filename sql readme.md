@@ -140,23 +140,14 @@ Columns are also called fields in a database table. The attributes for the colum
 **supported datatypes:**
 
   `BIGINT`: An instance of the long data type
-
   `INTEGER`: An instance of the integer datatype.
-
   `SMALLINT`: An instance of the short datatype.
-
   `KCHAR`: An instance of the i18n datatype.
-
   `SCHAR`: An instance of the small character datatype.
-
   `BLOB`: An instance of the byte data type.
-
   `CHAR`: An instance of the character datatype. 
-
   `TEXT`: The variable-length character SQL text data type is called VARCHAR.
-
   `STEXT`: Sybase can store UTF-8 strings in CHAR/VARCHAR columns.
-
   `BOOLEAN`: A boolean is an expression that evaluates to either true or false.
   
     nullable = Whether we want to allow null values for the specific column, we set nullable = true; otherwise, nullable = false.
@@ -271,7 +262,7 @@ A unique key can be used when you have to keep null values in the column. When o
 
 ### *Attributes of unique-key tag*
 
-  name = The unique key name must be specified in a specific pattern, such as first being table name 
+   name = The unique key name must be specified in a specific pattern, such as first being table name 
     and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are
      separated by an underscore.
       
