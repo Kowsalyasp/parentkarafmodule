@@ -1,8 +1,6 @@
 
 # SQL MODULE
 
-
-
 ## TABLE OF CONTENTS
 
 - [Abstract](#abstract)
@@ -38,25 +36,19 @@
 
 
 # Abstract:
-* A module can be thought of as an object library that is linked to the application code. 
-* The procedures could be compiled into object code and linked directly to the application code, they could be compiled 
-  and stored on the DBMS and calls to access plan identifiers placed in the application code, or they could be interpreted at run time.
-* The SQL module allows you to execute custom queries against an SQL database and store the results in Elasticsearch.
-  This module supports the databases.
+* A module can be thought of as an object library that is linked to the application code.
+* The procedures could be compiled into object code and linked directly to the application code, they could be compiled and stored on the DBMS and calls to access plan identifiers placed in the application code, or they could be interpreted at run time.
+* The SQL module allows you to execute custom queries against an SQL database and store the results in Elasticsearch. This module supports the databases.
 * The SQL module explains how to use simple DataBase Query implementations.
 * This module explains the statically available methods for executing DML, DDL, and DQL-related database actions.
 
 # Requirements:
 This module requires the following maven dependencies.
 	
-1. **javatuples -** A tuple is a collection of several elements that may or may not be related to each other. 
-	            In other words, tuples can be considered anonymous objects.
-2. **HikariCP -** HikariCP is a solid high-performance JDBC connection pool. 
-		      A connection pool is a cache of database connections maintained so that the connections can be reused 
-		      when future requests to the database are required.
-3. **PostgreSQL -** PostgreSQL is an advanced, enterprise-class open-source relational database that 
-	            supports both SQL (relational) and JSON (non-relational) querying.	
-	
+1. **javatuples -** A tuple is a collection of several elements that may or may not be related to each other. In other words, tuples can be considered anonymous objects.
+2. **HikariCP -** HikariCP is a solid high-performance JDBC connection pool. A connection pool is a cache of database connections maintained so that the connections can be reused when future requests to the database are required.
+3. **PostgreSQL -** PostgreSQL is an advanced, enterprise-class open-source relational database that supports both SQL (relational) and JSON (non-relational) querying.
+
 # BundleListener:
 A BundleEvent listener When a BundleEvent is fired, it is asynchronously delivered to a BundleListener. BundleListeners are called with a BundleEvent object when a bundle has been installed, resolved, started, stopped, updated, unresolved, or uninstalled.
 	
@@ -79,10 +71,10 @@ You can add your initial configuration directly in the file. To get the database
 The database name should be TLC(capitalized) and create the database with the same name in the database.
 > database.name = TLC
 
-To get the database server connection mention the port number as follow: `localhost: port number. 
+To get the database server connection to mention the port number as follow: `localhost: port number. 
 > database.server = localhost:5432
 
-A default username and password that is connected to the database( hosting-db ). 
+A default username and password that is connected to the database( hosting-DB ). 
 > database.username = *****
 
 > database.password = *****
@@ -103,8 +95,7 @@ The property controls the maximum amount of time (in milliseconds) that a connec
 > connection.pool.idle.timeout = 0
 	
 # MetaData:
-The meta.xml file presents a set of metadata, such as the module name, and the tables to include. XML is a textual data format that is widely used for the representation of data. The meta.xml file to load and populate the metadata to fetch and configure the table definitions and initialize the sequence generation of primary keys. The main purpose of meta.xml is to create the table. We set up the metadata with all the essential element tags like table names, columns, and constraints to configure the table in the database. And the module tag refers to which module wants to create the table.
-Used an XML-based language to describe the metadata for resources by using the tags below:
+The meta.xml file presents a set of metadata, such as the module name, and the tables to include. XML is a textual data format that is widely used for the representation of data. The meta.xml file to load and populate the metadata to fetch and configure the table definitions and initialize the sequence generation of primary keys. The main purpose of meta.xml is to create the table. We set up the metadata with all the essential element tags like table names, columns, and constraints to configure the table in the database. And the module tag refers to which module wants to create the table. Used an XML-based language to describe the metadata for resources by using the tags below:
 
 ## Table tag
 Create a table with the table name and type which are present inside the table tag. Each table has a table type value which can be given as per your needs.
@@ -119,7 +110,7 @@ Create a table with the table name and type which are present inside the table t
                1 -> COMMON 
                   If you don't specify any type, by default the table type is set to common. It does not depend on any ID.
                2 -> COMMON_PARTITIONED_BY_ID
-                  If the table type is common but if the table wants to be partitioned by ID, then prefer this table type.
+                   If the table type is common but if the table wants to be partitioned by ID, then prefer this table type.
                11 -> ORG_DEPENDENT
                   The table is dependent on org_id.
                12 -> ORG_PARTITIONED_BY_ID
@@ -134,9 +125,7 @@ Create a table with the table name and type which are present inside the table t
                   This type of table belongs to org_id, partition by ID, and also exists common null values.
     
 ## Column tag
-Columns are also called fields in a database table. The attributes for the column name of the table,
-its data type, whether it is nullable or not, maximum length, and the default value for the column are provided here. 
-Each column should be provided within the columns tag.
+Columns are also called fields in a database table. The attributes for the column name of the table, its data type, whether it is nullable or not, maximum length, and the default value for the column are provided here. Each column should be provided within the columns tag.
 
 ```
 <columns>
@@ -147,17 +136,17 @@ Each column should be provided within the columns tag.
 
     name = It refers to the column name.
     data-type = It refers to what type of column it is, and here we can use some specific data types.
-         supported datatypes:
-              BIGINT: An instance of the long data type
-              INTEGER: An instance of the integer datatype.
-              SMALLINT: An instance of the short datatype.
-              KCHAR: An instance of the i18n datatype.
-              SCHAR: An instance of the small character datatype.
-              BLOB: An instance of the byte data type.
-              CHAR: An instance of the character datatype. 
-              TEXT: The variable-length character SQL text data type is called VARCHAR
-              STEXT: Sybase can store UTF-8 strings in CHAR/VARCHAR columns.
-              BOOLEAN: A boolean is an expression that evaluates to either true or false.
+**supported datatypes:**
+    `BIGINT`: An instance of the long data type
+    `INTEGER`: An instance of the integer datatype.
+    `SMALLINT`: An instance of the short datatype.
+    `KCHAR`: An instance of the i18n datatype.
+    `SCHAR`: An instance of the small character datatype.
+    `BLOB`: An instance of the byte data type.
+    `CHAR`: An instance of the character datatype. 
+    `TEXT`: The variable-length character SQL text data type is called VARCHAR
+    `STEXT`: Sybase can store UTF-8 strings in CHAR/VARCHAR columns.
+    `BOOLEAN`: A boolean is an expression that evaluates to either true or false.
   
     nullable = Whether we want to allow null values for the specific column, we set nullable = true; otherwise, nullable = false.
     max-length = It refers to the maximum length that a column should be provided.
@@ -166,10 +155,10 @@ Each column should be provided within the columns tag.
 To modify the structure of existing tables in the database by adding, modifying, renaming, or dropping columns and constraints.
 
 #### Creation of column to table:
-To insert column in to a table, you specify the columns with the data type . A table can have one or more columns.
+To insert a column into a table, you specify the columns with the data type . A table can have one or more columns.
 
 #### Addition of columns to existing tables:
-To add new columns to existing tables, you specify the columns with the data type, and now you have the table that are altered. 
+To add new columns to existing tables, you specify the columns with the data type, and now you have the table that is altered. 
 
 #### Dropping an existing column:
 You can delete columns in particular tables that you prefer to take out. while dropping a column note that 
@@ -182,7 +171,7 @@ To insert data into an column, The values that you want to insert must be inside
 ## Primary-key tag
  Primary keys must contain unique values and cannot have NULL values.
  A table can have only one primary key, which may consist of single or multiple fields.
- Each primary key should be provided within the <primary-keys>tag.
+ Each primary key should be provided within the <primary-keys> tag.
 
 ```
 <primary-keys>
@@ -217,8 +206,7 @@ When the primary key is deleted, the corresponding index is deleted.
 If you delete the primary key you have to modify or to re-create the primary key.
 
 ## foreign-key tag
-A foreign key is a field or collection of fields in one table that refers to the primary key in another table.
-Each foreign key can be accessed within the foreign-keys tag.
+A foreign key is a field or collection of fields in one table that refers to the primary key in another table. Each foreign key can be accessed within the foreign-keys tag.
 
 ``` 
 <foreign-keys> 
@@ -258,8 +246,8 @@ foreign key constraint and then re-create it with the new definition.
 Deleting a foreign key constraint removes the requirement to enforce referential integrity.
 
 ## unique-key tag
- Unique key can be used when you have to keep null values in column. When one or more than one field/columns of a table that uniquely identify a record in a database table. These can also be used as foreign keys for other tables.
-Each unique key can be accessed within the unique-keys tag.
+A unique key can be used when you have to keep null values in the column. When one or more than one field/column of a table uniquely identifies a record in a database table. These can also be used as foreign keys for other tables. Each unique key can be accessed within the unique-keys tag.
+
 
 ``` 
 <unique-keys> 
@@ -279,19 +267,17 @@ Each unique key can be accessed within the unique-keys tag.
 	
 #### Create a unique key:
 We can create one or more than one field/columns of a table that uniquely identify a record. Creating a unique constraint automatically creates a
-corresponding unique index. Must provide the name attribute and <unique-key-column> tag, if you want the field to not set null and allow unique values.  
+corresponding unique index. Must provide the name attribute and <unique-key-column> tag, if you want the field not to set null and allow unique values.  
 We must provide these  <unique-key-column> tag, else it raise an error that it was unable to parse the table.
 
 #### Modify a unique key:
-If you prefer to alter the unique key column make sure that the field to not set null and allow unique values. And it altered the unique key constraints.
+If you prefer to alter the unique key column make sure that the field to not set null and allows unique values. And it altered the unique key constraints.
 
 #### Delete a unique key:
-Deleting a unique constraint removes the requirement for uniqueness for values entered in the column or combination of columns
-included in the constraint expression and deletes the corresponding unique index.
+Deleting a unique constraint removes the requirement for a uniqueness for values entered in the column or combination of columns included in the constraint expression and deletes the corresponding unique index.
 
 ## indexes tag
-Indexes can be used to speed up data retrieval. Simply put, an index is a pointer to data in a table.
-Each index key can be accessed within the indexes tag.
+Indexes can be used to speed up data retrieval. Simply put, an index is a pointer to data in a table. Each index key can be accessed within the indexes tag.
 
 ```
  <indexes> 
@@ -310,7 +296,7 @@ Each index key can be accessed within the indexes tag.
 
 #### Create an indexes:
 Create an index name for one or more column. Must provide the name attribute for indexes
-which is in the pattern as tablename_Idx1 and <index-column> tag. We must provide these <index-column>  tag,
+which is in the pattern as tablename_Idx1 and <index-column> tag. We must provide these <index-column> tag,
 else it raise an error that it was unable to parse the table.
 
 #### Modify an indexes:
@@ -355,43 +341,40 @@ then you may take out the corresponding column tag. If you prefer not to have an
 ```
 
 ## Data.xml:
-The data.xml file to load, process, update and populate the data to fetch and configure the column of the table. In this, we can statically enter an entity for the table.
-Using this data file we could be able to manipulate the data in the user's preferable way.
+The data.xml file to load, process, update and populate the data to fetch and configure the column of the table. In this, we can statically enter an entity for the table. Using this data file we could be able to manipulate the data in the user's preferable way.
 
 The name for the module should be declared inside the module tag <module>. We can create one or more modules.
  
 The format for module name should be tlc_crm_modulename. If it is contact module:
  >``<module name="tlc_crm_contact">``
 
-For the table in which you prefer to store static data, then inside the table tag for each table, the id must be mentioned and then followed by the column value,
-A valid ID consists of a table name, ID, and CO(column) and gives the Id value is acceptable formats separated by a colon. The format for the ID has to be ID="MCMFieldSQLTable:ID: CO:1"
+For the table in which you prefer to store static data, then inside the table tag for each table, the id must be mentioned and then followed by the column value, A valid ID consists of a table name, ID, and CO(column) and gives the Id value is acceptable formats separated by a colon. The format for the ID has to be ID="MCMFieldSQLTable:ID: CO:1"
 
 > ``<TableName ID="" col1="" col2=""/>``
 
 Example to enter a record statically You can add rows to a table: 
 > ``<MCMFieldSQLTable ID="MCMFieldSQLTable:ID:CO:1" TABLE_NAME="SampleTable"/>``
 
-The sub-tag is a tag that is referred to as a foreign key in a child table that will generally reference a primary key in the parent table under a parent tag.
+The sub-tag is a tag that is referred to as a foreign key in a child table that will generally reference a primary key in the parent table under a parent tag
  ```
  <parent-table ID=""  col="">
    <child-table ID="" col = "" ></child-table>
 <parent-table> 
 ```
 #### Insert one row into a table:
-First, the table in which you want to insert a new row, mention it, and following,
-set out the column that you prefer where the id field should be mandatory.
+First, the table in which you want to insert a new row, mention it, and following, set out the column that you prefer where the id field should be mandatory.
 
 #### Insert multiple rows into a table:
-If multiple rows are inserted in the same table with different id.
+If multiple rows are inserted in the same table with a different id.
 
-**Note:**Id must be unique it cannot contain duplicates.
+**Note:** Id must be unique it cannot contain duplicates.
 
 #### Foreign key relation in same module:
-If we inserting a static data for foreign key relationship in the same module. Make sure that the child table is the subtag for the parent table. 
+If we insert static data for foreign key relationships in the same module. Make sure that the child table is the subtag for the parent table. 
 The data has been mapped in  both child and parent table.
 
 #### Foreign key relation in different module:
-Mapping the static data using foreign key in different module. It denotes that the parent table from one module and the child table from another.
+Mapping the static data using a foreign key in a different module. It denotes the parent table from one module and the child table from another.
 And it mapped to the corresponding tables.
 
 ### *data.xml file precedent*
@@ -413,29 +396,45 @@ And it mapped to the corresponding tables.
 </dumpdata>
 ```
 ## Packages:
-    -API -  A collection of interfaces with their respective methods, fields, and constructors. It provides the services for data   containers, queries, constraints, and clauses.
-    -internal - It provides the services of a package.
-    -resource - Auto-generated table content class file. 
-    -update all - The interface for DDL-related actions.
+  `api` -  A collection of interfaces with their respective methods, fields, and constructors. It provides the services for data containers, queries, constraints, and clauses.
+  `internal` - It provides the services of a package.
+  `resource` - Auto-generated table content class file. 
+  `update.ddl` - The interface for DDL-related actions.
 
 ### Api Package:
-* **DML -** The DML commands in Structured Query Language change the data present in the SQL database. We can easily access, store, modify,   update and delete the existing records from the database using DML commands, Here it provides the services for all related DML queries.
+
+* **DML -** The DML commands in Structured Query Language change the data present in the SQL database. We can easily access, store, modify, update and delete the existing records from the database using DML commands, Here it provides the services for all related DML queries.
+
 * **ds -** A data structure is a special way of organizing and storing data in a database so that it can be used efficiently. Provides services for admindatastore, orgdatastore, readable and writable datastore.
+
 * **listener -** Provides services for listeners like row added, row updated, and row deleted listeners.
-* **meta -** Meta-SQL is a great way to abstract SQL logic and ensures consistency in SQL definitions. Also, it tells about SQL statements text with key fields such as table type and datatype.
-* **sequence -** Sequence is a set of integers that it allows the automatic generation of values and is supported by some database systems to produce unique values on demand. provides the service for sequence generator.
+
+* **meta -**  Meta-SQL is a great way to abstract SQL logic and ensures consistency in SQL definitions. Also, it tells about SQL statements text with key fields such as table type and datatype.
+
+* **sequence -** A sequence is a set of integers that allows the automatic generation of values and is supported by some database systems to produce unique values on demand. provides the service for sequence generator.
+
 ### internal package:
 * **data -** Data is information that can be organized and stored in a database. For that, it provides the data container, and here it can be also filtered the data container according to our needs.
-* **DML -** Provides the services for DML queries in the API package. And layout the implementation for all services here.  
+
+* **dml -** Provides the services for DML queries in the API package. And layout the implementation for all services here.
+
 * **ds -** Provides implementations for readable and writable datastore, admindatastore, and orgdatastore.
-* **handler -** When an SQL procedure executes if unfortunately, an error occurs then the procedure ends unless. And tell the procedure to perform some other action. These Handler Statements are abstract methods for all DML and DDL-related queries.  
+
+* **handler -** When an SQL procedure executes if unfortunately, an error occurs then the procedure ends unless. And tell the procedure to perform some other action. These Handler Statements are abstract methods for all DML and DDL-related queries.
+
 * **listener -** Listen to the Row it records the cache for add, update and delete process.
+
 * **meta -** Provides and maintains the cache process in the data container and also executes the procedure for handling metadata.
+
 * **parser -** Provides implementations for metadata parser, constraints resolver, table definition loader, etc.
-* **pgsql -** PostgreSQL is an object-relational database used as the primary data store.provides services for DML and DDL related functionalities.
+
+* **pgsql -** PostgreSQL is an object-relational database used as the primary data store. provides services for DML and DDL-related functionalities.
+
 * **sequence -** Generate the sequence automatically, it loads the series.
-* **status -** error code is a numeric or alphanumeric code that is used to determine the nature of an error and why it occurred. when they attempt to do something or fail to do and they can be passed off to error handlers that determine what action to take. And here, they provide the status for the error code that occurred by this module. 
-* **update -** Modify or revert the existing records in a table it provides the pre action type(create_table, drop_unique_key, create_index, update_index, delete_index,...) and post action type(create_unique_key, update_unique_key, create_foreign_key, update_foreign_key, drop_foreign_key,...).
+
+* **status -** Error code is a numeric or alphanumeric code that is used to determine the nature of an error and why it occurred. when they attempt to do something or fail to do and they can be passed off to error handlers that determine what action to take. And here, they provide the status for the error code that occurred by this module. 
+
+* **update -** Modify or revert the existing records in a table it provides the pre-action type(create_table, drop_unique_key, create_index, update_index, delete_index,...) and post-action type(create_unique_key, update_unique_key, create_foreign_key, update_foreign_key, drop_foreign_key,...).
 
 # Row Listener
 An interface that must be implemented by a component that wants to be notified when a significant event happens in the life of a Row set object. It Called when a row is inserted, updated, or deleted. The listener will be notified whenever an event occurs on this Row set object. Creates, updates or Removes the designated object from this Row set object's list of listeners.
@@ -488,9 +487,7 @@ The listener will be handled whenever an event occurs on this Row set object. It
 ## RowListenerContainer
 The rowListenerContainer listen every time when we add, update or delete a list of rows and it will be stored as a cache every time based on ListenerOrder priority and the list of add, update or delete listener.
 The collection of rows get added, updated, or deleted in their respective tables. The above functions listen and get stored as a form of cache.
-
-## Use Case
-Every Table listens and stored together as a cache. As it is in together form we are not able to listen the table when the row gets inserted, updated or deleted. So, we set up a listener for each table. As for now we can select the particular table and the formed caches in the table as per needs.  
+  
 
 
 
