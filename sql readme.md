@@ -479,7 +479,7 @@ RowUpdateListener Provides a method `updateRows` passing a collection of rows an
  #### *RowListener :* 
 The given interface extends the functionalities of `RowAddListener`,`RowUpdateListener`, and `RowIdDeleteListener`. Once we access the rowListener we can also be able to access the above functionalities.
 
-#### **CompleteRowListener :** 
+#### *CompleteRowListener :* 
 The given interface extends the functionalities of `RowAddListener`, `RowUpdateListener`, and `RowDeleteListener`. Once we access the CompleteRowListener we can also be able to access the above functionalities. 
 
 ## RowListenerHandler
