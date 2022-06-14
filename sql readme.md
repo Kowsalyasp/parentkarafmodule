@@ -275,7 +275,7 @@ A unique key can be used when you have to keep null values in the column. When o
     and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are
      separated by an underscore.
       
-  <unique-key-column> = Valid column name should be provided.
+    <unique-key-column> = Valid column name should be provided.
 	
 #### Create a unique key:
 We can create one or more than one field/columns of a table that uniquely identify a record. Creating a unique constraint automatically creates a
@@ -304,7 +304,7 @@ Indexes can be used to speed up data retrieval. Simply put, an index is a pointe
     by an underscore.
       `format: TableName_[A-Za-z0-9_]`.
 
-  <index-column> = Valid column name should be provided.
+    <index-column> = Valid column name should be provided.
 
 #### Create an indexes:
 Create an index name for one or more column. Must provide the name attribute for indexes
