@@ -68,7 +68,7 @@ A configuration file is a properties file containing key/value pairs:
 
 You can add your initial configuration directly in the file. To get the database service, mention the following mandatory properties in the given format.
 
-The database name should be TLC(capitalized) and create the database with the same name in the database.
+The database name should be `TLC`(capitalized) and create the database with the same name in the database.
 > database.name = TLC
 
 To get the database server connection to mention the port number as follow: `localhost: port number. 
@@ -136,17 +136,28 @@ Columns are also called fields in a database table. The attributes for the colum
 
     name = It refers to the column name.
     data-type = It refers to what type of column it is, and here we can use some specific data types.
+
 **supported datatypes:**
-    `BIGINT`: An instance of the long data type
-    `INTEGER`: An instance of the integer datatype.
-    `SMALLINT`: An instance of the short datatype.
-    `KCHAR`: An instance of the i18n datatype.
-    `SCHAR`: An instance of the small character datatype.
-    `BLOB`: An instance of the byte data type.
-    `CHAR`: An instance of the character datatype. 
-    `TEXT`: The variable-length character SQL text data type is called VARCHAR
-    `STEXT`: Sybase can store UTF-8 strings in CHAR/VARCHAR columns.
-    `BOOLEAN`: A boolean is an expression that evaluates to either true or false.
+
+  `BIGINT`: An instance of the long data type
+
+  `INTEGER`: An instance of the integer datatype.
+
+  `SMALLINT`: An instance of the short datatype.
+
+  `KCHAR`: An instance of the i18n datatype.
+
+  `SCHAR`: An instance of the small character datatype.
+
+  `BLOB`: An instance of the byte data type.
+
+  `CHAR`: An instance of the character datatype. 
+
+  `TEXT`: The variable-length character SQL text data type is called VARCHAR.
+
+  `STEXT`: Sybase can store UTF-8 strings in CHAR/VARCHAR columns.
+
+  `BOOLEAN`: A boolean is an expression that evaluates to either true or false.
   
     nullable = Whether we want to allow null values for the specific column, we set nullable = true; otherwise, nullable = false.
     max-length = It refers to the maximum length that a column should be provided.
@@ -175,22 +186,22 @@ To insert data into an column, The values that you want to insert must be inside
 
 ```
 <primary-keys>
-    <primary-key name="Table_PK" column="ID" sequence-generator="TablePk.ID" />
+    <primary-key name = "Table_PK" column = "ID" sequence-generator = "TablePk.ID" />
 </primary-keys>
 ```
 
 ### *Attributes of primary-key tag*
 
-    name = The primary key name must be specified in a specific pattern, such as first being table name and then with
-    continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated 
-    by an underscore ` format: TableName_[A-Za-z0-9_]`
+  name = The primary key name must be specified in a specific pattern, such as first being table name and then with
+    continuation `[A-Za-z0-9_]`, these values are only allowed after the table name and are separated 
+    by an underscore `format: TableName_[A-Za-z0-9_]`
 
-    column = Having an ID column as the primary key is always a good idea because it will never change.
+  column = Having an ID column as the primary key is always a good idea because it will never change.
 
-    sequence-batch = It denotes the starts with and here, by default, the value is 50. If we want to set the value,
+  sequence-batch = It denotes the starts with and here, by default, the value is 50. If we want to set the value,
     it should not be less than 50.
 
-    sequence-generator = Use sequences to automatically generate primary key values. It should be specified in the
+  sequence-generator = Use sequences to automatically generate primary key values. It should be specified in the
     following `format: TableName_[A-Za-z0-9_]`.
 
 #### Create a primary key in a new table:
@@ -217,21 +228,21 @@ A foreign key is a field or collection of fields in one table that refers to the
 	
 ### *Attributes of foreign-key tag*
 		
-    name = The foreign key name must be specified in a specific pattern, such as first being table name
+  name = The foreign key name must be specified in a specific pattern, such as first being table name
     and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are
     separated by an underscore.
 
-    reference-table = A table that is referenced from a referencing table with a foreign key.
+  reference-table = A table that is referenced from a referencing table with a foreign key.
 
-    local-column = It refers to the local table.
+  local-column = It refers to the local table.
 
-    reference-column = Returns the item stored in the specified column within the context row based on a 
+  reference-column = Returns the item stored in the specified column within the context row based on a 
     related column between them.
     
-    constraint = Three types of foreign key constraints are allowed. And these constraints are in caps.
-          ON_DELETE_RESTRICT: If you want to delete a record from one table but there is a corresponding record
+  constraint = Three types of foreign key constraints are allowed. And these constraints are in caps.
+        ON_DELETE_RESTRICT: If you want to delete a record from one table but there is a corresponding record
            in the other table, the delete operation is not allowed.
-          ON_DELETE_CASCADE: To specify whether you want rows deleted in a child table when corresponding rows
+        ON_DELETE_CASCADE: To specify whether you want rows deleted in a child table when corresponding rows
            are deleted in the parent table.
 
 #### Create a foreign key:
@@ -260,11 +271,11 @@ A unique key can be used when you have to keep null values in the column. When o
 
 ### *Attributes of unique-key tag*
 
-    name = The unique key name must be specified in a specific pattern, such as first being table name 
+  name = The unique key name must be specified in a specific pattern, such as first being table name 
     and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are
      separated by an underscore.
       
-    <unique-key-column> = Valid column name should be provided.
+  <unique-key-column> = Valid column name should be provided.
 	
 #### Create a unique key:
 We can create one or more than one field/columns of a table that uniquely identify a record. Creating a unique constraint automatically creates a
@@ -288,12 +299,12 @@ Indexes can be used to speed up data retrieval. Simply put, an index is a pointe
 </indexes>
 ```
 ### *Attributes of indexes tag*
-    name = The index's name must be specified in a specific pattern, such as first being table name and then 
+  name = The index's name must be specified in a specific pattern, such as first being table name and then 
     with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated 
     by an underscore.
-     ` format: TableName_[A-Za-z0-9_]`
+      `format: TableName_[A-Za-z0-9_]`.
 
-    <index-column> = Valid column name should be provided.
+  <index-column> = Valid column name should be provided.
 
 #### Create an indexes:
 Create an index name for one or more column. Must provide the name attribute for indexes
