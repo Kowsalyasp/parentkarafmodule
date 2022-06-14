@@ -443,21 +443,6 @@ An interface that must be implemented by a component that wants to be notified w
 ## Types Of Row Listener
 There are 11 types of listeners and they are in the form of interface.
 
-#### *RowListener :* 
-The given interface extends the functionalities of `RowAddListener`,`RowUpdateListener`, and `RowIdDeleteListener`. Once we access the rowListener we can also be able to access the above functionalities.
-
-#### **CompleteRowListener :** 
-The given interface extends the functionalities of `RowAddListener`, `RowUpdateListener`, and `RowDeleteListener`. Once we access the CompleteRowListener we can also be able to access the above functionalities. 
-
-#### *RowAddListener :* 
-RowAddListener provides a method `addRows`, passing a collection of rows as a parameter and which it extends `IgnoreIfExists` and `ListenerOrder`.
-
-#### *RowUpdateListener :* 
-RowUpdateListener Provides a method `updateRows` passing a collection of rows and also it extends the functionalities of `IgnoreUpdate`,` OutOfRangeNotification`, and `ListenerOrder`.
-
-#### *RowDeleteListener :*
- RowDeleteListener Provides a method `deleteRows` passing a collection of rows  and also it extends the functionalities of `IgnoreDelete`, `OutOfRangeNotification`, and `ListenerOrder`.
-
 #### *IgnoreIfExists :* 
 Provides a `ignore` method returns in boolean format while inserting a data into table if wanted to check condition that it has been already exists then insert should not happen else record should be inserted.
 
@@ -479,8 +464,23 @@ Notified when the process exists out of range and provides a method `processOutO
 #### *IgnoreDelete :*
  Checks the row is already exists or not by extending the `IgnoreIfExists` and provides a method `ignoreParentDeleteAction` passing a parameter as table and parent primary key and it returns a boolean whether it already exists or not.
 
+#### *RowAddListener :* 
+RowAddListener provides a method `addRows`, passing a collection of rows as a parameter and which it extends `IgnoreIfExists` and `ListenerOrder`.
+
+#### *RowUpdateListener :* 
+RowUpdateListener Provides a method `updateRows` passing a collection of rows and also it extends the functionalities of `IgnoreUpdate`,` OutOfRangeNotification`, and `ListenerOrder`.
+
+#### *RowDeleteListener :*
+ RowDeleteListener Provides a method `deleteRows` passing a collection of rows  and also it extends the functionalities of `IgnoreDelete`, `OutOfRangeNotification`, and `ListenerOrder`.
+
 #### *RowIdDeleteListener :*
  RowIdDeleteListener provides a method `deleteRows` passing a parameter as set of id's. Row is deleted based on its Id. Which it extends the functionalities of `IgnoreDelete`, `OutOfRangeNotification`, and `ListenerOrder`.
+
+ #### *RowListener :* 
+The given interface extends the functionalities of `RowAddListener`,`RowUpdateListener`, and `RowIdDeleteListener`. Once we access the rowListener we can also be able to access the above functionalities.
+
+#### **CompleteRowListener :** 
+The given interface extends the functionalities of `RowAddListener`, `RowUpdateListener`, and `RowDeleteListener`. Once we access the CompleteRowListener we can also be able to access the above functionalities. 
 
 ## RowListenerHandler
 The listener will be handled whenever an event occurs on this Row set object. It provides the specific methods for all the types of listeners. Passing the parameter as Table and the listener type. All the methods are accesd to the rowListenerContainer.
