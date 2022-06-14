@@ -139,8 +139,10 @@ Columns are also called fields in a database table. The attributes for the colum
 
 **supported datatypes:**
 
-  `BIGINT`: An instance of the long data type
+  `BIGINT`: An instance of the long data type.
+
   `INTEGER`: An instance of the integer datatype.
+  
   `SMALLINT`: An instance of the short datatype.
   `KCHAR`: An instance of the i18n datatype.
   `SCHAR`: An instance of the small character datatype.
