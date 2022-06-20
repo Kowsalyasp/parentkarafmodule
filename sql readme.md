@@ -36,9 +36,7 @@
 
 
 # Abstract:
-* A module can be thought of as an object library that is linked to the application code.
-* The procedures could be compiled into object code and linked directly to the application code, they could be compiled and stored on the DBMS and calls to access plan identifiers placed in the application code, or they could be interpreted at run time.
-* The SQL module allows you to execute custom queries against an SQL database and store the results in Elasticsearch. This module supports the databases.
+* The SQL module allows you to execute custom queries against an SQL database and store the results in Elasticsearch. This module supports the database.
 * The SQL module explains how to use simple DataBase Query implementations.
 * This module explains the statically available methods for executing DML, DDL, and DQL-related database actions.
 
@@ -53,33 +51,34 @@ This module requires the following maven dependencies.
 A BundleEvent listener When a BundleEvent is fired, it is asynchronously delivered to a BundleListener. BundleListeners are called with a BundleEvent object when a bundle has been installed, resolved, started, stopped, updated, unresolved, or uninstalled.
 	
 # SQLDevListener:
-Utilizing the bundle lifecycle, it will perform actions like metadata parsing, etc. The class explains the loading, processing, updating, and populating of the meta and data XML files. Make use of this. It notes the bundle history record. We can see this in snapshots of our system. Hang on to the bundle history, which compares both the existing XML files and the current XML file to upload the data into the database. 
+Utilizing the bundle lifecycle, it will perform actions like metadata parsing, etc. SQLDevListener explains the loading, processing, updating, and populating of the meta and data XML files. It notes the bundle history record. We can see this in snapshots of our system. The MetaDataParser compares the existing XML file and the current XML file to update the data in the database. 
       
 # Database Configuration File:
-In the karaf folder, create the **configuration folder** which stores and loads all the configuration files like database connectivity, cache server, and the webserver.
+In the karaf folder, need to create a folder named conf which should contain all the configuration files like database connectivity, cache server, and the webserver.
 
 For database connection:
     create the `configuration source file` with a name `database.pgsql` with extension `cfg` 
 (eg: database.pgsql.cfg)
-          
+
 A configuration file is a properties file containing key/value pairs:
+          
  The cfg file provides a set of commands to manage the configuration.
 **property = value**
 
 You can add your initial configuration directly in the file. To get the database service, mention the following mandatory properties in the given format.
 
-The database name should be `TLC`(capitalized) and create the database with the same name in the database.
+Set the database name as you prefer and create the database with the same name in the database.
 > database.name = TLC
 
-To get the database server connection to mention the port number as follow: `localhost: port number. 
+To get the database server connection to mention the port number as follow: 
 > database.server = localhost:5432
 
-A default username and password that is connected to the database( hosting-DB ). 
+A default username and password that is connected to the database. 
 > database.username = *****
 
 > database.password = *****
 
-This property helps to get the environment and the mode to be `enabled` if it is true; otherwise, if it is false, it won't connect with the database.
+This property helps to get the environment and to enable the development mode when it tends to be `true` otherwise, it won't connect with the database.
 > development.mode.enabled = true
 
 Additionally, we can use the following properties to mention the pool size
@@ -92,10 +91,10 @@ The property controls the minimum number of idle connections to maintain in the 
 > connection.pool.idle = 
 
 The property controls the maximum amount of time (in milliseconds) that a connection is allowed to sit idle in the pool. A connection will never be retired as idle before this timeout. A value of 0 means that idle connections are never removed from the pool.
-> connection.pool.idle.timeout = 0
+> connection.pool.idle.timeout = 
 	
 # MetaData:
-The meta.xml file presents a set of metadata, such as the module name, and the tables to include. XML is a textual data format that is widely used for the representation of data. The meta.xml file to load and populate the metadata to fetch and configure the table definitions and initialize the sequence generation of primary keys. The main purpose of meta.xml is to create the table. We set up the metadata with all the essential element tags like table names, columns, and constraints to configure the table in the database. And the module tag refers to which module wants to create the table. Used an XML-based language to describe the metadata for resources by using the tags below:
+The meta.xml file presents a set of metadata, such as the module name, and the tables to include. The meta.xml file to load and populate the metadata to fetch and configure the table definitions and initialize the sequence generation of primary keys. The main purpose of meta.xml is to create the tables. We need to provide the table details of name, columns and constraints to create a table in the database. And the module tag refers to which module wants to create the table. Meta details of table should be described by below tags and attributes.
 
 ## Table tag
 Create a table with the table name and type which are present inside the table tag. Each table has a table type value which can be given as per your needs.
@@ -125,7 +124,7 @@ Create a table with the table name and type which are present inside the table t
                   This type of table belongs to org_id, partition by ID, and also exists common null values.
     
 ## Column tag
-Columns are also called fields in a database table. The attributes for the column name of the table, its data type, whether it is nullable or not, maximum length, and the default value for the column are provided here. Each column should be provided within the columns tag.
+ The <columns> tag consists of one or more <column> tags. Attributes of <column> tag include the column's name, data type, maximum length, nullable value that represents in boolean type, and the default value.
 
 ```
 <columns>
@@ -139,44 +138,46 @@ Columns are also called fields in a database table. The attributes for the colum
 
 **supported datatypes:**
 
-  `BIGINT`: An instance of the long data type.
+  `BIGINT`: A large integer and it refers to the long data type.
 
-  `INTEGER`: An instance of the integer datatype.
+  `INTEGER`: A medium integer it equals to the size of an int datatype.
 
-  `SMALLINT`: An instance of the short datatype.
+  `SMALLINT`: A small integer and it equals to the short datatype.
 
-  `KCHAR`: An instance of the i18n datatype.
+  `DECIMAL`: An exact fixed-point number.
 
-  `SCHAR`: An instance of the small character datatype.
+  `KCHAR`: Refers to an i18n datatype.The size parameter specifies the column length in characters - can be from 0 to 512. 
 
-  `BLOB`: An instance of the byte data type.
+  `SCHAR`: Refers to the variable length string. 
 
-  `CHAR`: An instance of the character datatype. 
+  `BLOB`: For Binary Large Object(BLOB) holds the bytes of data.
 
-  `TEXT`: The variable-length character SQL text data type is called VARCHAR.
+  `CHAR`: A string can contain letters, numbers, and special characters. The size parameter specifies the column length in characters - can be from 0 to 255. 
 
-  `STEXT`: Sybase can store UTF-8 strings in CHAR/VARCHAR columns.
-  
+  `TEXT`: A string can contain letters, numbers, and special characters. And it holds with a maximum length of 2500.
+
+  `STEXT`: A string that holds the maximum length of 255 characters.
+
   `BOOLEAN`: A boolean is an expression that evaluates to either true or false.
   
-    nullable = Whether we want to allow null values for the specific column, we set nullable = true; otherwise, nullable = false.
+    nullable = If we want to allow null values for the specific column, we can set nullable = true; otherwise, nullable = false.
     max-length = It refers to the maximum length that a column should be provided.
     default-value = The default value is assigned to the column. It may be a boolean type.
 
 To modify the structure of existing tables in the database by adding, modifying, renaming, or dropping columns and constraints.
 
 #### Creation of column to table:
-To insert a column into a table, you specify the columns with the data type . A table can have one or more columns.
+To insert a column into a table, you can specify the columns with data type. 
 
 #### Addition of columns to existing tables:
-To add new columns to existing tables, you specify the columns with the data type, and now you have the table that is altered. 
+If you want to add the columns in a specific order in the existing table. You may add the column using tag with attributes.
 
 #### Dropping an existing column:
 You can delete columns in particular tables that you prefer to take out. while dropping a column note that 
 You can't delete a column that has primary key or foreign key constraints. When you delete a column from a table, 
 the column and all the data it contains are deleted.
 
-#### Inserting data into columns:
+#### Insert Values in a column:
 To insert data into an column, The values that you want to insert must be inside the double quotes(""). 
 
 ## Primary-key tag
@@ -234,20 +235,18 @@ A foreign key is a field or collection of fields in one table that refers to the
 
   reference-table = A table that is referenced from a referencing table with a foreign key.
 
-  local-column = It refers to the local table.
+  local-column = The column refers from the local table.
 
-  reference-column = Returns the item stored in the specified column within the context row based on a 
-    related column between them.
+  reference-column = The column which it refers from the reference table.
     
-  constraint = Three types of foreign key constraints are allowed. And these constraints are in caps.
+  constraint = Two types of foreign key constraints are allowed. And these constraints should be in capital.
         ON_DELETE_RESTRICT: If you want to delete a record from one table but there is a corresponding record
            in the other table, the delete operation is not allowed.
         ON_DELETE_CASCADE: To specify whether you want rows deleted in a child table when corresponding rows
            are deleted in the parent table.
 
 #### Create a foreign key:
-Creates a table and defines a foreign key constraint on the column that references the another column.
-These foreign key provides constraints for ON DELETE CASCADE and ON DELETE RESTRICT. We must provide 
+To refer the column from another table. Create the  foreign key constraint on the column that references the another column. These foreign key provides constraints for ON DELETE CASCADE and ON DELETE RESTRICT. We must provide 
 these constraints else it raise an error that it was unable to parse the table.
 
 #### Modify a foreign key:
@@ -258,8 +257,7 @@ foreign key constraint and then re-create it with the new definition.
 Deleting a foreign key constraint removes the requirement to enforce referential integrity.
 
 ## unique-key tag
-A unique key can be used when you have to keep null values in the column. When one or more than one field/column of a table uniquely identifies a record in a database table. These can also be used as foreign keys for other tables. Each unique key can be accessed within the unique-keys tag.
-
+ The unique key ensures that all values in a column are different. When one or more than one field/column of a table uniquely identifies a record in a database table. The <unique-keys> tag consists of one or more <unique-key>.
 
 ``` 
 <unique-keys> 
@@ -275,7 +273,7 @@ A unique key can be used when you have to keep null values in the column. When o
     and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are
      separated by an underscore.
       
-    <unique-key-column> = Valid column name should be provided.
+    <unique-key-column> = Valid column name should be provided. Note that the column should be unique.
 	
 #### Create a unique key:
 We can create one or more than one field/columns of a table that uniquely identify a record. Creating a unique constraint automatically creates a
