@@ -105,8 +105,8 @@ Create a table with the table name and type which are present inside the table t
 
  ### *Attributes of table tag*
 
-    name = Name of the table.
-    type = Table Type creation is based on the existence of the following values partitionById, orgDependent, partitionByOrgId and commonNullExists. The following table types are as follows as
+* **name =** Name of the table.
+* **type =** Table Type creation is based on the existence of the following values partitionById, orgDependent, partitionByOrgId and commonNullExists. The following table types are as follows as
                1 -> COMMON 
                   If you don't specify any type, by default the table type is set to common. It does not depend on any ID.
                2 -> COMMON_PARTITIONED_BY_ID
@@ -240,8 +240,8 @@ A foreign key is a field or collection of fields in one table that refers to the
 * **reference-column =** The column which it refers from the reference table.
     
 * **constraint =**Two types of foreign key constraints are allowed. And these constraints should be in capital.
-        ON_DELETE_RESTRICT: If you want to delete a record from one table but there is a corresponding record in the other table, the delete operation is not allowed.
-        ON_DELETE_CASCADE: To specify whether you want rows deleted in a child table when corresponding rows are deleted in the parent table.
+     * `ON_DELETE_RESTRICT:` If you want to delete a record from one table but there is a corresponding record in the other table, the delete operation is not allowed.
+     * `ON_DELETE_CASCADE:` To specify whether you want rows deleted in a child table when corresponding rows are deleted in the parent table.
 
 #### Create a foreign key:
 To refer the column from another table. Create the  foreign key constraint on the column that references the another column. These foreign key provides constraints for ON DELETE CASCADE and ON DELETE RESTRICT. We must provide 
@@ -271,7 +271,7 @@ Deleting a foreign key constraint removes the requirement to enforce referential
     and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are
      separated by an underscore. These values should not contain any special characters except underscore(_).
       
-* **<unique-key-column> =** Valid column name should be provided. Note that the column should be unique.
+* **unique-key-column =** Valid column name should be provided. Note that the column should be unique.
 	
 #### Create a unique key:
 We can create one or more than one field/columns of a table that uniquely identify a record. Creating a unique constraint automatically creates a
@@ -284,7 +284,7 @@ If you prefer to alter the unique key column make sure that the field to not set
 #### Delete a unique key:
 Deleting a unique constraint removes the requirement for a uniqueness for values entered in the column or combination of columns included in the constraint expression and deletes the corresponding unique index.
 
-## indexes tag
+## Indexes tag
 Indexes can be used to speed up data retrieval. Simply put, an index is a pointer to data in a table. Each index key can be accessed within the indexes tag.
 
 ```
@@ -300,7 +300,7 @@ Indexes can be used to speed up data retrieval. Simply put, an index is a pointe
     by an underscore.
       `format: TableName_[A-Za-z0-9_]`.
 
-* **<index-column> =** Valid column name should be provided.
+* **index-column =** Valid column name should be provided.
 
 #### Create an indexes:
 Create an index name for one or more column. Must provide the name attribute for indexes
