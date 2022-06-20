@@ -194,16 +194,16 @@ To insert data into an column, The values that you want to insert must be inside
 
 ### *Attributes of primary-key tag*
 
-**name =** The primary key name must be specified in a specific pattern, such as first being table name and then with
+* **name =** The primary key name must be specified in a specific pattern, such as first being table name and then with
     continuation `[A-Za-z0-9_]`, these values are only allowed after the table name and are separated 
     by an underscore. These values should not contain any special characters except underscore(_).`format: TableName_[A-Za-z0-9_]`
 
-**column =** Having an ID column as the primary key is always a good idea because it will never change.
+* **column =** Having an ID column as the primary key is always a good idea because it will never change.
 
-**sequence-batch =** It denotes the starts with and here, by default, the value is 50. If we want to set the value,
+* **sequence-batch =** It denotes the starts with and here, by default, the value is 50. If we want to set the value,
     it should not be less than 50.
 
-**sequence-generator =** Use sequences to automatically generate primary key values. It should be specified in the
+* **sequence-generator =** Use sequences to automatically generate primary key values. It should be specified in the
     following `format: TableName_[A-Za-z0-9_]`.
 
 #### Create a primary key in a new table:
