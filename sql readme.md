@@ -107,22 +107,22 @@ Create a table with the table name and type which are present inside the table t
 
 * **name =** Name of the table.
 * **type =** Table Type creation is based on the existence of the following values partitionById, orgDependent, partitionByOrgId and commonNullExists. The following table types are as follows as
-      * 1 -> COMMON 
-               If you don't specify any type, by default the table type is set to common. It does not depend on any ID.
-      * 2 -> COMMON_PARTITIONED_BY_ID
-               The partitionById is set true in COMMON table type definition to get this table.
-      * 11 -> ORG_DEPENDENT
-                The table is dependent on orgDependent alone.
-      * 12 -> ORG_PARTITIONED_BY_ID
-                This table type depends on orgDependent and partitionById.
-      * 13 -> ORG_PARTITIONED_BY_ORG
-                This table type depends on orgDependent and partitionByOrgId.
-      * 21 -> ORG_MIXED
-                This type of table depends on orgDependent and commonNullExists.
-      *  22 -> ORG_MIXED_BY_ID
-                This type of table depends on orgDependent, partitionById and commonNullExists.
-      *  23 -> ORG_MIXED_BY_ORG
-                 This type of table depends on orgDependent, partitionByOrgId and commonNullExists.
+  * 1 -> COMMON 
+          If you don't specify any type, by default the table type is set to common. It does not depend on any ID.
+  * 2 -> COMMON_PARTITIONED_BY_ID
+          The partitionById is set true in COMMON table type definition to get this table.
+  * 11 -> ORG_DEPENDENT
+           The table is dependent on orgDependent alone.
+  * 12 -> ORG_PARTITIONED_BY_ID
+           This table type depends on orgDependent and partitionById.
+  * 13 -> ORG_PARTITIONED_BY_ORG
+           This table type depends on orgDependent and partitionByOrgId.
+  * 21 -> ORG_MIXED
+           This type of table depends on orgDependent and commonNullExists.
+  * 22 -> ORG_MIXED_BY_ID
+           This type of table depends on orgDependent, partitionById and commonNullExists.
+  * 23 -> ORG_MIXED_BY_ORG
+           This type of table depends on orgDependent, partitionByOrgId and commonNullExists.
     
 ## Column tag
  The <columns> tag consists of one or more <column> tags. Attributes of <column> tag include the column's name, data type, maximum length, nullable value that represents in boolean type, and the default value.
