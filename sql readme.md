@@ -134,8 +134,8 @@ Create a table with the table name and type which are present inside the table t
 ```
  ### *Attributes of column tag*
 
-    name = It refers to the column name.
-    data-type = It refers to what type of column it is, and here we can use some specific data types.
+* **name =** It refers to the column name.
+* **data-type =** It refers to what type of column it is, and here we can use some specific data types.
 
 **supported datatypes:**
 
@@ -161,9 +161,9 @@ Create a table with the table name and type which are present inside the table t
 
   `BOOLEAN`: A boolean is an expression that evaluates to either true or false.
   
-    nullable = If we want to allow null values for the specific column, we can set nullable = true; otherwise, nullable = false.
-    max-length = It refers to the maximum length that a column should be provided.
-    default-value = The default value is assigned to the column. It may be a boolean type.
+* **nullable =** If we want to allow null values for the specific column, we can set nullable = true; otherwise, nullable = false.
+* **max-length =** It refers to the maximum length that a column should be provided.
+* **default-value =** The default value is assigned to the column. It may be a boolean type.
 
 To modify the structure of existing tables in the database by adding, modifying, renaming, or dropping columns and constraints.
 
@@ -194,9 +194,7 @@ To insert data into an column, The values that you want to insert must be inside
 
 ### *Attributes of primary-key tag*
 
-* **name =** The primary key name must be specified in a specific pattern, such as first being table name and then with
-    continuation `[A-Za-z0-9_]`, these values are only allowed after the table name and are separated 
-    by an underscore. These values should not contain any special characters except underscore(_).`format: TableName_[A-Za-z0-9_]`
+* **name =** The primary key name must be specified in a specific pattern, such as first being table name and then with continuation `[A-Za-z0-9_]`, these values are only allowed after the table name and are separated by an underscore. These values should not contain any special characters except underscore(_).`format: TableName_[A-Za-z0-9_]`
 
 * **column =** Having an ID column as the primary key is always a good idea because it will never change.
 
@@ -230,22 +228,20 @@ A foreign key is a field or collection of fields in one table that refers to the
 	
 ### *Attributes of foreign-key tag*
 		
- name = The foreign key name must be specified in a specific pattern, such as first being table name
+* **name =** The foreign key name must be specified in a specific pattern, such as first being table name
     and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are
     separated by an underscore. These values should not contain any special characters except underscore(_). 
     `format: TableName_[A-Za-z0-9_]`
 
-  reference-table = A table that is referenced from a referencing table with a foreign key.
+* **reference-table** = A table that is referenced from a referencing table with a foreign key.
 
-  local-column = The column refers from the local table.
+* **local-column =** The column refers from the local table.
 
-  reference-column = The column which it refers from the reference table.
+* **reference-column =** The column which it refers from the reference table.
     
-  constraint = Two types of foreign key constraints are allowed. And these constraints should be in capital.
-        ON_DELETE_RESTRICT: If you want to delete a record from one table but there is a corresponding record
-           in the other table, the delete operation is not allowed.
-        ON_DELETE_CASCADE: To specify whether you want rows deleted in a child table when corresponding rows
-           are deleted in the parent table.
+* **constraint =**Two types of foreign key constraints are allowed. And these constraints should be in capital.
+        ON_DELETE_RESTRICT: If you want to delete a record from one table but there is a corresponding record in the other table, the delete operation is not allowed.
+        ON_DELETE_CASCADE: To specify whether you want rows deleted in a child table when corresponding rows are deleted in the parent table.
 
 #### Create a foreign key:
 To refer the column from another table. Create the  foreign key constraint on the column that references the another column. These foreign key provides constraints for ON DELETE CASCADE and ON DELETE RESTRICT. We must provide 
@@ -271,11 +267,11 @@ Deleting a foreign key constraint removes the requirement to enforce referential
 
 ### *Attributes of unique-key tag*
 
-   name = The unique key name must be specified in a specific pattern, such as first being table name 
+* **name =** The unique key name must be specified in a specific pattern, such as first being table name 
     and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are
      separated by an underscore. These values should not contain any special characters except underscore(_).
       
-    <unique-key-column> = Valid column name should be provided. Note that the column should be unique.
+* **<unique-key-column> =** Valid column name should be provided. Note that the column should be unique.
 	
 #### Create a unique key:
 We can create one or more than one field/columns of a table that uniquely identify a record. Creating a unique constraint automatically creates a
@@ -299,12 +295,12 @@ Indexes can be used to speed up data retrieval. Simply put, an index is a pointe
 </indexes>
 ```
 ### *Attributes of indexes tag*
-  name = The index's name must be specified in a specific pattern, such as first being table name and then 
+* **name =** The index's name must be specified in a specific pattern, such as first being table name and then 
     with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated 
     by an underscore.
       `format: TableName_[A-Za-z0-9_]`.
 
-    <index-column> = Valid column name should be provided.
+* **<index-column> =** Valid column name should be provided.
 
 #### Create an indexes:
 Create an index name for one or more column. Must provide the name attribute for indexes
