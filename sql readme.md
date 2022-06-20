@@ -106,23 +106,23 @@ Create a table with the table name and type which are present inside the table t
  ### *Attributes of table tag*
 
     name = Name of the table.
-    type = It refers to table type, and some values are given for each table type. the following table types are,
+    type = Table Type creation is based on the existence of the following values partitionById, orgDependent, partitionByOrgId and commonNullExists. The following table types are as follows as
                1 -> COMMON 
                   If you don't specify any type, by default the table type is set to common. It does not depend on any ID.
                2 -> COMMON_PARTITIONED_BY_ID
-                   If the table type is common but if the table wants to be partitioned by ID, then prefer this table type.
+                  The partitionById is set true in COMMON table type definition to get this table.
                11 -> ORG_DEPENDENT
-                  The table is dependent on org_id.
+                  The table is dependent on orgDependent alone.
                12 -> ORG_PARTITIONED_BY_ID
-                  Based on ID, the table would be partitioned.
+                   This table type depends on orgDependent and partitionById.
                13 -> ORG_PARTITIONED_BY_ORG
-                  Based on org_id, the table would be partitioned.
+                  This table type depends on orgDependent and partitionByOrgId.
                21 -> ORG_MIXED
-                  This type of table belongs to org_id and also exists with common null values.
+                  This type of table depends on orgDependent and commonNullExists.
                22 -> ORG_MIXED_BY_ID
-                  This type of table belongs to ID, org_id, and also exists common null values.
+                   This type of table depends on orgDependent, partitionById and commonNullExists.
                23 -> ORG_MIXED_BY_ORG
-                  This type of table belongs to org_id, partition by ID, and also exists common null values.
+                   This type of table depends on orgDependent, partitionByOrgId and commonNullExists.
     
 ## Column tag
  The <columns> tag consists of one or more <column> tags. Attributes of <column> tag include the column's name, data type, maximum length, nullable value that represents in boolean type, and the default value.
@@ -194,16 +194,16 @@ To insert data into an column, The values that you want to insert must be inside
 
 ### *Attributes of primary-key tag*
 
-  name = The primary key name must be specified in a specific pattern, such as first being table name and then with
+**name =** The primary key name must be specified in a specific pattern, such as first being table name and then with
     continuation `[A-Za-z0-9_]`, these values are only allowed after the table name and are separated 
-    by an underscore `format: TableName_[A-Za-z0-9_]`
+    by an underscore. These values should not contain any special characters except underscore(_).`format: TableName_[A-Za-z0-9_]`
 
-  column = Having an ID column as the primary key is always a good idea because it will never change.
+**column =** Having an ID column as the primary key is always a good idea because it will never change.
 
-  sequence-batch = It denotes the starts with and here, by default, the value is 50. If we want to set the value,
+**sequence-batch =** It denotes the starts with and here, by default, the value is 50. If we want to set the value,
     it should not be less than 50.
 
-  sequence-generator = Use sequences to automatically generate primary key values. It should be specified in the
+**sequence-generator =** Use sequences to automatically generate primary key values. It should be specified in the
     following `format: TableName_[A-Za-z0-9_]`.
 
 #### Create a primary key in a new table:
@@ -230,9 +230,10 @@ A foreign key is a field or collection of fields in one table that refers to the
 	
 ### *Attributes of foreign-key tag*
 		
-  name = The foreign key name must be specified in a specific pattern, such as first being table name
+ name = The foreign key name must be specified in a specific pattern, such as first being table name
     and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are
-    separated by an underscore.
+    separated by an underscore. These values should not contain any special characters except underscore(_). 
+    `format: TableName_[A-Za-z0-9_]`
 
   reference-table = A table that is referenced from a referencing table with a foreign key.
 
@@ -258,7 +259,7 @@ foreign key constraint and then re-create it with the new definition.
 Deleting a foreign key constraint removes the requirement to enforce referential integrity.
 
 ## unique-key tag
- The unique key ensures that all values in a column are different. When one or more than one field/column of a table uniquely identifies a record in a database table. The <unique-keys> tag consists of one or more <unique-key>.
+ The unique key ensures that all values in a column are different. When one or more than one field/column of a table uniquely identifies a record. The <unique-keys> tag consists of one or more <unique-key>.
 
 ``` 
 <unique-keys> 
@@ -272,7 +273,7 @@ Deleting a foreign key constraint removes the requirement to enforce referential
 
    name = The unique key name must be specified in a specific pattern, such as first being table name 
     and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are
-     separated by an underscore.
+     separated by an underscore. These values should not contain any special characters except underscore(_).
       
     <unique-key-column> = Valid column name should be provided. Note that the column should be unique.
 	
@@ -413,7 +414,7 @@ And it mapped to the corresponding tables.
 
   `resource` - Auto-generated table content class file. 
 
-  `update.ddl` - The interface for DDL-related actions.
+  `update.ddl` - Provides interface for DDL-related actions.
 
 ### Api Package:
 
