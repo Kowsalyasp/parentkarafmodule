@@ -36,9 +36,10 @@
 
 
 # Abstract:
-* The SQL module allows you to execute custom queries against an SQL database and store the results in Elasticsearch. This module supports the database.
+* The SQL module allows you to execute custom queries against an SQL database.
 * The SQL module explains how to use simple DataBase Query implementations.
 * This module explains the statically available methods for executing DML, DDL, and DQL-related database actions.
+* Data Store provisions, Listener actions are available in this module.
 
 # Requirements:
 This module requires the following maven dependencies.
@@ -408,7 +409,7 @@ And it mapped to the corresponding tables.
 ## Packages:
   `api` -  A collection of interfaces with their respective methods, fields, and constructors. It provides the services for data containers, queries, constraints, and clauses.
 
-  `internal` - It provides the services of a package.
+  `internal` - It handles all the implementation of DDL, DQL, DML related queries.
 
   `resource` - Auto-generated table content class file. 
 
