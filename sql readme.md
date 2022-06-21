@@ -104,22 +104,14 @@ Create a table with the table name and type which are present inside the table t
 
 * **name =** Name of the table.
 * **type =** Table Type creation is based on the existence of the following values partitionById, orgDependent, partitionByOrgId and commonNullExists. The following table types are as follows as
-  * 1 -> COMMON 
-        If you don't specify any type, by default the table type is set to common. It does not depend on any ID.
-  * 2 -> COMMON_PARTITIONED_BY_ID
-        The partitionById is set true in COMMON table type definition to get this table.
-  * 11 -> ORG_DEPENDENT
-           The table is dependent on orgDependent alone.
-  * 12 -> ORG_PARTITIONED_BY_ID
-           This table type depends on orgDependent and partitionById.
-  * 13 -> ORG_PARTITIONED_BY_ORG
-           This table type depends on orgDependent and partitionByOrgId.
-  * 21 -> ORG_MIXED
-  This type of table depends on orgDependent and commonNullExists.
-  * 22 -> ORG_MIXED_BY_ID
-           This type of table depends on orgDependent, partitionById and commonNullExists.
-  * 23 -> ORG_MIXED_BY_ORG
-           This type of table depends on orgDependent, partitionByOrgId and commonNullExists.
+  * **1** `-> COMMON:` If you don't specify any type, by default the table type is set to common. It does not depend on any ID.
+  * `2 -> COMMON_PARTITIONED_BY_ID:` The partitionById is set true in COMMON table type definition to get this table.
+  * `11 -> ORG_DEPENDENT:` The table is dependent on orgDependent alone.
+  * `12 -> ORG_PARTITIONED_BY_ID:` This table type depends on orgDependent and partitionById.
+  * `13 -> ORG_PARTITIONED_BY_ORG:` This table type depends on orgDependent and partitionByOrgId.
+  * `21 -> ORG_MIXED:` This type of table depends on orgDependent and commonNullExists.
+  * `22 -> ORG_MIXED_BY_ID:` This type of table depends on orgDependent, partitionById and commonNullExists.
+  * `23 -> ORG_MIXED_BY_ORG:` This type of table depends on orgDependent, partitionByOrgId and commonNullExists.
     
 ## Column tag
  The <columns> tag consists of one or more <column> tags. Attributes of <column> tag include the column's name, data type, maximum length, nullable value that represents in boolean type, and the default value.
@@ -134,29 +126,29 @@ Create a table with the table name and type which are present inside the table t
 * **name =** It refers to the column name.
 * **data-type =** It refers to what type of column it is, and here we can use some specific data types.
 
-**supported datatypes:**
+   * **supported datatypes:**
 
-  `BIGINT`: A large integer and it refers to the long data type.
+     `BIGINT`: A large integer and it refers to the long data type.
 
-  `INTEGER`: A medium integer it equals to the size of an int datatype.
+     `INTEGER`: A medium integer it equals to the size of an int datatype.
 
-  `SMALLINT`: A small integer and it equals to the short datatype.
+     `SMALLINT`: A small integer and it equals to the short datatype.
 
-  `DECIMAL`: An exact fixed-point number.
+     `DECIMAL`: An exact fixed-point number.
 
-  `KCHAR`: Refers to an i18n datatype.The size parameter specifies the column length in characters - can be from 0 to 512. 
+     `KCHAR`: Refers to an i18n datatype.The size parameter specifies the column length in characters - can be from 0 to 512. 
 
-  `SCHAR`: Refers to the variable length string. 
+     `SCHAR`: Refers to the variable length string. 
 
-  `BLOB`: For Binary Large Object(BLOB) holds the bytes of data.
+     `BLOB`: For Binary Large Object(BLOB) holds the bytes of data.
 
-  `CHAR`: A string can contain letters, numbers, and special characters. The size parameter specifies the column length in characters - can be from 0 to 255. 
+     `CHAR`: A string can contain letters, numbers, and special characters. The size parameter specifies the column length in characters - can be from 0 to 255. 
 
-  `TEXT`: A string can contain letters, numbers, and special characters. And it holds with a maximum length of 2500.
+     `TEXT`: A string can contain letters, numbers, and special characters. And it holds with a maximum length of 2500.
 
-  `STEXT`: A string that holds the maximum length of 255 characters.
+     `STEXT`: A string that holds the maximum length of 255 characters.
 
-  `BOOLEAN`: A boolean is an expression that evaluates to either true or false.
+     `BOOLEAN`: A boolean is an expression that evaluates to either true or false.
   
 * **nullable =** If we want to allow null values for the specific column, we can set nullable = true; otherwise, nullable = false.
 * **max-length =** It refers to the maximum length that a column should be provided.
