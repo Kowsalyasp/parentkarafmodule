@@ -5,7 +5,6 @@
 
 - [Abstract](#abstract)
 - [Requirements](#requirements)
-- [BundleListener](#bundlelistener)
 - [SQLDevListener](#sqldevlistener)
 - [Database Configuration:](#database-configuration)
 - [MetaData](#metadata)
@@ -47,12 +46,9 @@ This module requires the following maven dependencies.
 1. **javatuples -** A tuple is a collection of several elements that may or may not be related to each other. In other words, tuples can be considered anonymous objects.
 2. **HikariCP -** HikariCP is a solid high-performance JDBC connection pool. A connection pool is a cache of database connections maintained so that the connections can be reused when future requests to the database are required.
 3. **PostgreSQL -** PostgreSQL is an advanced, enterprise-class open-source relational database that supports both SQL (relational) and JSON (non-relational) querying.
-
-# BundleListener:
-A BundleEvent listener When a BundleEvent is fired, it is asynchronously delivered to a BundleListener. BundleListeners are called with a BundleEvent object when a bundle has been installed, resolved, started, stopped, updated, unresolved, or uninstalled.
 	
 # SQLDevListener:
-Utilizing the bundle lifecycle, it will perform actions like metadata parsing, etc. SQLDevListener explains the loading, processing, updating, and populating of the meta and data XML files. It notes the bundle history record. We can see this in snapshots of our system. The MetaDataParser compares the existing XML file and the current XML file to update the data in the database. 
+Utilizing the bundle lifecycle, it will perform actions like metadata parsing, etc. SQLDevListener explains the loading, processing, updating, and populating of the meta and data XML files. It notes the meta and data history record. We can see this in snapshots of our system. The MetaDataParser compares the existing XML file and the current XML file to update the data in the database. 
       
 # Database Configuration File:
 In the karaf folder, need to create a folder named conf which should contain all the configuration files like database connectivity, cache server, and the webserver.
@@ -79,23 +75,24 @@ A default username and password that is connected to the database.
 
 > database.password = *****
 
-This property helps to get the environment and to enable the development mode when it tends to be `true` otherwise, it won't connect with the database.
-> development.mode.enabled = true
-
 Additionally, we can use the following properties to mention the pool size
 
-The property controls the maximum size that the pool is allowed to reach. 
+Maximum pool size can be controlled using the below command.
 This value will determine the maximum number of actual connections to the database backend.
 > connection.pool.max = 
 
-The property controls the minimum number of idle connections to maintain in the pool.
+To acquire the Minimum number of idle connections to maintain in the pool.
 > connection.pool.idle = 
 
-The property controls the maximum amount of time (in milliseconds) that a connection is allowed to sit idle in the pool. A connection will never be retired as idle before this timeout. A value of 0 means that idle connections are never removed from the pool.
+To make the connection idle for a certain period of time (in milliseconds.)
+A connection will never be retired as idle before this timeout. A value of 0 means that idle connections are never removed from the pool.
 > connection.pool.idle.timeout = 
 	
+To load meta and data xml files we need to set the developer mode true by mentioning the below line in custom.system.properties file in etc folder of karaf.
+> tlc.dev.mode = true
+
 # MetaData:
-The meta.xml file presents a set of metadata, such as the module name, and the tables to include. The meta.xml file to load and populate the metadata to fetch and configure the table definitions and initialize the sequence generation of primary keys. The main purpose of meta.xml is to create the tables. We need to provide the table details of name, columns and constraints to create a table in the database. And the module tag refers to which module wants to create the table. Meta details of table should be described by below tags and attributes.
+The meta.xml file presents a set of metadata, such as the module name, and the tables to include. The meta.xml file to load and populate the metadata to fetch and configure the table definitions and initialize the sequence generation of primary keys. Meta.xml file performs all the DDL actions related to the table. We need to provide the table, columns and constraint details to create a table in the database. And the module tag refers to which module wants to create the table. Meta details of table should be described by below tags and attributes.
 
 ## Table tag
 Create a table with the table name and type which are present inside the table tag. Each table has a table type value which can be given as per your needs.
@@ -108,9 +105,9 @@ Create a table with the table name and type which are present inside the table t
 * **name =** Name of the table.
 * **type =** Table Type creation is based on the existence of the following values partitionById, orgDependent, partitionByOrgId and commonNullExists. The following table types are as follows as
   * 1 -> COMMON 
-          If you don't specify any type, by default the table type is set to common. It does not depend on any ID.
+        If you don't specify any type, by default the table type is set to common. It does not depend on any ID.
   * 2 -> COMMON_PARTITIONED_BY_ID
-          The partitionById is set true in COMMON table type definition to get this table.
+        The partitionById is set true in COMMON table type definition to get this table.
   * 11 -> ORG_DEPENDENT
            The table is dependent on orgDependent alone.
   * 12 -> ORG_PARTITIONED_BY_ID
@@ -118,7 +115,7 @@ Create a table with the table name and type which are present inside the table t
   * 13 -> ORG_PARTITIONED_BY_ORG
            This table type depends on orgDependent and partitionByOrgId.
   * 21 -> ORG_MIXED
-           This type of table depends on orgDependent and commonNullExists.
+  This type of table depends on orgDependent and commonNullExists.
   * 22 -> ORG_MIXED_BY_ID
            This type of table depends on orgDependent, partitionById and commonNullExists.
   * 23 -> ORG_MIXED_BY_ORG
@@ -168,22 +165,19 @@ Create a table with the table name and type which are present inside the table t
 To modify the structure of existing tables in the database by adding, modifying, renaming, or dropping columns and constraints.
 
 #### Creation of column to table:
-To insert a column into a table, you can specify the columns with data type. 
+To create a column in the table, it is mandatory to specify the column name and datatype, while max-length, nullable, default-value attributes are optional. 
 
 #### Addition of columns to existing tables:
-If you want to add the columns in a specific order in the existing table. You may add the column using tag with attributes.
+Inorder to add an additional column in the table we need to specify the column tag.
 
 #### Dropping an existing column:
-You can delete columns in particular tables that you prefer to take out. while dropping a column note that 
-You can't delete a column that has primary key or foreign key constraints. When you delete a column from a table, 
-the column and all the data it contains are deleted.
-
-#### Insert Values in a column:
-To insert data into an column, The values that you want to insert must be inside the double quotes(""). 
+You can delete columns in particular tables that you prefer to take out. While dropping a column, note that 
+You can't delete a column that has primary or foreign key constraints.
+When you delete a column from a table, the column and all the data it contains are deleted.
 
 ## Primary-key tag
  Primary keys must contain unique values and cannot have NULL values.
- A table can have only one primary key, which may consist of single or multiple fields.
+ A table can have only one primary key column.
  Each primary key should be provided within the <primary-keys> tag.
 
 ```
@@ -194,30 +188,24 @@ To insert data into an column, The values that you want to insert must be inside
 
 ### *Attributes of primary-key tag*
 
-* **name =** The primary key name must be specified in a specific pattern, such as first being table name and then with continuation `[A-Za-z0-9_]`, these values are only allowed after the table name and are separated by an underscore. These values should not contain any special characters except underscore(_).`format: TableName_[A-Za-z0-9_]`
+* **name =** The primary key name must be specified in a specific pattern,
+like `format: TableName_[A-Za-z0-9_]`. Here the table name should be given first followed by `[A-Za-z0-9_]`. These values should not contain any special characters except underscore(_).
 
 * **column =** Having an ID column as the primary key is always a good idea because it will never change.
 
-* **sequence-batch =** It denotes the starts with and here, by default, the value is 50. If we want to set the value,
-    it should not be less than 50.
+* **sequence-batch =** It denotes the sequence increment value. And here, by default, the value is 50. If we want to set the value, it should not be less than 50.
 
 * **sequence-generator =** Use sequences to automatically generate primary key values. It should be specified in the
     following `format: TableName_[A-Za-z0-9_]`.
 
 #### Create a primary key in a new table:
-A primary key is mandatory while creating a table. And the table allows only one primary key.
+A table should comprise of only one primary key column which is a mandatory column in all tables.
 
 #### Modifying a primary key in an existing table:
-If you want to redefine the primary key, any relationships to the existing primary key must be 
-deleted before the new primary key can be created. 
-A message will warn you that existing relationships will be automatically deleted as part of this process.
-
-#### Deleting a primary key in an existing table:
-When the primary key is deleted, the corresponding index is deleted.
-If you delete the primary key you have to modify or to re-create the primary key.
+If you want to redefine the primary key, the existing primary key relation should be modified. 
 
 ## foreign-key tag
-A foreign key is a field or collection of fields in one table that refers to the primary key in another table. Each foreign key can be accessed within the foreign-keys tag.
+A foreign key is a field or collection of fields in one table that refers to the primary key in another table. Each foreign key should be defined within the foreign-keys tag.
 
 ``` 
 <foreign-keys> 
@@ -228,24 +216,23 @@ A foreign key is a field or collection of fields in one table that refers to the
 	
 ### *Attributes of foreign-key tag*
 		
-* **name =** The foreign key name must be specified in a specific pattern, such as first being table name
-    and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are
-    separated by an underscore. These values should not contain any special characters except underscore(_). 
-    `format: TableName_[A-Za-z0-9_]`
+* **name =** The primary key name must be specified in a specific pattern,
+like `format: TableName_[A-Za-z0-9_]`. Here the table name should be given first followed by `[A-Za-z0-9_]`. These values should not contain any special characters except underscore(_).
 
-* **reference-table** = A table that is referenced from a referencing table with a foreign key.
+* **reference-table** = It contains the name of the table from which the foreign key is chosen.
 
-* **local-column =** The column refers from the local table.
+* **local-column =** The column refers the name to be alloted in the local table for the foreign key chosen.
 
-* **reference-column =** The column which it refers from the reference table.
+* **reference-column =** The column denotes the name specifies for the foreign key in the reference table.
     
-* **constraint =** Two types of foreign key constraints are allowed. And these constraints should be in capital.
-
-     * `ON_DELETE_RESTRICT:` If you want to delete a record from one table but there is a corresponding record in the other table, the delete operation is not allowed.
-     * `ON_DELETE_CASCADE:` To specify whether you want rows deleted in a child table when corresponding rows are deleted in the parent table.
+* **constraint =** Two types of foreign key constraints are allowed. And these constraints should be in upperCase.
+While deleting a record, which is having foreign key relation in other table, following constraints are used for deleting the essential data.
+     * `ON_DELETE_RESTRICT:`It doesn't delete the record mapped with the relation.
+     * `ON_DELETE_CASCADE:` It deletes the record mapped with the relation.
+     * `ON_DELETE_SET_NULL:` It replaces all the mapped record with null value.
 
 #### Create a foreign key:
-To refer the column from another table. Create the  foreign key constraint on the column that references the another column. These foreign key provides constraints for ON DELETE CASCADE and ON DELETE RESTRICT. We must provide 
+To create a foreign key column in local table, it is necessary to use foreign key tag with any one of the following constraints ON DELETE CASCADE, ON_DELETE_SET_NULL and ON DELETE RESTRICT. We must provide 
 these constraints else it raise an error that it was unable to parse the table.
 
 #### Modify a foreign key:
@@ -268,11 +255,11 @@ Deleting a foreign key constraint removes the requirement to enforce referential
 
 ### *Attributes of unique-key tag*
 
-* **name =** The unique key name must be specified in a specific pattern, such as first being table name 
-    and then with continuation [A-Za-z0-9_], these values are only allowed after the table name and are
-     separated by an underscore. These values should not contain any special characters except underscore(_).
+* **name =** The primary key name must be specified in a specific pattern,
+like `format: TableName_[A-Za-z0-9_]`. Here the table name should be given first followed by `[A-Za-z0-9_]`. These values should not contain any special characters except underscore(_).
       
-* **unique-key-column =** Valid column name should be provided. Note that the column should be unique.
+* **unique-key-column =** Valid column name should be provided.
+Note: The column should be unique.
 	
 #### Create a unique key:
 We can create one or more than one field/columns of a table that uniquely identify a record. Creating a unique constraint automatically creates a
@@ -291,15 +278,13 @@ Indexes can be used to speed up data retrieval. Simply put, an index is a pointe
 ```
  <indexes> 
     <index name="Index_Id">
-        <index-column>TABLE_NAME</index-column>
+        <index-column>NAME</index-column>
     </index> 
 </indexes>
 ```
 ### *Attributes of indexes tag*
-* **name =** The index's name must be specified in a specific pattern, such as first being table name and then 
-    with continuation [A-Za-z0-9_], these values are only allowed after the table name and are separated 
-    by an underscore.
-      `format: TableName_[A-Za-z0-9_]`.
+* **name =** The primary key name must be specified in a specific pattern,
+like `format: TableName_[A-Za-z0-9_]`. Here the table name should be given first followed by `[A-Za-z0-9_]`. These values should not contain any special characters except underscore(_).
 
 * **index-column =** Valid column name should be provided.
 
