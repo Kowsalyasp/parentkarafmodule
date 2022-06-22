@@ -33,7 +33,7 @@
 
 
 # Abstract
-In the SQL module Query implementations against the tables in the database for DDL,DML, DQL actions, Custom Queries against SQL database are implemented. In addition to this, Data store provisions (org, admin, readable, writable), Listener Actions(add, update and delete row), XmlToDCConverter and Sequence generator implementations are done in this module.
+The SQL module Query implementations to perform DDL, DML, DQL actions for the tables in the database, Custom Queries against SQL database are implemented. In addition to this, Data store provisions (org, admin, readable, writable), Listener Actions(add, update and delete row), XmlToDCConverter and Sequence generator implementations are done in this module.
 
 # Requirements
 This module requires the following maven dependencies.
