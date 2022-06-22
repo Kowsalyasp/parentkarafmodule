@@ -6,7 +6,7 @@
 - [Abstract](#abstract)
 - [Requirements](#requirements)
 - [SQLDevListener](#sqldevlistener)
-- [Database Configuration:](#database-configuration)
+- [Database Configuration](#database-configuration)
 - [MetaData](#metadata)
   * [*Table*](#table-tag)
     * [*Attributes of table tag*](#attributes-of-table-tag)
@@ -24,28 +24,28 @@
 - [Data.xml](#dataxml)
   * [*data.xml file precedent*](#dataxml-file-precedent)
 - [Packages](#packages)
-  * [api package](#api-package)
-  * [internal package](#internal-package)
+  * [Api package](#api-package)
+  * [Internal package](#internal-package)
 - [Row Listener](#row-listener)
-  * [Types Of rowListener](#types-of-row-listener)
+  * [Types of rowListener](#types-of-row-listener)
   * [RowListenerHandler](#rowlistenerhandler)
   * [RowListenerContainer](#rowlistenercontainer)
 
 
-# Abstract:
+# Abstract
 In the SQL module Query implementations against the tables in the database for DDL,DML, DQL actions, Custom Queries against SQL database are implemented. In addition to this, Data store provisions (org, admin, readable, writable), Listener Actions(add, update and delete row), XmlToDCConverter and Sequence generator implementations are done in this module.
 
-# Requirements:
+# Requirements
 This module requires the following maven dependencies.
 	
 1. **javatuples -** A tuple is a collection of several elements that may or may not be related to each other. In other words, tuples can be considered anonymous objects.
 2. **HikariCP -** HikariCP is a solid high-performance JDBC connection pool. A connection pool is a cache of database connections maintained so that the connections can be reused when future requests to the database are required.
 3. **PostgreSQL -** PostgreSQL is an advanced, enterprise-class open-source relational database that supports both SQL (relational) and JSON (non-relational) querying.
 	
-# SQLDevListener:
+# SQLDevListener
 Utilizing the bundle lifecycle, it will perform actions like metadata parsing, etc. SQLDevListener explains the loading, processing, updating, and populating of the meta and data XML files. It notes the meta and data history record. We can see this in snapshots of our system. The MetaDataParser compares the existing XML file and the current XML file to update the data in the database. 
       
-# Database Configuration File:
+# Database Configuration File
 In the karaf folder, need to create a folder named conf which should contain all the configuration files like database connectivity, cache server, and the webserver.
 
 For database connection:
@@ -86,7 +86,7 @@ A connection will never be retired as idle before this timeout. A value of 0 mea
 To load meta and data xml files we need to set the developer mode true by mentioning the below line in custom.system.properties file in etc folder of karaf.
 > **tlc.dev.mode** = true
 
-# MetaData:
+# MetaData
 The meta.xml file presents a set of metadata, such as the module name, and the tables to include. The meta.xml file to load and populate the metadata to fetch and configure the table definitions and initialize the sequence generation of primary keys. Meta.xml file performs all the DDL actions related to the table. We need to provide the table, columns and constraint details to create a table in the database. And the module tag refers to which module wants to create the table. Meta details of table should be described by below tags and attributes.
 
 ## Table tag
@@ -151,13 +151,13 @@ Create a table with the table name and type which are present inside the table t
 
 To modify the structure of existing tables in the database by adding, modifying, renaming, or dropping columns and constraints.
 
-#### Creation of column to table:
+#### Creation of column to table
 To create a column in the table, it is mandatory to specify the column name and datatype, while max-length, nullable, default-value attributes are optional. 
 
-#### Addition of columns to existing tables:
+#### Addition of columns to existing tables
 Inorder to add an additional column in the table we need to specify the column tag.
 
-#### Dropping an existing column:
+#### Dropping an existing column
 You can delete columns in particular tables that you prefer to take out. While dropping a column, note that 
 You can't delete a column that has primary or foreign key constraints.
 When you delete a column from a table, the column and all the data it contains are deleted.
@@ -185,10 +185,10 @@ like `format: TableName_[A-Za-z0-9_]`. Here the table name should be given first
 * **sequence-generator =** Use sequences to automatically generate primary key values. It should be specified in the
     following `format: TableName_[A-Za-z0-9_]`.
 
-#### Create a primary key in a new table:
+#### Create a primary key in a new table
 A table should comprise of only one primary key column which is a mandatory column in all tables.
 
-#### Modifying a primary key in an existing table:
+#### Modifying a primary key in an existing table
 If you want to redefine the primary key, the existing primary key relation should be modified. 
 
 ## Foreign-key tag
@@ -218,14 +218,14 @@ While deleting a record, which is having foreign key relation in other table, fo
      * `ON_DELETE_CASCADE:` It deletes the record mapped with the relation.
      * `ON_DELETE_SET_NULL:` It replaces all the mapped record with null value.
 
-#### Create a foreign key:
+#### Create a foreign key
 To create a foreign key column in local table, it is necessary to use foreign key tag with any one of the following constraints ON DELETE CASCADE, ON_DELETE_SET_NULL and ON DELETE RESTRICT. We must provide 
 these constraints else it raise an error that it was unable to parse the table.
 
-#### Modify a foreign key:
+#### Modify a foreign key
 To modify a foreign key constraint by altering the reference column or reference table, you must first modify the existing foreign key constraint and then re-create it with the new definition.
 
-#### Delete a foreign key:
+#### Delete a foreign key
 Deleting the foreign key relation deletes the mapping between the two tables.
 
 ## Unique-key tag
@@ -248,15 +248,15 @@ like `format: TableName_[A-Za-z0-9_]`. Here the table name should be given first
 
 * **unique-key-column =** Valid column name should be provided. The unique key column values should be distinct.
 	
-#### Create a unique key:
+#### Create a unique key
 We can create one or more than one field/columns of a table that uniquely identify a record. Creating a unique constraint automatically creates a
 corresponding unique index. It is mandatory to provide the name attribute and <unique-key-column> tag.  
 If tag is not specified it raises unable to parse the table error.
 
-#### Modify a unique key:
+#### Modify a unique key
 If you prefer to alter the unique key column make sure that the field to not set null and allows unique values.
 
-#### Delete a unique key:
+#### Delete a unique key
 Deleting a unique constraint removes the requirement for a uniqueness for values entered in the column or combination of columns included in the constraint expression and deletes the corresponding unique index.
 
 ## Indexes tag
@@ -276,14 +276,14 @@ like `format: TableName_[A-Za-z0-9_]`. Here the table name should be given first
 
 * **index-column =** The required column name in the index table should be provided.
 
-#### Create an indexes:
+#### Create an indexes
 Create an index name for one or more column. Must provide the name attribute for indexes
 which is in the pattern as tablename_Idx1 and <index-column> tag. We must provide these <index-column> tag, else it raise an error (unable to parse the table).
 
-#### Modify an indexes:
+#### Modify an indexes
 To provide additional columns in <index-column> tag for retrieval or to get data from other tables we need to modify the <index> tag. 
 
-#### Delete an indexes:
+#### Delete an indexes
 If one or more fields are in <index-column> is to be removed then we just need to remove the corresponding column tag. If you prefer not to have an index column, then you may remove the whole index tag. 
 
 ### *meta.xml precedent*
@@ -320,7 +320,7 @@ If one or more fields are in <index-column> is to be removed then we just need t
 </metadata>
 ```
 
-## Data.xml:
+## Data.xml
 The data.xml file used to load, process, update and populate the data to fetch and configure the column of the table. In this, we can statically enter a record for the table. Using this data file we could be able to manipulate the data in the user's preferable way.
 
 The name for the module should be declared inside the module tag <module>. We can create one or more modules.
@@ -339,14 +339,14 @@ The sub-tag refers to a foreign key in a child table that will generally referen
    <child-table ID="" col = "" ></child-table>
 <parent-table> 
 ```
-#### Insert a row into a table:
+#### Insert a row into a table
 First, the table in which you want to insert a new row, mention it, and following, set out the column that you prefer where the id field should be mandatory.
 ```
  <module name="tlc_crm_module">
     <Sample ID ="Sample:ID:CO:1" NAME="" COMPANY_ID ="COMPANY:ID:CO:1" PROVIDER_ID ="PROVIDER:ID:CO:1"/>
  </module>
 ```
-#### Insert multiple rows into a table:
+#### Insert multiple rows into a table
 If multiple rows are inserted in the same table with a different id.
 
 ```
@@ -358,11 +358,11 @@ If multiple rows are inserted in the same table with a different id.
  ```
 **Note:** Id must be unique it cannot contain duplicates.
 
-#### Foreign key relation in same module:
+#### Foreign key relation in same module
 If we insert static data for foreign key relationships in the same module. Make sure that the child table is the subtag for the parent table. In child tag it is not necessary to provide the id of parent as it already refers it from parent tag.
 The data has been mapped in  both child and parent table.
 
-#### Foreign key relation in different module:
+#### Foreign key relation in different module
 Mapping the static data using a foreign key in a different module. It denotes the parent table from one module and the child table from another. For referencing the parent table in child tag it is mandatory to provide id since it is referred from other module.
 And it mapped to the corresponding tables.
 
@@ -382,7 +382,7 @@ And it mapped to the corresponding tables.
  </module>    
 </dumpdata>
 ```
-## Packages:
+## Packages
   `api` -  A collection of interfaces with their respective methods, fields, and constructors. It provides the services for data containers, queries, constraints, and clauses.
 
   `internal` - It handles all the implementation of DDL, DQL, DML related queries.
@@ -391,7 +391,7 @@ And it mapped to the corresponding tables.
 
   `update.ddl` - Provides interface for DDL-related actions.
 
-### Api Package:
+### Api Package
 
 * **DML -** The DML commands in Structured Query Language change the data present in the SQL database. We can easily access, store, modify, update and delete the existing records from the database using DML commands, Here it provides the services for all related DML actions.
 
@@ -403,7 +403,7 @@ And it mapped to the corresponding tables.
 
 * **sequence -** A sequence is a set of integers that allows the automatic generation of values and is supported by some database systems to produce unique values on demand. provides the service for sequence generator.
 
-### internal package:
+### internal package
 * **data -** Data is information that can be organized and stored in a database. For that, it provides the [DataContainer](#datacontainer), and here it can be also filtered the data container according to our needs.
 
 * **dml -** Provides the services for DML queries in the API package. And layout the implementation for all services here.
