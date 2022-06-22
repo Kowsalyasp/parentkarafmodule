@@ -14,9 +14,9 @@
     * [*Attributes of column tag*](#attributes-of-column-tag)
   * [*Primary-key*](#primary-key-tag)
     * [*Attributes of primary key tag*](#attributes-of-primary-key-tag)
-  * [*foreign-key*](#foreign-key-tag)
+  * [*Foreign-key*](#foreign-key-tag)
     * [*Attributes of foreign-key tag*](#attributes-of-foreign-key-tag)
-  * [*unique-key*](#unique-key-tag)
+  * [*Unique-key*](#unique-key-tag)
     * [*Attributes of unique-key tag*](#attributes-of-unique-key-tag)
   * [*Indexes*](#indexes-tag)
     * [*Attributes of indexes tag*](#attributes-of-indexes-tag)
@@ -32,13 +32,8 @@
   * [RowListenerContainer](#rowlistenercontainer)
 
 
-
-
 # Abstract:
-* The SQL module allows you to execute custom queries against an SQL database.
-* The SQL module explains how to use simple DataBase Query implementations.
-* This module explains the statically available methods for executing DML, DDL, and DQL-related database actions.
-* Data Store provisions, Listener actions are available in this module.
+In the SQL module Query implementations against the tables in the database for DDL,DML, DQL actions, Custom Queries against SQL database are implemented. In addition to this, Data store provisions (org, admin), Listener Actions, XmlToDCConverter and Sequence generator implementations are done in this module.
 
 # Requirements:
 This module requires the following maven dependencies.
@@ -60,7 +55,7 @@ For database connection:
 A configuration file is a properties file containing key/value pairs:
           
  The cfg file provides a set of commands to manage the configuration.
-**property = value**
+> **property = value**
 
 You can add your initial configuration directly in the file. To get the database service, mention the following mandatory properties in the given format.
 
@@ -104,14 +99,14 @@ Create a table with the table name and type which are present inside the table t
 
 * **name =** Name of the table.
 * **type =** Table Type creation is based on the existence of the following values partitionById, orgDependent, partitionByOrgId and commonNullExists. The following table types are as follows as
-  * **1** `-> COMMON:` If you don't specify any type, by default the table type is set to common. It does not depend on any ID.
-  * `2 -> COMMON_PARTITIONED_BY_ID:` The partitionById is set true in COMMON table type definition to get this table.
-  * `11 -> ORG_DEPENDENT:` The table is dependent on orgDependent alone.
-  * `12 -> ORG_PARTITIONED_BY_ID:` This table type depends on orgDependent and partitionById.
-  * `13 -> ORG_PARTITIONED_BY_ORG:` This table type depends on orgDependent and partitionByOrgId.
-  * `21 -> ORG_MIXED:` This type of table depends on orgDependent and commonNullExists.
-  * `22 -> ORG_MIXED_BY_ID:` This type of table depends on orgDependent, partitionById and commonNullExists.
-  * `23 -> ORG_MIXED_BY_ORG:` This type of table depends on orgDependent, partitionByOrgId and commonNullExists.
+  * **1 -> COMMON:** If you don't specify any type, by default the table type is set to common. It does not depend on any ID.
+  * **2 -> COMMON_PARTITIONED_BY_ID:** The partitionById is set true in COMMON table type definition to get this table.
+  * **11 -> ORG_DEPENDENT:** The table is dependent on orgDependent alone.
+  * **12 -> ORG_PARTITIONED_BY_ID:** This table type depends on orgDependent and partitionById.
+  * **13 -> ORG_PARTITIONED_BY_ORG:** This table type depends on orgDependent and partitionByOrgId.
+  * **21 -> ORG_MIXED:** This type of table depends on orgDependent and commonNullExists.
+  * **22 -> ORG_MIXED_BY_ID:** This type of table depends on orgDependent, partitionById and commonNullExists.
+  * **23 -> ORG_MIXED_BY_ORG:** This type of table depends on orgDependent, partitionByOrgId and commonNullExists.
     
 ## Column tag
  The <columns> tag consists of one or more <column> tags. Attributes of <column> tag include the column's name, data type, maximum length, nullable value that represents in boolean type, and the default value.
@@ -127,27 +122,16 @@ Create a table with the table name and type which are present inside the table t
 * **data-type =** It refers to what type of column it is, and here we can use some specific data types.
 
    * **supported datatypes:**
-
      `BIGINT`: A large integer and it refers to the long data type.
-
      `INTEGER`: A medium integer it equals to the size of an int datatype.
-
      `SMALLINT`: A small integer and it equals to the short datatype.
-
      `DECIMAL`: An exact fixed-point number.
-
      `KCHAR`: Refers to an i18n datatype.The size parameter specifies the column length in characters - can be from 0 to 512. 
-
      `SCHAR`: Refers to the variable length string. 
-
      `BLOB`: For Binary Large Object(BLOB) holds the bytes of data.
-
      `CHAR`: A string can contain letters, numbers, and special characters. The size parameter specifies the column length in characters - can be from 0 to 255. 
-
      `TEXT`: A string can contain letters, numbers, and special characters. And it holds with a maximum length of 2500.
-
      `STEXT`: A string that holds the maximum length of 255 characters.
-
      `BOOLEAN`: A boolean is an expression that evaluates to either true or false.
   
 * **nullable =** If we want to allow null values for the specific column, we can set nullable = true; otherwise, nullable = false.
@@ -196,7 +180,7 @@ A table should comprise of only one primary key column which is a mandatory colu
 #### Modifying a primary key in an existing table:
 If you want to redefine the primary key, the existing primary key relation should be modified. 
 
-## foreign-key tag
+## Foreign-key tag
 A foreign key is a field or collection of fields in one table that refers to the primary key in another table. Each foreign key should be defined within the foreign-keys tag.
 
 ``` 
@@ -228,13 +212,12 @@ To create a foreign key column in local table, it is necessary to use foreign ke
 these constraints else it raise an error that it was unable to parse the table.
 
 #### Modify a foreign key:
-To modify a foreign key constraint by altering the reference column or reference table, you must first delete the existing 
-foreign key constraint and then re-create it with the new definition.
+To modify a foreign key constraint by altering the reference column or reference table, you must first modify the existing foreign key constraint and then re-create it with the new definition.
 
 #### Delete a foreign key:
-Deleting a foreign key constraint removes the requirement to enforce referential integrity.
+Deleting the foreign key relation deletes the mapping between the two tables.
 
-## unique-key tag
+## Unique-key tag
  The unique key ensures that all values in a column are different. When one or more than one field/column of a table uniquely identifies a record. The <unique-keys> tag consists of one or more <unique-key>.
 
 ``` 
@@ -249,24 +232,24 @@ Deleting a foreign key constraint removes the requirement to enforce referential
 
 * **name =** The primary key name must be specified in a specific pattern,
 like `format: TableName_[A-Za-z0-9_]`. Here the table name should be given first followed by `[A-Za-z0-9_]`. These values should not contain any special characters except underscore(_).
-      
-* **unique-key-column =** Valid column name should be provided.
-Note: The column should be unique.
+
+### *Inner Tag*
+
+* **unique-key-column =** Valid column name should be provided. The unique key column values should be distinct.
 	
 #### Create a unique key:
 We can create one or more than one field/columns of a table that uniquely identify a record. Creating a unique constraint automatically creates a
-corresponding unique index. Must provide the name attribute and <unique-key-column> tag, if you want the field not to set null and allow unique values.  
-We must provide these  <unique-key-column> tag, else it raise an error that it was unable to parse the table.
+corresponding unique index. It is mandatory to provide the name attribute and <unique-key-column> tag.  
+If tag is not specified it raises unable to parse the table error.
 
 #### Modify a unique key:
-If you prefer to alter the unique key column make sure that the field to not set null and allows unique values. And it altered the unique key constraints.
+If you prefer to alter the unique key column make sure that the field to not set null and allows unique values.
 
 #### Delete a unique key:
 Deleting a unique constraint removes the requirement for a uniqueness for values entered in the column or combination of columns included in the constraint expression and deletes the corresponding unique index.
 
 ## Indexes tag
-Indexes can be used to speed up data retrieval. Simply put, an index is a pointer to data in a table. Each index key can be accessed within the indexes tag.
-
+Indexes can be used to speed up data retrieval. It comprises the name of the table in <index> tag and column name to be retrieved fast in <index-column> tag. 
 ```
  <indexes> 
     <index name="Index_Id">
@@ -278,19 +261,19 @@ Indexes can be used to speed up data retrieval. Simply put, an index is a pointe
 * **name =** The primary key name must be specified in a specific pattern,
 like `format: TableName_[A-Za-z0-9_]`. Here the table name should be given first followed by `[A-Za-z0-9_]`. These values should not contain any special characters except underscore(_).
 
-* **index-column =** Valid column name should be provided.
+### *Inner Tag*
+
+* **index-column =** The required column name in the index table should be provided.
 
 #### Create an indexes:
 Create an index name for one or more column. Must provide the name attribute for indexes
-which is in the pattern as tablename_Idx1 and <index-column> tag. We must provide these <index-column> tag,
-else it raise an error that it was unable to parse the table.
+which is in the pattern as tablename_Idx1 and <index-column> tag. We must provide these <index-column> tag, else it raise an error (unable to parse the table).
 
 #### Modify an indexes:
-Can recreate or alter the column that you may modified in an existing table. 
+To provide additional columns in <index-column> tag for retrieval or to get data from other tables we need to modify the <index> tag. 
 
 #### Delete an indexes:
-If one or more fields are in <index-column> but you want to remove one or you prefer not to set the indexes, 
-then you may take out the corresponding column tag. If you prefer not to have an index column, then you may remove the whole index tag. 
+If one or more fields are in <index-column> is to be removed then we just need to remove the corresponding column tag. If you prefer not to have an index column, then you may remove the whole index tag. 
 
 ### *meta.xml precedent*
 * A sample meta.xml is shown for reference 
@@ -303,15 +286,15 @@ then you may take out the corresponding column tag. If you prefer not to have an
             <columns>
                 <column name="ID" data-type="BIGINT"/>
                 <column name="NAME" data-type="CHAR" nullable="false" />
-		        <column name="COMPANY_ID" data-type="BIGINT" default-value="1">
+		            <column name="COMPANY_ID" data-type="BIGINT" default-value="1">
                 <column name="PROVIDER_ID" data-type="CHAR" nullable="false" />
             </columns>
             <primary-key name="SAMPLE_PK" column="ID" sequence-generator="SAMPLE.ID" />
-	        <foreign-keys>
+	          <foreign-keys>
                 <foreign-key name="SAMPLE_ID_FK" reference-table="COMPANY"
                              local-column="COMPANY_ID" reference-column="ID" constraint="ON-DELETE-CASCADE"/>
             </foreign-keys>
-	        <unique-keys>
+	          <unique-keys>
                 <unique-key name="SAMPLE_UK">
                     <unique-key-column>PROVIDER_ID</unique-key-column>
                 </unique-key>
@@ -327,40 +310,51 @@ then you may take out the corresponding column tag. If you prefer not to have an
 ```
 
 ## Data.xml:
-The data.xml file to load, process, update and populate the data to fetch and configure the column of the table. In this, we can statically enter an entity for the table. Using this data file we could be able to manipulate the data in the user's preferable way.
+The data.xml file used to load, process, update and populate the data to fetch and configure the column of the table. In this, we can statically enter a record for the table. Using this data file we could be able to manipulate the data in the user's preferable way.
 
 The name for the module should be declared inside the module tag <module>. We can create one or more modules.
  
 The format for module name should be tlc_crm_modulename. If it is contact module:
  >``<module name="tlc_crm_contact">``
 
-For the table in which you prefer to store static data, then inside the table tag for each table, the id must be mentioned and then followed by the column value, A valid ID consists of a table name, ID, and CO(column) and gives the Id value is acceptable formats separated by a colon. The format for the ID has to be ID="MCMFieldSQLTable:ID: CO:1"
+For the table in which you prefer to store static data, then inside the table tag for each table, the id must be mentioned and then followed by the column value. A valid ID consists of a table name, ID, and CO(column) and gives the Id value is acceptable formats separated by a colon. The format for the ID has to be ID="TableName:ID: CO:1"
 
 > ``<TableName ID="" col1="" col2=""/>``
 
 Example to enter a record statically You can add rows to a table: 
-> ``<MCMFieldSQLTable ID="MCMFieldSQLTable:ID:CO:1" TABLE_NAME="SampleTable"/>``
+> ``<TableName ID="TableName:ID:CO:1" NAME="SampleTable"/>``
 
-The sub-tag is a tag that is referred to as a foreign key in a child table that will generally reference a primary key in the parent table under a parent tag
+The sub-tag refers to a foreign key in a child table that will generally reference a primary key in the parent table under a parent tag
  ```
- <parent-table ID=""  col="">
+<parent-table ID=""  col="">
    <child-table ID="" col = "" ></child-table>
 <parent-table> 
 ```
-#### Insert one row into a table:
+#### Insert a row into a table:
 First, the table in which you want to insert a new row, mention it, and following, set out the column that you prefer where the id field should be mandatory.
-
+```
+ <module name="tlc_crm_module">
+    <Sample ID ="Sample:ID:CO:1" NAME="" COMPANY_ID ="COMPANY:ID:CO:1" PROVIDER_ID ="PROVIDER:ID:CO:1"/>
+ </module>
+```
 #### Insert multiple rows into a table:
 If multiple rows are inserted in the same table with a different id.
 
+```
+<module name="tlc_crm_module">
+    <Sample ID ="Sample:ID:CO:1" NAME="" COMPANY_ID ="COMPANY:ID:CO:1" PROVIDER_ID ="PROVIDER:ID:CO:1"/>
+    <Sample ID ="Sample:ID:CO:2" NAME="" COMPANY_ID ="COMPANY:ID:CO:2" PROVIDER_ID ="PROVIDER:ID:CO:2"/>
+    <Sample ID ="Sample:ID:CO:3" NAME="" COMPANY_ID ="COMPANY:ID:CO:3" PROVIDER_ID ="PROVIDER:ID:CO:3"/>
+ </module>
+ ```
 **Note:** Id must be unique it cannot contain duplicates.
 
 #### Foreign key relation in same module:
-If we insert static data for foreign key relationships in the same module. Make sure that the child table is the subtag for the parent table. 
+If we insert static data for foreign key relationships in the same module. Make sure that the child table is the subtag for the parent table. In child tag it is not necessary to provide the id of parent as it already refers it from parent tag.
 The data has been mapped in  both child and parent table.
 
 #### Foreign key relation in different module:
-Mapping the static data using a foreign key in a different module. It denotes the parent table from one module and the child table from another.
+Mapping the static data using a foreign key in a different module. It denotes the parent table from one module and the child table from another. For referencing the parent table in child tag it is mandatory to provide id since it is referred from other module.
 And it mapped to the corresponding tables.
 
 ### *data.xml file precedent*
@@ -368,17 +362,15 @@ And it mapped to the corresponding tables.
 ```
 <?xml version="1.0" encoding="utf-8" ?>
 <dumpdata>
-<module name = "tlc_crm_contact"
-
- <MCMFieldSQLTable ID="MCMFieldSQLTable:ID:CO:6" TABLE_NAME="MCOLifeCycleStage"/>
-
- <MCMDataProvider ID="MCMDataProvider:ID:CO:50" TYPE="1" NAME="COMPANY_LIST">
-     <MCMFields ID="MCMFields:ID:CO:50" NAME="id" DISPLAY_NAME="i18n.contact.company.id.display.name" 
-	 PRIMARY="true" SORT="1" SEARCHABLE="false" ORDER="5" HIDDEN="true">
-             <MCMFieldSQLSource ID="MCMFieldSQLSource:ID:CO:50" TABLE_ID="MCMFieldSQLTable:ID:CO:1" COLUMN="ID" TYPE="" FLAG=""/>
-     </MCMFields>
- </MCMDataProvider>
-       
+ <module name = "tlc_crm_contact"
+   <MCMFieldSQLTable ID="MCMFieldSQLTable:ID:CO:6" TABLE_NAME="MCOLifeCycleStage"/>
+     <MCMDataProvider ID="MCMDataProvider:ID:CO:50" TYPE="1" NAME="COMPANY_LIST">
+        <MCMFields ID="MCMFields:ID:CO:50" NAME="id" DISPLAY_NAME="i18n.contact.company.id.display.name" 
+	            PRIMARY="true" SORT="1" SEARCHABLE="false" ORDER="5" HIDDEN="true">
+            <MCMFieldSQLSource ID="MCMFieldSQLSource:ID:CO:50" TABLE_ID="MCMFieldSQLTable:ID:CO:1" COLUMN="ID" TYPE="" FLAG=""/>
+        </MCMFields>
+      </MCMDataProvider>
+ </module>    
 </dumpdata>
 ```
 ## Packages:
@@ -392,18 +384,18 @@ And it mapped to the corresponding tables.
 
 ### Api Package:
 
-* **DML -** The DML commands in Structured Query Language change the data present in the SQL database. We can easily access, store, modify, update and delete the existing records from the database using DML commands, Here it provides the services for all related DML queries.
+* **DML -** The DML commands in Structured Query Language change the data present in the SQL database. We can easily access, store, modify, update and delete the existing records from the database using DML commands, Here it provides the services for all related DML actions.
 
 * **ds -** A data structure is a special way of organizing and storing data in a database so that it can be used efficiently. Provides services for admindatastore, orgdatastore, readable and writable datastore.
 
-* **listener -** Provides services for listeners like row added, row updated, and row deleted listeners.
+* **listener -** Provides services for [Row listeners](#row-listener) Row listener like row added, row updated, and row deleted listeners.
 
 * **meta -**  Meta-SQL is a great way to abstract SQL logic and ensures consistency in SQL definitions. Also, it tells about SQL statements text with key fields such as table type and datatype.
 
 * **sequence -** A sequence is a set of integers that allows the automatic generation of values and is supported by some database systems to produce unique values on demand. provides the service for sequence generator.
 
 ### internal package:
-* **data -** Data is information that can be organized and stored in a database. For that, it provides the data container, and here it can be also filtered the data container according to our needs.
+* **data -** Data is information that can be organized and stored in a database. For that, it provides the [DataContainer](#datacontainer), and here it can be also filtered the data container according to our needs.
 
 * **dml -** Provides the services for DML queries in the API package. And layout the implementation for all services here.
 
@@ -425,8 +417,11 @@ And it mapped to the corresponding tables.
 
 * **update -** Modify or revert the existing records in a table it provides the pre-action type(create_table, drop_unique_key, create_index, update_index, delete_index,...) and post-action type(create_unique_key, update_unique_key, create_foreign_key, update_foreign_key, drop_foreign_key,...).
 
+# DataContainer
+DataContainer provides the enum for insert, delete and update.  Data retrival from DML and DQL queries can be stored in Data container as rows. From this container we can retrieve the required rows of the required table by streaming the rows, and by using whereclause.
+
 # Row Listener
-An interface that must be implemented by a component that wants to be notified when a significant event happens in the life of a Row set object. It Called when a row is inserted, updated, or deleted. The listener will be notified whenever an event occurs on this Row set object. Creates, updates or Removes the designated object from this Row set object's list of listeners.
+An interface that must be implemented by a component that wants to be notified when a significant event happens in the life of a Row set object. It called when a row is inserted, updated, or deleted. The listener will be notified whenever an event occurs on this Row set object. Creates, updates or Removes the designated object from this Row set object's list of listeners.
 
 ## Types Of Row Listener
 There are 11 types of listeners and they are in the form of interface.
@@ -447,22 +442,22 @@ Manually, we can Set the values for each priority. By default, it set the values
 Notified when the process exists out of range and provides a method `processOutOfRangeNotification` returns in boolean.
 
 #### *IgnoreUpdate :*
- Checks the row is already exists or not by extending the `IgnoreIfExists` and provides a method `ignoreUpdate` passing a parameter as table and columns, it returns a boolean whether it already exists or not.
+ Checks the row is already exists or not by extending the `IgnoreIfExists` and provides a method ignoreUpdate passing a parameter as table and columns, it returns a boolean whether it already exists or not.
 
 #### *IgnoreDelete :*
- Checks the row is already exists or not by extending the `IgnoreIfExists` and provides a method `ignoreParentDeleteAction` passing a parameter as table and parent primary key and it returns a boolean whether it already exists or not.
+ Checks the row is already exists or not by extending the `IgnoreIfExists` and provides a method ignoreParentDeleteAction passing a parameter as table and parent primary key and it returns a boolean whether it already exists or not.
 
 #### *RowAddListener :* 
-RowAddListener provides a method `addRows`, passing a collection of rows as a parameter and which it extends `IgnoreIfExists` and `ListenerOrder`.
+RowAddListener provides a method addRows, passing a collection of rows as a parameter and which it extends `IgnoreIfExists` and `ListenerOrder`.
 
 #### *RowUpdateListener :* 
-RowUpdateListener Provides a method `updateRows` passing a collection of rows and also it extends the functionalities of `IgnoreUpdate`,` OutOfRangeNotification`, and `ListenerOrder`.
+RowUpdateListener Provides a method updateRows passing a collection of rows and also it extends the functionalities of `IgnoreUpdate`,` OutOfRangeNotification`, and `ListenerOrder`.
 
 #### *RowDeleteListener :*
- RowDeleteListener Provides a method `deleteRows` passing a collection of rows  and also it extends the functionalities of `IgnoreDelete`, `OutOfRangeNotification`, and `ListenerOrder`.
+ RowDeleteListener Provides a method deleteRows passing a collection of rows  and also it extends the functionalities of `IgnoreDelete`, `OutOfRangeNotification`, and `ListenerOrder`.
 
 #### *RowIdDeleteListener :*
- RowIdDeleteListener provides a method `deleteRows` passing a parameter as set of id's. Row is deleted based on its Id. Which it extends the functionalities of `IgnoreDelete`, `OutOfRangeNotification`, and `ListenerOrder`.
+ RowIdDeleteListener provides a method deleteRows passing a parameter as set of id's. Row is deleted based on its Id. Which it extends the functionalities of `IgnoreDelete`, `OutOfRangeNotification`, and `ListenerOrder`.
 
  #### *RowListener :* 
 The given interface extends the functionalities of `RowAddListener`,`RowUpdateListener`, and `RowIdDeleteListener`. Once we access the rowListener we can also be able to access the above functionalities.
