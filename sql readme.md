@@ -244,7 +244,7 @@ Deleting the foreign key relation deletes the mapping between the two tables.
 * **name =** The primary key name must be specified in a specific pattern,
 like `format: TableName_[A-Za-z0-9_]`. Here the table name should be given first followed by `[A-Za-z0-9_]`. These values should not contain any special characters except underscore(_).
 
-### *Inner Tag*
+#### *Inner Tag*
 
 * **unique-key-column =** Valid column name should be provided. The unique key column values should be distinct.
 	
@@ -272,7 +272,7 @@ Indexes can be used to speed up data retrieval. It comprises the name of the tab
 * **name =** The primary key name must be specified in a specific pattern,
 like `format: TableName_[A-Za-z0-9_]`. Here the table name should be given first followed by `[A-Za-z0-9_]`. These values should not contain any special characters except underscore(_).
 
-### *Inner Tag*
+#### *Inner Tag*
 
 * **index-column =** The required column name in the index table should be provided.
 
