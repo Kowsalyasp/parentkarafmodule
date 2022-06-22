@@ -33,7 +33,7 @@
 
 
 # Abstract:
-In the SQL module Query implementations against the tables in the database for DDL,DML, DQL actions, Custom Queries against SQL database are implemented. In addition to this, Data store provisions (org, admin), Listener Actions, XmlToDCConverter and Sequence generator implementations are done in this module.
+In the SQL module Query implementations against the tables in the database for DDL,DML, DQL actions, Custom Queries against SQL database are implemented. In addition to this, Data store provisions (org, admin, readable, writable), Listener Actions(add, update and delete row), XmlToDCConverter and Sequence generator implementations are done in this module.
 
 # Requirements:
 This module requires the following maven dependencies.
@@ -60,31 +60,31 @@ A configuration file is a properties file containing key/value pairs:
 You can add your initial configuration directly in the file. To get the database service, mention the following mandatory properties in the given format.
 
 Set the database name as you prefer and create the database with the same name in the database.
-> database.name = TLC
+> **database.name =** TLC
 
 To get the database server connection to mention the port number as follow: 
-> database.server = localhost:5432
+> **database.server =** localhost:5432
 
 A default username and password that is connected to the database. 
-> database.username = *****
+> **database.username =** *****
 
-> database.password = *****
+> **database.password =** *****
 
 Additionally, we can use the following properties to mention the pool size
 
 Maximum pool size can be controlled using the below command.
 This value will determine the maximum number of actual connections to the database backend.
-> connection.pool.max = 
+> **connection.pool.max =** 
 
 To acquire the Minimum number of idle connections to maintain in the pool.
-> connection.pool.idle = 
+> **connection.pool.idle =**
 
 To make the connection idle for a certain period of time (in milliseconds.)
 A connection will never be retired as idle before this timeout. A value of 0 means that idle connections are never removed from the pool.
-> connection.pool.idle.timeout = 
+> **connection.pool.idle.timeout =** 
 	
 To load meta and data xml files we need to set the developer mode true by mentioning the below line in custom.system.properties file in etc folder of karaf.
-> tlc.dev.mode = true
+> **tlc.dev.mode** = true
 
 # MetaData:
 The meta.xml file presents a set of metadata, such as the module name, and the tables to include. The meta.xml file to load and populate the metadata to fetch and configure the table definitions and initialize the sequence generation of primary keys. Meta.xml file performs all the DDL actions related to the table. We need to provide the table, columns and constraint details to create a table in the database. And the module tag refers to which module wants to create the table. Meta details of table should be described by below tags and attributes.
@@ -122,16 +122,27 @@ Create a table with the table name and type which are present inside the table t
 * **data-type =** It refers to what type of column it is, and here we can use some specific data types.
 
    * **supported datatypes:**
+
      `BIGINT`: A large integer and it refers to the long data type.
+
      `INTEGER`: A medium integer it equals to the size of an int datatype.
+
      `SMALLINT`: A small integer and it equals to the short datatype.
+
      `DECIMAL`: An exact fixed-point number.
+
      `KCHAR`: Refers to an i18n datatype.The size parameter specifies the column length in characters - can be from 0 to 512. 
+
      `SCHAR`: Refers to the variable length string. 
+
      `BLOB`: For Binary Large Object(BLOB) holds the bytes of data.
+
      `CHAR`: A string can contain letters, numbers, and special characters. The size parameter specifies the column length in characters - can be from 0 to 255. 
+
      `TEXT`: A string can contain letters, numbers, and special characters. And it holds with a maximum length of 2500.
+
      `STEXT`: A string that holds the maximum length of 255 characters.
+
      `BOOLEAN`: A boolean is an expression that evaluates to either true or false.
   
 * **nullable =** If we want to allow null values for the specific column, we can set nullable = true; otherwise, nullable = false.
@@ -313,11 +324,9 @@ If one or more fields are in <index-column> is to be removed then we just need t
 The data.xml file used to load, process, update and populate the data to fetch and configure the column of the table. In this, we can statically enter a record for the table. Using this data file we could be able to manipulate the data in the user's preferable way.
 
 The name for the module should be declared inside the module tag <module>. We can create one or more modules.
- 
-The format for module name should be tlc_crm_modulename. If it is contact module:
  >``<module name="tlc_crm_contact">``
 
-For the table in which you prefer to store static data, then inside the table tag for each table, the id must be mentioned and then followed by the column value. A valid ID consists of a table name, ID, and CO(column) and gives the Id value is acceptable formats separated by a colon. The format for the ID has to be ID="TableName:ID: CO:1"
+For the table in which you prefer to store static data, then inside the table tag for each table, the id must be mentioned and then followed by the column value. A valid ID consists of a table name, ID, and CO(column) and gives the Id value is acceptable formats separated by a colon. The format for the ID has to be `ID="TableName:ID: CO:1"`
 
 > ``<TableName ID="" col1="" col2=""/>``
 
@@ -388,7 +397,7 @@ And it mapped to the corresponding tables.
 
 * **ds -** A data structure is a special way of organizing and storing data in a database so that it can be used efficiently. Provides services for admindatastore, orgdatastore, readable and writable datastore.
 
-* **listener -** Provides services for [Row listeners](#row-listener) Row listener like row added, row updated, and row deleted listeners.
+* **listener -** Provides services for [Row listeners](#row-listener) like row added, row updated, and row deleted listeners.
 
 * **meta -**  Meta-SQL is a great way to abstract SQL logic and ensures consistency in SQL definitions. Also, it tells about SQL statements text with key fields such as table type and datatype.
 
